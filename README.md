@@ -4,4 +4,6 @@
 
 希望能在javascript没落之前完成
 
+<s>就差一个程序员了</s>
+
 Yin Yan
