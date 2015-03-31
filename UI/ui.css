@@ -2,3 +2,15 @@
     display: none;
     font-size: 60px;
 }
+
+#first{
+    display: none;
+    /*border: 1px solid black;*/
+}
+
+#first h1{
+    margin-bottom: 30px;
+}
+
+#first h2{
+}

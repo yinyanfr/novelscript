@@ -8,8 +8,8 @@ var SponsorList = [];
 
 SponsorList[0] = "Novel Script";
 SponsorList[1] = "这是一个基于javascript的";
-SponsorList[2] = "Galgame引擎";
-SponsorList[3] = "刚刚开始制作";
+//SponsorList[2] = "Galgame引擎";
+//SponsorList[3] = "刚刚开始制作";
 
 
 // Methods
@@ -40,10 +40,13 @@ function windowResize() {
     $("#sponsor").css("margin-top", function () {
         return 0.45 * $(window).height() + "px";
     });
+    $("#first").css("margin-top", function () {
+        return 0.45 * $(window).height() + "px";
+    });
 }
 
 function welcome(l) {
-    if (l.length == 0) return;
+    if (l.length == 0) gal();
     else {
         var tmp = l.shift();
         middleLine(tmp);
@@ -58,8 +61,20 @@ function welcome(l) {
 
 }
 
+function firstMenu(){
+    $("#first").css("margin-top", function () {
+        return 0.45 * $(window).height() + "px";
+    }).fadeIn(1000);
+
+}
+
+function gal(){
+    firstMenu();
+}
+
 $(document).ready(function () {
     $(window).resize(windowResize());
 
     welcome(SponsorList);
+
 });
