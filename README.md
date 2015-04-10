@@ -7,3 +7,12 @@
 <s>就差一个程序员了</s>
 
 Yin Yan
+
+# 进度
+
+刚开始？
+
+# 引用资源
+
+<a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
+
