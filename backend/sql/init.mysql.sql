@@ -1,5 +1,6 @@
 create table account(
-login varchar(50) not null primary key
+login varchar(50) not null primary key,
+signer varchar(300)
 );
 
 create table danmaku(
@@ -43,8 +44,8 @@ create table scripts(
 idScrs int not null primary key
 );
 
-insert into account(login) values('yan');
+insert into account(login,signer) values('yan2','this is another signature.');
 
-insert into danmaku(idDan,info,login) values(1,'php is the best language, i gonna persuade them the whole night.','yan');
+insert into danmaku(idDan,info,login) values(2,'php is the worst language, i gonna persuade them the whole night.','yan2');
 
-select a.login from account a, danmaku d where d.login = a.login and d.login = 'yan';
+select a.signer from account a, danmaku d where d.login = a.login and d.login = 'yan';
