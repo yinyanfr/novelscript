@@ -5,10 +5,11 @@
  * creating a serveral slice of diapo in a vacant element aginst its parent element
  */
 
-var diapo = function(list,stage,bgColor){
+var diapo = function(list,stage,bgColor,time){
     var diapo = {};
     diapo.list = list;
     diapo.stage = stage;
+    diapo.time = time;
     diapo.parent = $(stage).parent();
     diapo.bgColorCache = diapo.parent.css("background-color");
     diapo.init = function(){
@@ -29,8 +30,8 @@ var diapo = function(list,stage,bgColor){
             return n;
         }
     };
-    diapo.anime = function(time){
-        time = time||1500;
+    diapo.anime = function(){
+        time = diapo.time;
         if(diapo.list.length === 0){
             diapo.recover();
         }
@@ -48,8 +49,8 @@ var diapo = function(list,stage,bgColor){
         }
         return this;
     };
-    diapo.execute = function(time,afterwards){
-        diapo.init().anime(time).recover(afterwards);
+    diapo.execute = function(afterwards){
+        diapo.init().anime().recover(afterwards);
     };
     return diapo;
 };
