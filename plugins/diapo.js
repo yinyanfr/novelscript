@@ -9,7 +9,7 @@ var diapo = function(list,stage,bgColor,time){
     var diapo = {};
     diapo.list = list;
     diapo.stage = stage;
-    diapo.time = time;
+    diapo.time = time||1500;
     diapo.parent = $(stage).parent();
     diapo.bgColorCache = diapo.parent.css("background-color");
     diapo.init = function(){
@@ -40,8 +40,10 @@ var diapo = function(list,stage,bgColor,time){
             $(diapo.stage).html(diapo.toHtml(tmp));
             var tmpWidth = $(diapo.stage).width();
             Align.full(diapo.stage);
+            $(diapo.stage).width(tmpWidth);
             $(diapo.stage).fadeIn(time, function () {
-                //TODO bug of width
+                //TODO bug of width fixed but should it be in align.js?
+
                 $(diapo.stage).fadeOut(time,function(){
                     diapo.anime(time);
                 });
