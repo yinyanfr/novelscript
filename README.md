@@ -12,7 +12,11 @@ Yin Yan
 
 # 进度
 
-刚开始？
+已经开始
+
+开发中的插件和代码片段会先放在sandbox目录里，欢迎取用
+
+https://github.com/yinyanfr/sandbox
 
 # 引用资源
 
