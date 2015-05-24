@@ -1,3 +1,5 @@
+https://www.facebook.com/pages/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/221502514610838
+
 # NovelScript
 
 This project aims to present galgames(also known as visual novels) on webpage, full-screen or in a certain element of DOM.
@@ -17,6 +19,18 @@ Yin Yan
 开发中的插件和代码片段会先放在sandbox目录里，欢迎取用
 
 https://github.com/yinyanfr/sandbox
+
+## Date of Releases
+
+6.1 NovelScript-Light 
+
+6.14 NovelScript with plugins 
+
+6.22 First Galgame with NovelScript-Server(Preview)
+
+6.29 NovelScript-Server
+
+做不出来吃键盘。
 
 # 引用资源
 
