@@ -1,5 +1,25 @@
 # NovelScript json格式标准
 
+## typer.js
+例子 http://gal.yinyan.fr/demo/typer/
+
+函数同时调用时请注意线程的问题
+```javascript
+function aux() {
+    $("#shell").html("");
+    $(window).unbind("click",aux);
+    if (list.length > 0) {
+        typer.flush("#shell", list.shift(), 10, function(){
+            $(window).bind("click",aux);
+        })
+    }
+}
+
+function main() {
+    $(window).bind("click",aux);
+}
+```
+
 ##剧本文件
 
 ```json
