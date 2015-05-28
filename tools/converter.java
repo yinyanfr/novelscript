@@ -10,14 +10,16 @@ import java.util.*;
 
 public class converter {
 	private String SourceFile = "c:\\source.txt";
-	private String DestinationFile = "c:\\toslice.dat";
+	private String DestinationFile = "c:\\toslice.txt";
 	private InputStreamReader r;
 	private OutputStreamWriter w;
+	private BufferedReader br;
 	private List<String> lastfigure = new ArrayList<String>(); 
 	
 	converter() throws IOException {
 		this.r = new InputStreamReader(new FileInputStream(this.SourceFile), Charset.forName("UTF-8"));
 		this.w = new OutputStreamWriter(new FileOutputStream(this.DestinationFile), Charset.forName("UTF-8"));
+		this.br = new BufferedReader(this.r);
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -48,16 +50,9 @@ public class converter {
 	}
 	
 	public String readLine() throws IOException {
-		StringBuffer line = new StringBuffer();
-		int ch = this.r.read();
-		if(ch == -1) return null;
-		while(ch != -1) {
-			char unicode = (char) ch;
-			if(unicode == '\n') break;
-			if(unicode != '\r') line.append(unicode);
-			ch = this.r.read();
-		}
-		return line.toString();
+		String line = this.br.readLine();
+		System.out.println(line);
+		return line;
 	}
 
 	public String converslice(String line, int counter) {
@@ -191,8 +186,9 @@ public class converter {
 				j = line.indexOf((int) ']');
 			}
 		}
-		i = line.indexOf((int) '"');
-		lineList[1] = new String(line.substring(i));
+		//i = line.indexOf((int) '"');
+		//lineList[1] = new String(line.substring(i));
+		lineList[1] = new String("\"" + line + "\"");
 		String slice = "\"speaker\":" + lineList[0] + ",\"dialogue\":" + lineList[1]
 				+ ",\"condition\":" + lineList[2] + ",\"figure\":[" + lineList[3] + ","
 				+ lineList[4] + "," + lineList[5] + "," + lineList[6] + "," + lineList[7]
