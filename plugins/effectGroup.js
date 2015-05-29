@@ -7,6 +7,7 @@ var effectGroup = function (async, group) {
      * effectGroup 用来执行一个效果队列 i
      * 参数 async in boolean 是否异步执行
      *     group in [] of {} 效果队列
+     * 注意：不是所有的effect都能同步执行
      */
     var eg = {};
     eg.group = group; // 储存group，防止修改外部变量
