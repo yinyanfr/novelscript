@@ -1,57 +1,70 @@
 /*
- * made by @夏洛特鸣泣
+ * @NovelScript
+ * converter code by @夏洛特鸣泣
  * mail: 975534268@qq.com
+ * Version: 1.01
  */
+
 package sliceConverter;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
-public class converter {
-	private String SourceFile = "c:\\source.txt";
-	private String DestinationFile = "c:\\toslice.txt";
+import javax.swing.*;
+
+public class Converter {
 	private InputStreamReader r;
 	private OutputStreamWriter w;
 	private BufferedReader br;
 	private List<String> lastfigure = new ArrayList<String>(); 
 	
-	converter() throws IOException {
-		this.r = new InputStreamReader(new FileInputStream(this.SourceFile), Charset.forName("UTF-8"));
-		this.w = new OutputStreamWriter(new FileOutputStream(this.DestinationFile), Charset.forName("UTF-8"));
+	public static void main(String[] arg) {
+		@SuppressWarnings("unused")
+		JFrame f = new ConverUI();
+	}
+	
+	public Converter(String SourceFile, String DestinationFile) throws IOException {
+		this.r = new InputStreamReader(new FileInputStream(SourceFile), Charset.forName("UTF-8"));
+		this.w = new OutputStreamWriter(new FileOutputStream(DestinationFile), Charset.forName("UTF-8"));
 		this.br = new BufferedReader(this.r);
 	}
 	
-	public static void main(String[] args) throws IOException {
-		converter c = new converter(); 
-		String line = c.readLine();
+	public Converter(InputStreamReader isr, OutputStreamWriter osw) {
+		this.r = isr;
+		this.w = osw;
+		this.br = new BufferedReader(this.r);
+	}
+	
+	public void process() throws IOException { 
+		String line = this.readLine();
 		if(line == null) {
 			System.out.println("Error, the source file is empty.\n");
 			return ;
 		}
-		c.w.write("{\n\"id" + c.readScriptId(line) + "\":\n");
-		line = c.readLine();
+		this.w.write("{\n\"id" + this.readScriptId(line) + "\":\n");
+		line = this.readLine();
 		int counter = 0;
 		while(line != null) {
-			if(c.checkLineType(line)) {
+			if(this.checkLineType(line)) {
 				counter = 0;
-				c.w.write("\n],\n\"id" + c.readScriptId(line) + "\":\n[\n");
+				this.w.write("\n],\n\"id" + this.readScriptId(line) + "\":\n[\n");
 			}
 			else {
-				if(counter != 0) c.w.write(",\n");
-				c.w.write("{" + c.converslice(line, counter) + "}");
+				if(counter != 0) this.w.write(",\n");
+				this.w.write("{" + this.converslice(line, counter) + "}");
 				counter++;
 			}
-			line = c.readLine();
+			line = this.readLine();
 		}
-		c.w.write("\n]\n}");
-		c.w.close();
-		c.r.close();
+		this.w.write("\n]\n}");
+		this.w.close();
+		this.r.close();
 	}
 	
 	public String readLine() throws IOException {
 		String line = this.br.readLine();
-		System.out.println(line);
+//		System.out.println(line);
 		return line;
 	}
 
@@ -64,18 +77,18 @@ public class converter {
 			j = line.indexOf((int) ']');
 			
 			if(line.substring(i + 1, j).indexOf((int) '.') < 0 && line.substring(i + 1, j).indexOf((int) '0') < 0) {
-				lineList[0] = line.substring(i + 1, j);
+				lineList[0] = "\"" + line.substring(i + 1, j) + "\"";
 				line = line.substring(j + 1);
 				i = line.indexOf((int) '[');
 				j = line.indexOf((int) ']');
 			}
 			
-			if(i >= 0 && line.substring(1,4).equals("con")) {
-				lineList[2] = line.substring(5,j);
-				line = line.substring(j + 1);
-				i = line.indexOf((int) '[');
-				j = line.indexOf((int) ']');
-			}
+//			if(i >= 0 && line.substring(1,4).equals("con")) {
+//				lineList[2] = line.substring(5,j);
+//				line = line.substring(j + 1);
+//				i = line.indexOf((int) '[');
+//				j = line.indexOf((int) ']');
+//			}
 			
 			if(i >= 0 && line.substring(i + 1, j).indexOf((int) ':') < 0) {
 				if(counter == 0 || this.lastfigure.size() == 0) {
@@ -128,16 +141,16 @@ public class converter {
 				}
 
 				if(this.lastfigure.size() == 1) {
-					lineList[5] = this.lastfigure.get(0);
+					lineList[5] = "\"" + this.lastfigure.get(0) + "\"";
 				}
 				if(this.lastfigure.size() == 2) {
-					lineList[4] = this.lastfigure.get(0);
-					lineList[6] = this.lastfigure.get(1);
+					lineList[4] = "\"" + this.lastfigure.get(0) + "\"";
+					lineList[6] = "\"" + this.lastfigure.get(1) + "\"";
 				}
 				if(this.lastfigure.size() == 3) {
-					lineList[3] = this.lastfigure.get(0);
-					lineList[5] = this.lastfigure.get(1);
-					lineList[7] = this.lastfigure.get(2);
+					lineList[3] = "\"" + this.lastfigure.get(0) + "\"";
+					lineList[5] = "\"" + this.lastfigure.get(1) + "\"";
+					lineList[7] = "\"" + this.lastfigure.get(2) + "\"";
 				}
 				line = line.substring(j + 1);
 				i = line.indexOf((int) '[');
@@ -179,22 +192,21 @@ public class converter {
 				j = line.indexOf((int) ']');
 			}
 			
-			if(i >= 0 && line.substring(1,7).equals("effect")) {
-				lineList[12] = line.substring(8,j);
-				line = line.substring(j + 1);
-				i = line.indexOf((int) '[');
-				j = line.indexOf((int) ']');
-			}
+//			if(i >= 0 && line.substring(1,7).equals("effect")) {
+//				lineList[12] = line.substring(8,j);
+//				line = line.substring(j + 1);
+//				i = line.indexOf((int) '[');
+//				j = line.indexOf((int) ']');
+//			}
 		}
 		//i = line.indexOf((int) '"');
 		//lineList[1] = new String(line.substring(i));
 		lineList[1] = new String("\"" + line + "\"");
-		String slice = "\"speaker\":" + lineList[0] + ",\"dialogue\":" + lineList[1]
-				+ ",\"condition\":" + lineList[2] + ",\"figure\":[" + lineList[3] + ","
+		String slice ="\"slice\":" + counter  + ",\"speaker\":" + lineList[0] + ",\"dialogue\":" + lineList[1]
+				 + ",\"figure\":[" + lineList[3] + ","
 				+ lineList[4] + "," + lineList[5] + "," + lineList[6] + "," + lineList[7]
 				+ "],\"cg\":" + lineList[8] + ",\"bg\":" + lineList[9] + ",\"bgm\":"
-				+ lineList[10] + ",\"voice\":" + lineList[11] + ",\"wait\":"  + lineList[12]
-				+ ",\"effect\":" + lineList[13];
+				+ lineList[10] + ",\"voice\":" + lineList[11] + ",\"wait\":"  + lineList[12];
 		return slice;
 	}
 	
@@ -209,6 +221,12 @@ public class converter {
 		for(char c : line.toCharArray()) {
 			if(c <= '9' && c>= '0') id.append(c);
 		}
+		
 		return id.toString();
+	}
+	
+	public void exit() throws IOException {
+		this.r.close();
+		this.w.close();
 	}
 }
