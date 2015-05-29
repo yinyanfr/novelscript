@@ -7,15 +7,18 @@
 
 var diapo = function(list,stage,bgColor,time){
     var diapo = {};
+    diapo.selector = stage;
     diapo.list = list;
-    diapo.stage = stage;
+    diapo.stage = "#diapostage";
     diapo.time = time||1500;
-    diapo.parent = $(stage).parent();
+    diapo.parent = $(stage);
     diapo.bgColorCache = diapo.parent.css("background-color");
     diapo.init = function(){
+        $(stage).html("<div id='diapostage'></div>");
+        //alert($(stage).html());
         diapo.parent.css("background-color",bgColor);
-        Align.full(stage);
-        $(stage).hide();
+        Align.full(diapo.stage);
+        $(diapo.stage).hide();
         return this;
     };
     diapo.recover = function(afterwards){
@@ -38,6 +41,7 @@ var diapo = function(list,stage,bgColor,time){
         else{
             var tmp = diapo.list.shift();
             $(diapo.stage).html(diapo.toHtml(tmp));
+            //alert($(diapo.stage).html())
             var tmpWidth = $(diapo.stage).width();
             Align.full(diapo.stage);
             $(diapo.stage).width(tmpWidth);
