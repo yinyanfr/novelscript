@@ -30,10 +30,10 @@ var diapo = function(list,stage,bgColor,time){
             return n;
         }
     };
-    diapo.anime = function(){
+    diapo.anime = function(afterwards){
         time = diapo.time;
         if(diapo.list.length === 0){
-            diapo.recover();
+            diapo.recover(afterwards);
         }
         else{
             var tmp = diapo.list.shift();
@@ -45,14 +45,14 @@ var diapo = function(list,stage,bgColor,time){
                 //TODO bug of width fixed but should it be in align.js?
 
                 $(diapo.stage).fadeOut(time,function(){
-                    diapo.anime(time);
+                    diapo.anime(afterwards);
                 });
             });
         }
         return this;
     };
     diapo.execute = function(afterwards){
-        diapo.init().anime().recover(afterwards);
+        diapo.init().anime(afterwards);
     };
     return diapo;
 };
