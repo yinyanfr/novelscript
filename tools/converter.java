@@ -65,6 +65,7 @@ public class Converter {
 	
 	public String readLine() throws IOException {
 		String line = this.br.readLine();
+		System.out.println(line);
 		return line;
 	}
 
@@ -197,9 +198,11 @@ public class Converter {
 	}
 	
 	public boolean checkLineType(String line) {
-		if(line.substring(1,8).equals("script:"))
-			return true;
-		else return false;
+		if(line.length() > 8) {
+			if(line.substring(1,8).equals("script:"))
+				return true;
+		}
+		return false;
 	}
 	
 	public String readScriptId(String line) {
