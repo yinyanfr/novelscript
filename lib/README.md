@@ -1,4 +1,4 @@
-# NovelScript json格式标准
+# 设定
 
 ## typer.js
 例子 http://gal.yinyan.fr/demo/typer/
@@ -33,15 +33,32 @@ function main() {
 }
 ```
 
-##剧本文件
+## 剧本文件格式标准（已更新）
 
 ```json
 {
-  "id01":
-  [
-    {"speaker":"立夏","dialogue":"下午好。","condition":true,"figure":[false,false,"lixia1.png",false,false],"cg":true,"bg":"classroom1.jpg","bgm":"afternoon.mp3","voice":true,"wait":0,"effect":false},
-    {"speaker":"雨遥","dialogue":"再见。","condition":true,"figure":[false,"lixia1.png",false,"yuyao1.png",false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0,"effect":false},
-    {"speaker":null,"dialogue":"雨遥离开了。","condition":true,"figure":[false,false,"lixia1.png",false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0,"effect":false}
-  ]
+    "id1":
+        [
+            {"slice":0,"speaker":"南之","dialogue":"你看我这台电脑，花了八块钱，平时用的功能，连八分之一都到不了","figure":[false,false,"test1.png",false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":1,"speaker":"南之","dialogue":"等于说我花了八块钱，其中有七块钱，我都用不到","figure":[false,false,true,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":2,"speaker":"雨遥","dialogue":"我都会用！","figure":[false,"test1.png",false,"test4.png",false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0}
+        ],
+    "id2":
+        [
+            {"slice":0,"speaker":"雨遥","dialogue":"接下来呢就是我们AIPC极限挑战的时间了，我们挑战的内容是什么呢","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":1,"speaker":"南之","dialogue":"AIPC融合了全球顶尖的病毒技术，会导致电脑的中毒，包括上网聊天看电影，word，excel，幻灯片","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":2,"speaker":"雨遥","dialogue":"太厉害了！","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":3,"speaker":"南之","dialogue":"看这样一台AIPC，他已经感染到了病毒，他的鼠标已经不会正常的移动，可能会花几个小时的时间继续去预装系统","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":4,"speaker":"南之","dialogue":"然而我们这一台台式机却依然很流畅，可以正常地到网站上去浏览，所以它是一台永远会中病毒的电脑","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":5,"speaker":"雨遥","dialogue":"这样我们在上网的时候，被病毒袭击了！","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":6,"speaker":"南之","dialogue":"还不仅仅如此，AIPC内置了病毒写保护的功能，即使你在工作学习中不小心跌落到了地上","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":7,"speaker":"雨遥","dialogue":"天哪！","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":8,"speaker":"南之","dialogue":"也没有关系，看，病毒依然在正常的运作！","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0}
+        ],
+    "id3":
+        [
+            {"slice":0,"speaker":"雨遥","dialogue":"想买台电脑，便宜的太贵，轻便的太重","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0},
+            {"slice":1,"speaker":"南之","dialogue":"AIPC办公能不能用，当然，你看我在办公室用这个小的，出门，大的","figure":[false,false,false,false,false],"cg":true,"bg":true,"bgm":true,"voice":true,"wait":0}
+        ]
 }
 ```
