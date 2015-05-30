@@ -11,6 +11,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 public class Converter {
@@ -36,7 +37,7 @@ public class Converter {
 		this.br = new BufferedReader(this.r);
 	}
 	
-	public void process() throws IOException { 
+	public void process() throws IOException, LineUnavailableException, UnsupportedAudioFileException { 
 		String line = this.readLine();
 		if(line == null) {
 			System.out.println("Error, the source file is empty.\n");
@@ -64,11 +65,10 @@ public class Converter {
 	
 	public String readLine() throws IOException {
 		String line = this.br.readLine();
-//		System.out.println(line);
 		return line;
 	}
 
-	public String converslice(String line, int counter) {
+	public String converslice(String line, int counter) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 		String[] lineList = {null, null, "true", "false", "false", "false", "false", "false",
 				"true", "true", "true", "true", "0", "false"};
 		int i, j;
@@ -82,13 +82,6 @@ public class Converter {
 				i = line.indexOf((int) '[');
 				j = line.indexOf((int) ']');
 			}
-			
-//			if(i >= 0 && line.substring(1,4).equals("con")) {
-//				lineList[2] = line.substring(5,j);
-//				line = line.substring(j + 1);
-//				i = line.indexOf((int) '[');
-//				j = line.indexOf((int) ']');
-//			}
 			
 			if(i >= 0 && line.substring(i + 1, j).indexOf((int) ':') < 0) {
 				if(counter == 0 || this.lastfigure.size() == 0) {
@@ -180,6 +173,7 @@ public class Converter {
 			
 			if(i >= 0 && line.substring(1,6).equals("voice")) {
 				lineList[11] = "\"" + line.substring(7,j) + "\"";
+				lineList[12] = VoiceLength(line.substring(7,j));
 				line = line.substring(j + 1);
 				i = line.indexOf((int) '[');
 				j = line.indexOf((int) ']');
@@ -191,16 +185,8 @@ public class Converter {
 				i = line.indexOf((int) '[');
 				j = line.indexOf((int) ']');
 			}
-			
-//			if(i >= 0 && line.substring(1,7).equals("effect")) {
-//				lineList[12] = line.substring(8,j);
-//				line = line.substring(j + 1);
-//				i = line.indexOf((int) '[');
-//				j = line.indexOf((int) ']');
-//			}
 		}
-		//i = line.indexOf((int) '"');
-		//lineList[1] = new String(line.substring(i));
+		
 		lineList[1] = new String("\"" + line + "\"");
 		String slice ="\"slice\":" + counter  + ",\"speaker\":" + lineList[0] + ",\"dialogue\":" + lineList[1]
 				 + ",\"figure\":[" + lineList[3] + ","
@@ -223,6 +209,16 @@ public class Converter {
 		}
 		
 		return id.toString();
+	}
+	
+	public String VoiceLength(String url) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+		File f = new File(url);
+		Clip c = AudioSystem.getClip();
+		AudioInputStream ais = AudioSystem.getAudioInputStream(f);
+		c.open(ais);
+		int time = (int) (c.getMicrosecondLength() / 1000000D + 1);
+		c.close();
+		return Integer.toString(time);
 	}
 	
 	public void exit() throws IOException {
