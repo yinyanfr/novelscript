@@ -43,7 +43,7 @@ public class Converter {
 			System.out.println("Error, the source file is empty.\n");
 			return ;
 		}
-		this.w.write("{\n\"id" + this.readScriptId(line) + "\":\n");
+		this.w.write("{\n\"id" + this.readScriptId(line) + "\":\n[\n");
 		line = this.readLine();
 		int counter = 0;
 		while(line != null) {
@@ -65,7 +65,7 @@ public class Converter {
 	
 	public String readLine() throws IOException {
 		String line = this.br.readLine();
-		System.out.println(line);
+//		System.out.println(line);
 		return line;
 	}
 
