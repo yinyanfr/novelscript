@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class ConverUI extends JFrame{
@@ -112,10 +114,14 @@ public class ConverUI extends JFrame{
 			
 			try {
 				Converter c = new Converter(sourceAddress, destAddress);
-				c.process();
+				c.process(); 
 				c.exit();
 			} catch (IOException e2) {
 				e2.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				e1.printStackTrace();
+			} catch (UnsupportedAudioFileException e1) {
+				e1.printStackTrace();
 			}
 			
 		}
