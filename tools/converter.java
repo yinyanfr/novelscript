@@ -63,13 +63,13 @@ public class Converter {
 		this.r.close();
 	}
 	
-	public String readLine() throws IOException {
+	private String readLine() throws IOException {
 		String line = this.br.readLine();
 //		System.out.println(line);
 		return line;
 	}
 
-	public String converslice(String line, int counter) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+	private String converslice(String line, int counter) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 		String[] lineList = {null, null, "true", "false", "false", "false", "false", "false",
 				"true", "true", "true", "true", "0", "false"};
 		int i, j;
@@ -77,7 +77,7 @@ public class Converter {
 		if(i >= 0) {
 			j = line.indexOf((int) ']');
 			
-			if(line.substring(i + 1, j).indexOf((int) '.') < 0 && line.substring(i + 1, j).indexOf((int) '0') < 0) {
+			if(i+1 != j && line.substring(i + 1, j).indexOf((int) ',') < 0 && line.substring(i + 1, j).indexOf((int) '0') < 0) {
 				lineList[0] = "\"" + line.substring(i + 1, j) + "\"";
 				line = line.substring(j + 1);
 				i = line.indexOf((int) '[');
@@ -197,7 +197,7 @@ public class Converter {
 		return slice;
 	}
 	
-	public boolean checkLineType(String line) {
+	private boolean checkLineType(String line) {
 		if(line.length() > 8) {
 			if(line.substring(1,8).equals("script:"))
 				return true;
@@ -205,7 +205,7 @@ public class Converter {
 		return false;
 	}
 	
-	public String readScriptId(String line) {
+	private String readScriptId(String line) {
 		StringBuffer id = new StringBuffer();
 		for(char c : line.toCharArray()) {
 			if(c <= '9' && c>= '0') id.append(c);
@@ -214,7 +214,7 @@ public class Converter {
 		return id.toString();
 	}
 	
-	public String VoiceLength(String url) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+	private String VoiceLength(String url) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 		File f = new File(url);
 		Clip c = AudioSystem.getClip();
 		AudioInputStream ais = AudioSystem.getAudioInputStream(f);
