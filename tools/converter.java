@@ -71,7 +71,7 @@ public class Converter {
 
 	private String converslice(String line, int counter) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 		String[] lineList = {null, null, "true", "false", "false", "false", "false", "false",
-				"true", "true", "true", "true", "0", "false"};
+				"true", "true", "true", "false", "5000", "false"};
 		int i, j;
 		i = line.indexOf((int) '[');
 		if(i >= 0) {
@@ -219,7 +219,7 @@ public class Converter {
 		Clip c = AudioSystem.getClip();
 		AudioInputStream ais = AudioSystem.getAudioInputStream(f);
 		c.open(ais);
-		int time = (int) (c.getMicrosecondLength() / 1000000D + 1);
+		int time = (int) (c.getMicrosecondLength() / 1000D + 3000);
 		c.close();
 		return Integer.toString(time);
 	}
