@@ -77,6 +77,34 @@ function main() {
 同时占用以下属性名：
 
 * condition
+
+	表达式，台词发生的条件，默认为true，如为false则台词不发生
 * effect
+
+	效果器，文档请参照文件夹 plugin/
 * merge
+	
+	选项功能，
+	
+	注意，你需要单独为merge功能提供一句台词（这句台词只用于占位，不会被显示）
+	```javascript
+    var merge1 = {
+        text : "去听音乐会",
+        condition : false,
+        gray : true, // 在不符合条件的情况下是否出现，true为以灰色（不可点选）状态出现
+        action : null
+    };
+
+    var merge2 = {
+        text : "去新年参拜",
+        condition : true,
+        gray : false,
+        action : function(){ // 条件符合时选择后出发的功能
+            ns.jumpScript(1,0)
+        }
+    };
+
+    list["id1"][1]["merge"] = [merge1, merge2];	
+	```
 * after
+	函数，定义台词结束时进行的行为
