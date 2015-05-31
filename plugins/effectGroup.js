@@ -19,7 +19,6 @@ var effectGroup = function (async, group) {
             eg.group.shift().execute(function () {
                 eg.executionAsync(f)
             });
-            // 自己试着理解这个片段
         }
     };
     eg.executionSync = function(f){
