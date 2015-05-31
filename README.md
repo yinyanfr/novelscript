@@ -2,6 +2,8 @@ https://www.facebook.com/pages/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/221502514610
 
 # NovelScript
 
+文档请参考 doc/
+
 This project aims to present galgames(also known as visual novels) on webpage, full-screen or in a certain element of DOM.
 
 The first target is to construct the basic structure system so as to make simple and short presentations of visual novels, which can be integrated in web articles. And this will be released as NovelScript-Light in a file called "NovelScript.light.js".
@@ -22,7 +24,7 @@ https://github.com/yinyanfr/sandbox
 
 ## Date of Releases
 
-6.1 NovelScript-Light 
+6.1 NovelScript-Light done √
 
 6.14 NovelScript with plugins 
 

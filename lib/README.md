@@ -32,6 +32,18 @@ function main() {
     $(window).bind("click",aux);
 }
 ```
+## preload.js
+预加载功能，图片部分引用自 <a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
+···JavaScript
+ var list = [......],
+ imgs = [];
+ $.when(preloadImg(list, imgs)).done(
+	function() {
+		//do something here
+	}
+ );
+···
+
 
 ## 剧本文件格式标准（已更新）
 

@@ -605,7 +605,5 @@ var NovelScript = function (selector, script, setting) {
     ns.recover = function () {
         alert("done");
     };
-    ns.initiate();
-    ns.slice();
     return ns;
 };
