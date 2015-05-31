@@ -62,3 +62,9 @@ function main() {
         ]
 }
 ```
+同时占用以下属性名：
+
+* condition
+* effect
+* merge
+* after
