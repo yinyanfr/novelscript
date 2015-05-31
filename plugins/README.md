@@ -21,7 +21,7 @@ diapo.js 可以在效果器中或在效果器外制作一个按照一定速度�
 单独使用时执行方式如下：
 
 全局变量占用： diapo函数
-···JavaScript
+```javascript
 var l = ["hgah","dfsgsfdghsf","dgfsdf"];
 
 var welcome = diapo(l,"#b","gray");
@@ -29,7 +29,7 @@ var welcome = diapo(l,"#b","gray");
 $(document).ready(function () {
 	welcome.execute(1500,function(){return 0});
 });
-···
+```
 
 ### don.js
 用来代替alert()的小东西
@@ -56,9 +56,9 @@ $(document).ready(function () {
 
 ### videoStream.js
 播放流媒体视频
-···JavaScript
+```javascript
 videoStream(selector, videoPath)
-···
+```
 
 ### effectGroup.js
 effectGroup 用来执行一个效果队列 i
