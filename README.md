@@ -33,7 +33,9 @@ https://github.com/yinyanfr/sandbox
 
 6.29 NovelScript-Server
 
-做不出来吃键盘。
+做不出来吃键盘。√
+
+（因为各种原因先延期吧，毕竟要配合游戏作品的开发进度）
 
 # 引用资源
 
