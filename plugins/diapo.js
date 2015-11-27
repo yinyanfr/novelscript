@@ -16,7 +16,8 @@
  */
 var diapo = function (list, $stage, bgColor, time, iter, stop) {
     var diapo = {};
-    diapo.originBgColor = $stage.css("background-color");
+    diapo.$stage = $("#stage");
+    diapo.originBgColor = diapo.$stage.css("background-color");
     diapo.isImg = function (element) {
         return element.slice(-3) == "jpg" || element.slice(-3) == "png"
     };
@@ -70,6 +71,7 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
                 slideIterate(i);
                 i++;
                 if (i >= list.length) i = 0;
+                console.log(i);
             }
         };
         counter();
@@ -77,24 +79,30 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
 
     };
     diapo.recover = function(callback){
-        $stage.css("background-color", diapo.originBgColor);
+        diapo.$stage.css("background-color", diapo.originBgColor);
         callback();
     };
     diapo.execute = function (callback) {
-        console.log("hi");
-        $("#stage").append(diapo.$slide);
+        console.log($("#stage"));
+        diapo.$stage.append(diapo.$slide);
         Align.full(diapo.$slide);
-        $stage.css("background-color", bgColor);
-        if(!iter) diapo.slideRec(list, callback);
-        else diapo.slideIter(list, callback);
+        diapo.$stage.css("background-color", bgColor);
+        diapo.preload(function () {
+            if(!iter) diapo.slideRec(list, callback);
+            else diapo.slideIter(list, callback);
+        })
     };
     return diapo
 };
-
+/**
+ * Error log
+ * parameter transfer error
+ */
 
  var l = ["hgah","dfsgsfdghsf","dgfsdf"];
  var welcome = diapo(l, $("#stage"), "gray", 1000, true);
 
  $(document).ready(function () {
+     console.log(welcome.$stage);
  welcome.execute(function(){return 0});
  });
