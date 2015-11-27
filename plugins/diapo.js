@@ -16,8 +16,7 @@
  */
 var diapo = function (list, $stage, bgColor, time, iter, stop) {
     var diapo = {};
-    diapo.$stage = $("#stage");
-    diapo.originBgColor = diapo.$stage.css("background-color");
+    diapo.originBgColor = $stage.css("background-color");
     diapo.isImg = function (element) {
         return element.slice(-3) == "jpg" || element.slice(-3) == "png"
     };
@@ -64,13 +63,15 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
                 diapo.$slide.fadeOut()
             })
         };
-
         var counter = function () {
             var i = 0;
             return function () {
                 slideIterate(i);
                 i++;
-                if (i >= list.length) i = 0;
+                if (i >= list.length){
+                    i = 0;
+                    if(stop) clearInterval(_iterator)
+                }
                 console.log(i);
             }
         };
@@ -78,31 +79,38 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
         var _iterator = setInterval(counter(), 2 * time)
 
     };
-    diapo.recover = function(callback){
-        diapo.$stage.css("background-color", diapo.originBgColor);
+    diapo.recover = function (callback) {
+        $stage.css("background-color", diapo.originBgColor);
         callback();
     };
     diapo.execute = function (callback) {
-        console.log($("#stage"));
-        diapo.$stage.append(diapo.$slide);
+        callback = callback || function(){return 0};
+        console.log($stage);
+        $stage.append(diapo.$slide);
         Align.full(diapo.$slide);
-        diapo.$stage.css("background-color", bgColor);
+        $stage.css("background-color", bgColor);
         diapo.preload(function () {
-            if(!iter) diapo.slideRec(list, callback);
+            if (!iter) diapo.slideRec(list, callback);
             else diapo.slideIter(list, callback);
         })
     };
     return diapo
 };
+
 /**
- * Error log
- * parameter transfer error
+ * Instruction
  */
 
- var l = ["hgah","dfsgsfdghsf","dgfsdf"];
- var welcome = diapo(l, $("#stage"), "gray", 1000, true);
+var l = ["hgah", "dfsgsfdghsf", "dgfsdf"];
 
- $(document).ready(function () {
-     console.log(welcome.$stage);
- welcome.execute(function(){return 0});
- });
+$(document).ready(function () {
+    var welcome = diapo(l, $("<div></div>").css({
+            // f**king safari
+            "position": "absolute",
+            "top": 0,
+            "left": 0
+        }).width($(window).width())
+            .height($(window).height())
+            .appendTo($("body")), "gray", 1000, true);
+    welcome.execute();
+});
