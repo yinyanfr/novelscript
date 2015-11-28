@@ -80,9 +80,9 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
                 console.log(i);
             }
         };
-        //TODO 有个程序员遇到了一个问题, 他选择用线程来解决, 现现在他有两个问题了
-        setTimeout(counter(), 0);
-        var _iterator = setInterval(counter(), 3 * time)
+        var _counter = counter();
+        setTimeout(_counter, 0);
+        var _iterator = setInterval(_counter, 3 * time)
     };
     diapo.recover = function (callback) {
         $stage.css("background-color", diapo.originBgColor);
@@ -105,7 +105,7 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
 /**
  * Instruction
  */
-
+/*
 
 $(document).ready(function () {
     var l = (function (n) {
@@ -113,8 +113,7 @@ $(document).ready(function () {
         for(var i = 1; i <= n; i++){
             res.push($("<img />").attr("src", "media/"+i+".jpg")
                 .width($(window).width())
-                .height($(window).height())
-                .appendTo($("body")))
+                .height($(window).height()))
         }
         return res
     }(4));
@@ -128,6 +127,6 @@ $(document).ready(function () {
             .height($(window).height())
             .appendTo($("body")), "black", 2000, true);
     welcome.execute();
-    //var s = shrink($("img"), 0.5);
-    //s.execute();
 });
+
+    */
