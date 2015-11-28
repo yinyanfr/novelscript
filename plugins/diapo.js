@@ -7,25 +7,26 @@
 
 /**
  * Create a diaporama
- * @param list : Array of texts and pictures
+ * @param list : Array of texts, pictures and $
  * @param $stage : $, container of the diapo
  * @param bgColor : string, background color to change if needed
  * @param time : int, time of each slide
- * @param iter
- * @param stop
+ * @param iter : boolean, true if using the iterate method
+ * @param stop : boolean, true if diaporama stops when the list is done, when in iterate mode
  */
 var diapo = function (list, $stage, bgColor, time, iter, stop) {
     var diapo = {};
     diapo.originBgColor = $stage.css("background-color");
-    diapo.isImg = function (element) {
-        return element.slice(-3) == "jpg" || element.slice(-3) == "png"
+    var isImg = function (element) {
+        if(!element.jquery) return element.slice(-3) == "jpg" || element.slice(-3) == "png";
+        else return false
     };
     /**
      * preload pictures from the list before launch
      * @param callback
      */
     diapo.preload = function (callback) {
-        preloadImgMain(list.filter(diapo.isImg), callback)
+        preloadImgMain(list.filter(isImg), callback)
     };
     diapo.$slide = $("<div></div>").hide();
     diapo.slideRec = function (list, callback) {
@@ -34,7 +35,7 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
         else {
             var thisSlide = list[0];
             diapo.$slide.html((function () {
-                if (diapo.isImg(thisSlide)) {
+                if (isImg(thisSlide)) {
                     return $("<img />").attr("src", thisSlide)
                 } else return thisSlide
             })());
@@ -49,10 +50,14 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
         }
     };
     diapo.slideIter = function (list, callback) {
+        console.log("fuck");
         var slideIterate = function (i) {
             var thisSlide = list[i];
+            console.log(thisSlide);
             diapo.$slide.html((function () {
-                if (diapo.isImg(thisSlide)) {
+                console.log(list);
+                console.log(isImg(thisSlide));
+                if (isImg(thisSlide)) {
                     return $("<img />").attr("src", thisSlide)
                 } else return thisSlide
             })());
@@ -60,7 +65,7 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
             Align.full(diapo.$slide);
             diapo.$slide.width(tmpWidth);
             diapo.$slide.fadeIn(time, function () {
-                diapo.$slide.fadeOut()
+                diapo.$slide.delay(2000).fadeOut(1000)
             })
         };
         var counter = function () {
@@ -75,9 +80,9 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
                 console.log(i);
             }
         };
-        counter();
-        var _iterator = setInterval(counter(), 2 * time)
-
+        //TODO 有个程序员遇到了一个问题, 他选择用线程来解决, 现现在他有两个问题了
+        setTimeout(counter(), 0);
+        var _iterator = setInterval(counter(), 3 * time)
     };
     diapo.recover = function (callback) {
         $stage.css("background-color", diapo.originBgColor);
@@ -85,14 +90,14 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
     };
     diapo.execute = function (callback) {
         callback = callback || function(){return 0};
-        console.log($stage);
         $stage.append(diapo.$slide);
         Align.full(diapo.$slide);
         $stage.css("background-color", bgColor);
-        diapo.preload(function () {
+        //TODO problems with preload, preload need deferred paremeters!
+        //diapo.preload(function () {
             if (!iter) diapo.slideRec(list, callback);
             else diapo.slideIter(list, callback);
-        })
+        //})
     };
     return diapo
 };
@@ -101,9 +106,19 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
  * Instruction
  */
 
-var l = ["hgah", "dfsgsfdghsf", "dgfsdf"];
 
 $(document).ready(function () {
+    var l = (function (n) {
+        var res = [];
+        for(var i = 1; i <= n; i++){
+            res.push($("<img />").attr("src", "media/"+i+".jpg")
+                .width($(window).width())
+                .height($(window).height())
+                .appendTo($("body")))
+        }
+        return res
+    }(4));
+    console.log(l);
     var welcome = diapo(l, $("<div></div>").css({
             // f**king safari
             "position": "absolute",
@@ -111,6 +126,8 @@ $(document).ready(function () {
             "left": 0
         }).width($(window).width())
             .height($(window).height())
-            .appendTo($("body")), "gray", 1000, true);
+            .appendTo($("body")), "black", 2000, true);
     welcome.execute();
+    //var s = shrink($("img"), 0.5);
+    //s.execute();
 });
