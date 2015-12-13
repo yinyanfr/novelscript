@@ -22,16 +22,33 @@ diapo.js 可以在效果器中或在效果器外制作一个按照一定速度�
 
 全局变量占用： diapo函数
 ```javascript
-var l = ["hgah","dfsgsfdghsf","dgfsdf"];
-
-var welcome = diapo(l,"#b","gray");
-
 $(document).ready(function () {
-	welcome.execute(1500,function(){return 0});
+    var l = (function (n) {
+        var res = [];
+        for(var i = 1; i <= n; i++){
+            res.push($("<img />").attr("src", "media/"+i+".jpg")
+                .width($(window).width())
+                .height($(window).height()))
+        }
+        return res
+    }(4));
+    console.log(l);
+    var welcome = diapo(l, $("<div></div>").css({
+            // f**king safari
+            "position": "absolute",
+            "top": 0,
+            "left": 0
+        }).width($(window).width())
+            .height($(window).height())
+            .appendTo($("body")), "black", 2000, true);
+    welcome.execute();
 });
 ```
 
 ### don.js
+
+Notice : don.js is abondoned, an alternative is being coded
+
 用来代替alert()的小东西
 
 全局变量占用：don（函数）

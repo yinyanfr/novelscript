@@ -3,6 +3,7 @@
  * requiring jQuery 1.11.3, align.js, preload.js
  * effect plugin diapo for NovelScript 1.0 "Hina"
  * creating a serveral slice of diapo in a vacant element aginst its parent element
+ * for furthur document, please see readme
  */
 
 /**
@@ -101,32 +102,3 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
     };
     return diapo
 };
-
-/**
- * Instruction
- */
-/*
-
-$(document).ready(function () {
-    var l = (function (n) {
-        var res = [];
-        for(var i = 1; i <= n; i++){
-            res.push($("<img />").attr("src", "media/"+i+".jpg")
-                .width($(window).width())
-                .height($(window).height()))
-        }
-        return res
-    }(4));
-    console.log(l);
-    var welcome = diapo(l, $("<div></div>").css({
-            // f**king safari
-            "position": "absolute",
-            "top": 0,
-            "left": 0
-        }).width($(window).width())
-            .height($(window).height())
-            .appendTo($("body")), "black", 2000, true);
-    welcome.execute();
-});
-
-    */

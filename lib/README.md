@@ -1,5 +1,15 @@
 # 设定
 
+## align.js
+will someday transcript to a jquery plugin
+```javascript
+Align.horizontal($) // middle align, (the same for all below) horizontal against its parent
+Align.fullHorizontal($) // ... against window
+Align.vertical($) // vertical against its parent element
+Align.fullVertical($) // ... against window
+Align.full($) // horizontal and vertical against its parent element
+Align.fullscreen($) // ... against window
+```
 ## typer.js
 例子 http://gal.yinyan.fr/demo/typer/
 
@@ -31,10 +41,10 @@ function aux2(n){
 function main() {
     $(window).bind("click",aux);
 }
-
 ```
 ## preload.js
 预加载功能，图片部分引用自 <a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
+
 ```javascript
  var list = [......],
  imgs = [];
