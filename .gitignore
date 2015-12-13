@@ -5,3 +5,4 @@ test*
 debug
 .DS_Store
 tmp/
+jquery*

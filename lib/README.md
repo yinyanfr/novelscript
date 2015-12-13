@@ -16,7 +16,7 @@ function aux() { //正常的点击进行动画
     }); // 动画开始后取消点击效果，避免线程冲突
     // 修改点击效果为 aux2(n)
     if (list.length > 0) {
-        typer.flush("#shell", tmp, 10, function(){
+        typer.flush($("#shell"), tmp, 10, function(){
             $(window).unbind("click").bind("click",aux);
         })
     }
@@ -31,6 +31,7 @@ function aux2(n){
 function main() {
     $(window).bind("click",aux);
 }
+
 ```
 ## preload.js
 预加载功能，图片部分引用自 <a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
