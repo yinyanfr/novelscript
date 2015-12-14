@@ -1,7 +1,7 @@
 # 设定
 
 ## align.js
-will someday transcript to a jquery plugin
+this will be replaced by jquery.align.js as soon as other files be adopted
 ```javascript
 Align.horizontal($) // middle align, (the same for all below) horizontal against its parent
 Align.fullHorizontal($) // ... against window
