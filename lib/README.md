@@ -55,6 +55,14 @@ function main() {
  );
 ```
 
+## store.js
+封装了html5的localstorage 和 sessionstorage
+```javascript
+var memory = store.existLocal("memory", 0); // memory in localstorage, or = 0
+console.log(store.local("memory")) // getter
+store.local("memory", 1) // setter
+// same syntax to session
+```
 
 ## 剧本文件格式标准（已更新）
 
