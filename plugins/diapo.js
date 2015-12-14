@@ -51,7 +51,6 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
         }
     };
     diapo.slideIter = function (list, callback) {
-        console.log("fuck");
         var slideIterate = function (i) {
             var thisSlide = list[i];
             console.log(thisSlide);
