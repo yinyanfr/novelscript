@@ -1,0 +1,8 @@
+.idea/
+*.html
+*.css
+test*
+debug
+.DS_Store
+tmp/
+jquery-*

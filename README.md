@@ -1,5 +1,10 @@
 https://www.facebook.com/pages/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/221502514610838
 
+# Notice
+People use prototype inheritage in javascript while some still use <s>f@cking</s> class inheritage,
+
+but this project, uses closure prototype
+
 # NovelScript
 <img src="http://yinyan.fr/d/nsldemo.png" />
 

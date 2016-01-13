@@ -1,5 +1,15 @@
 # 设定
 
+## align.js
+this will be replaced by jquery.align.js as soon as other files be adopted
+```javascript
+Align.horizontal($) // middle align, (the same for all below) horizontal against its parent
+Align.fullHorizontal($) // ... against window
+Align.vertical($) // vertical against its parent element
+Align.fullVertical($) // ... against window
+Align.full($) // horizontal and vertical against its parent element
+Align.fullscreen($) // ... against window
+```
 ## typer.js
 例子 http://gal.yinyan.fr/demo/typer/
 
@@ -16,7 +26,7 @@ function aux() { //正常的点击进行动画
     }); // 动画开始后取消点击效果，避免线程冲突
     // 修改点击效果为 aux2(n)
     if (list.length > 0) {
-        typer.flush("#shell", tmp, 10, function(){
+        typer.flush($("#shell"), tmp, 10, function(){
             $(window).unbind("click").bind("click",aux);
         })
     }
@@ -34,6 +44,7 @@ function main() {
 ```
 ## preload.js
 预加载功能，图片部分引用自 <a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
+
 ```javascript
  var list = [......],
  imgs = [];
@@ -44,6 +55,14 @@ function main() {
  );
 ```
 
+## store.js
+封装了html5的localstorage 和 sessionstorage
+```javascript
+var memory = store.existLocal("memory", 0); // memory in localstorage, or = 0
+console.log(store.local("memory")) // getter
+store.local("memory", 1) // setter
+// same syntax to session
+```
 
 ## 剧本文件格式标准（已更新）
 
