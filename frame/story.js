@@ -4,8 +4,8 @@
 
 /**
  * function prototype
- * a search tree for storyline
- * @param id: generic, something that indique that piece of story
+ * a search tree for storyline, working with novelscript json file
+ * @param id: string
  * @param parent: ns.story, pointer to its parent piece
  */
 ns.story = function (id, parent) {
@@ -18,15 +18,44 @@ ns.story = function (id, parent) {
         return !story.parent
     };
 
-    story.push = function (child) {
-        if(child.parent && child.parent === story){
-            story.children.push(child)
-        }
-        return story
+    story.getData = function (id, data) {
+        return data[id]
     };
 
-    story.searchById = function (id) {
-        if(story.id == id) return story;
-        //TODO wtf...
-    }
+    story.find = function (f) {
+        if($.isFunction(f)){
+            if(!story.children.length){
+                // when the last node of a branch is reached
+                if(f(story.id)) return true;
+            }else {
+                if(f(story.id)) return true;
+                else {
+                    for(var i = 0; i < story.children.length; i++){
+                        if(story.children[i].find(f)) return true
+                    }
+                    return false
+                }
+            }
+        }else {
+            // f is String
+            return story.find(function (id) {
+                return this.id == id
+            })
+        }
+    };
+
+
+    return story
+
 };
+
+ns.storyline = (function () {
+    var storyline = {};
+    storyline.init = function (data) {
+        storyline.data = data;
+        storyline.keys = Object.keys(data);
+        if(storyline.keys.length) storyline.node = ns.story(storyline.keys[0]);
+        else throw "failed to load script data"
+    };
+
+})();
