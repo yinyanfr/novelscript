@@ -6,3 +6,5 @@ debug
 .DS_Store
 tmp/
 jquery-*
+.txt
+.json
