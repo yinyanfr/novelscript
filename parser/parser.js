@@ -4,7 +4,7 @@
 
 // this is a node.js file
 var fs = require("fs");
-
+var ns = {};
 ns.parser = function (data) {
     var range = function (start, end ,step){
         var finish = end;
@@ -37,6 +37,13 @@ ns.parser = function (data) {
     var stripSpace = function (str) {
         return stringReplace(str, " ", "")
     };
+    parser.stripComment = function () {
+        data = data.join("\n");
+        data = data.replace(/(?:^|\n|\r)\s*\/\*[\s\S]*?\*\/\s*(?:\r|\n|$)/g, '\n')
+            .replace(/\/\/.*\n/g, "\n");
+        data = data.split("\n");
+        console.log(data)
+    };
     parser.splitScript = function () {
         var scriptRegex = /^\[script/;
         var scriptOpen = false;
@@ -62,7 +69,6 @@ ns.parser = function (data) {
         var mergeBodyRegex = /\[.+]\]/;
         if(dial.match(mergeRegex)){
             res.merge = true;
-            dial.replace(mergeRegex, "");
             var mergeMatch = dial.match(mergeBodyRegex);
             var mergeBody = (mergeMatch) && (mergeMatch[0]);
             try{
@@ -77,7 +83,7 @@ ns.parser = function (data) {
         }
         // normal
         // parse speaker
-        var speakerRegex = /^\[[\u4e00-\u9fa5A-Za-z0-9 _]+\]/; // verified
+        var speakerRegex = /^\[[\u4e00-\u9fa5A-Za-z0-9 _-]+\]/; // verified
         var speakerMatch = dial.match(speakerRegex);
         res.speaker = (speakerMatch) && (dial.match(speakerRegex)[0]) || null;
         dial.replace(speakerRegex, ""); // parse speaker done
@@ -89,8 +95,6 @@ ns.parser = function (data) {
             figure = figure.replace(/\[ */, "[\"")
                 .replace(/ *, */g, "\", \"")
                 .replace(/ *\]/, "\"]");
-            console.log(JSON.parse(figure));
-            /*
             try{
                 figure = JSON.parse(figure)
             }catch (err){
@@ -98,8 +102,7 @@ ns.parser = function (data) {
             }
             if(Array.isArray(figure)){
                 res.figure = figure
-            }*/
-            res.figure = JSON.parse(figure)
+            }
         }
         // parse cg
         var cgRegex = /\[cg:(.+\.jpg|0)\]/; //verified
@@ -132,6 +135,7 @@ ns.parser = function (data) {
     };
 
     parser.parse = function () {
+        parser.stripComment();
         parser.splitScript();
         progress = Object.create(result);
         var keys = Object.keys(result);

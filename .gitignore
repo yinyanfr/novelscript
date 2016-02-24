@@ -6,5 +6,7 @@ debug
 .DS_Store
 tmp/
 jquery-*
-.txt
-.json
+*.txt
+*.json
+*.(mp3|ogg)
+*.(jpg|png)
