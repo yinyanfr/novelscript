@@ -4,7 +4,7 @@
 ```
 $ npm install argv
 
-$ node parser input.txt > output.json
+$ node parser.s input.txt > output.json
 ```
 ### 前端版本（parserFront.js）
 ```javascript
@@ -18,6 +18,7 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
  */
 [script: welcome] // 【必须】使用script来标明剧本段落名，接受字母数字下划线
 梦里不觉秋已深，余情岂是为他人。 // 这是一句单独的台词
+         // 像这样只包含空格的一行仍然会被当作有效行
 // 内容的设置
 [泽村][sawamura_tdr.png, katou_normal.png][cg: party.jpg][bg: ano_ona_no_house.jpg][bgm: ready.mp3]我和伦也才不是那种关系！
 /*
@@ -29,7 +30,7 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
  * 5. bg用[bg: ]来标识，，扩展名接受mp3|ogg, bgm在取消或者变化之前会一直播放
  * 6. 不用[]标记的是台词
  */
- // 内容的变化
+// 内容的变化
 [霞丘][, kasumigaoka_ironic.png, hyoutou_normal.png][bgm: star.mp3]毕竟是冒牌的青梅竹马。
 /*
  * 1. 说话人和台词不会继承，每一句之间是独立的

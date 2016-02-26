@@ -79,7 +79,6 @@ ns.parser = function (data) {
             var mergeBodyMatch = dial.match(mergeBodyRegex);
             var mergeBody = (mergeBodyMatch) && (mergeBodyMatch[0]);
             mergeBody = JSONArrayify(mergeBody);
-            console.log(mergeBody);
             try{
                 mergeBody = JSON.parse(mergeBody)
             }catch (err){
@@ -102,7 +101,6 @@ ns.parser = function (data) {
         var figure = (figureMatch) && figureMatch[0];
         if(figure){
             figure = stripSpace(figure);
-            console.log(figure);
             figure = JSONArrayify(figure);
             try{
                 figure = JSON.parse(figure)
