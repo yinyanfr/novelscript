@@ -1,4 +1,15 @@
 # 剧本格式规则（新订）
+## 使用方法
+### 后端版本
+```
+$ npm install argv
+
+$ node parser input.txt > output.json
+```
+### 前端版本（parserFront.js）
+```javascript
+var json = ns.parseScript(data) // data : string, the content of input.txt
+```
 ## 规则
 ```
 // 这是注释

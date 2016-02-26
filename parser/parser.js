@@ -4,6 +4,8 @@
 
 // this is a node.js file
 var fs = require("fs");
+var argv = require("argv");
+
 var ns = {};
 ns.parser = function (data) {
     var range = function (start, end ,step){
@@ -160,7 +162,9 @@ ns.parseScript = function (data) {
     return ns.parser(data).parse()
 };
 
-fs.readFile("./test.txt", "utf-8", function (err, data) {
+
+
+fs.readFile("./" + (argv.run()[0] || "test.txt"), "utf-8", function (err, data) {
     if(err) throw err;
     data = data.toString().split("\n");
     while(data[data.length-1] == ""){
