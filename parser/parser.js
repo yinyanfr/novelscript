@@ -37,12 +37,16 @@ ns.parser = function (data) {
     var stripSpace = function (str) {
         return stringReplace(str, " ", "")
     };
+    var JSONArrayify = function (arr) {
+        return arr.replace(/\[ */, "[\"")
+            .replace(/ *, */g, "\", \"")
+            .replace(/ *\]/, "\"]");
+    };
     parser.stripComment = function () {
         data = data.join("\n");
         data = data.replace(/(?:^|\n|\r)\s*\/\*[\s\S]*?\*\/\s*(?:\r|\n|$)/g, '\n')
-            .replace(/\/\/.*\n/g, "\n");
+            .replace(/\/\/[^\n]*\n/g, "\n");
         data = data.split("\n");
-        console.log(data)
     };
     parser.splitScript = function () {
         var scriptRegex = /^\[script/;
@@ -50,7 +54,7 @@ ns.parser = function (data) {
         for(var i = 0; i < data.length; i++){
             if(scriptRegex.test(data[i])){
                 stripSpace(data[i]);
-                var tmp = data[i].match(/:[A-Za-z0-9 _]+/)[0];
+                var tmp = data[i].match(/:[A-Za-z0-9 _-]+/)[0];
                 tmp = stringReplace(tmp, ":", "");
                 result[tmp] = [];
                 scriptOpen = tmp;
@@ -66,11 +70,14 @@ ns.parser = function (data) {
         // special
         // parse merge
         var mergeRegex = /^\[merge\]/;
-        var mergeBodyRegex = /\[.+]\]/;
+        var mergeBodyRegex = /\[.+\]/;
         if(dial.match(mergeRegex)){
             res.merge = true;
-            var mergeMatch = dial.match(mergeBodyRegex);
-            var mergeBody = (mergeMatch) && (mergeMatch[0]);
+            dial = dial.replace(mergeRegex, "");
+            var mergeBodyMatch = dial.match(mergeBodyRegex);
+            var mergeBody = (mergeBodyMatch) && (mergeBodyMatch[0]);
+            mergeBody = JSONArrayify(mergeBody);
+            console.log(mergeBody);
             try{
                 mergeBody = JSON.parse(mergeBody)
             }catch (err){
@@ -86,15 +93,15 @@ ns.parser = function (data) {
         var speakerRegex = /^\[[\u4e00-\u9fa5A-Za-z0-9 _-]+\]/; // verified
         var speakerMatch = dial.match(speakerRegex);
         res.speaker = (speakerMatch) && (dial.match(speakerRegex)[0]) || null;
-        dial.replace(speakerRegex, ""); // parse speaker done
+        dial = dial.replace(speakerRegex, ""); // parse speaker done
         // parse figure
-        var figureRegex = /\[([A-Za-z0-9_-]+\.png|([A-Za-z0-9_-]+\.png)*(, ?[A-Za-z0-9_-]+\.png)+)\]/; // verified
+        var figureRegex = /\[(([A-Za-z0-9_-]+\.png|0| *)|(([A-Za-z0-9_-]+\.png|0| *))*(, *([A-Za-z0-9_-]+\.png|0| *))+)\]/; // verified
         var figureMatch = dial.match(figureRegex);
         var figure = (figureMatch) && figureMatch[0];
         if(figure){
-            figure = figure.replace(/\[ */, "[\"")
-                .replace(/ *, */g, "\", \"")
-                .replace(/ *\]/, "\"]");
+            figure = stripSpace(figure);
+            console.log(figure);
+            figure = JSONArrayify(figure);
             try{
                 figure = JSON.parse(figure)
             }catch (err){
@@ -122,7 +129,7 @@ ns.parser = function (data) {
                 .replace(/\]/, "")
         }
         // parse bgm
-        var bgmRegex = /\[bgm:(.+\.mp3|0)\]/; //verified
+        var bgmRegex = /\[bgm:(.+\.(mp3|ogg)|0)\]/; //verified
         var bgmMatch = dial.match(bgmRegex);
         var bgm = bgmMatch && bgmMatch[0];
         if(bgm){
