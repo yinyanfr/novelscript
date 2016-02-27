@@ -5,6 +5,7 @@ https://www.facebook.com/pages/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/221502514610
 Strange way of javascript is being used.
 
 # NovelScript
+<img src="http://gal.yinyan.fr/demo/hina/hina.png" />
 <img src="http://yinyan.fr/d/nsldemo.png" />
 
 This is NovelScript.
