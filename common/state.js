@@ -12,6 +12,10 @@ ns.getStoredState = function (option) {
     return ns.store.local("nsstate")
 };
 
+ns.storeState = function () {
+    ns.store.local("nsstate", ns.state)
+};
+
 /**
  * import a object that contains information of
  * @param stat
@@ -39,9 +43,12 @@ ns.dev.statExample = {
     state: {
         round: 0,
         // time that the game is completed
-        paragraph: "id1",
+        paragraph: "id01",
         // name pf present reading
-        dialogue: 0
+        dialogue: 0,
         // position pf paragraph
+        cg: [],
+        bg: 0,
+        bgm: 0
     }
 };

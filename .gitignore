@@ -10,3 +10,4 @@ jquery-*
 *.json
 *.(mp3|ogg)
 *.(jpg|png)
+page.js

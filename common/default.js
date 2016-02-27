@@ -15,9 +15,10 @@ ns.default.state = {
     state: {
         round: 0,
         // time that the game is completed
-        paragraph: "id1",
+        paragraph: ns.data[Object.keys(ns.data)[0]],
         // name pf present reading
         dialogue: 0
         // position pf paragraph
     }
 };
+

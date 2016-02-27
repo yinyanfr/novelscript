@@ -13,3 +13,7 @@ ns.controls.statePassable = function (stat) {
         return stat
     }else return false
 };
+
+ns.initControls = function () {
+    ns.controls.theme = ns.ui.themes.hina;
+};
