@@ -29,7 +29,7 @@ ns.ui.frame = function () {
 
     stage.$dial = $("<p></p>")
         .css(ns.controls.theme.dialStyle)
-        .html("那样就更差劲了吧，一辈子都不要忘了自己惹哭过的少女的模样啊！")
+        .html("那样就更差劲了吧，<br>一辈子都不要忘了自己惹哭过的少女的模样啊！")
         .appendTo(stage.$content);
 
     return stage
