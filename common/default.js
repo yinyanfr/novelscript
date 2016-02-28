@@ -13,12 +13,19 @@ ns.default.state = {
     timestamp: "2016-02-14 15:20:00",
     // time
     state: {
-        round: 0,
+        round: null,
         // time that the game is completed
-        paragraph: ns.data[Object.keys(ns.data)[0]],
+        script: "id01",
         // name pf present reading
-        dialogue: 0
+        position: 0
         // position pf paragraph
+    },
+    stack: {
+        speaker: null,
+        dialogue: "",
+        cg: [],
+        bg: 0,
+        bgm: 0
     }
 };
 

@@ -4,7 +4,7 @@
 ```
 $ npm install argv
 
-$ node parser.s input.txt > output.json
+$ node parser.js input.txt > output.json
 ```
 ### 前端版本（parserFront.js）
 ```javascript
@@ -56,3 +56,6 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
 ```json
 {" welcome":[{"speaker":null,"dialogue":"梦里不觉秋已深，余情岂是为他人。 "},{"speaker":null,"dialogue":""},{"speaker":"[泽村]","figure":["sawamura_tdr.png","katou_normal.png"],"bg":"ano_ona_no_house.jpg","bgm":"ready.mp3","dialogue":"我和伦也才不是那种关系！"},{"speaker":null,"dialogue":" "},{"speaker":"[霞丘]","figure":["","kasumigaoka_ironic.png","hyoutou_normal.png"],"bgm":"star.mp3","dialogue":"毕竟是冒牌的青梅竹马。"},{"speaker":null,"dialogue":""},{"speaker":null,"figure":["0","0","0"],"dialogue":"我还是继续装睡吧……"},{"speaker":null,"dialogue":""},{"merge":true,"mergeBody":["我在漫无目的的生活里突然有了要做的事情","我遇到了改变了我漫无目的的的生活的人"]},{"speaker":null,"dialogue":""}]}
 ```
+
+# 关于旧版本
+旧版本的剧本生成器由 charlotte 完成，由于剧本逻辑的变化，已经弃用，源码可在历史commits 以及 contributor 中查看

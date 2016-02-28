@@ -58,6 +58,7 @@ ns.parser = function (data) {
                 stripSpace(data[i]);
                 var tmp = data[i].match(/:[A-Za-z0-9 _-]+/)[0];
                 tmp = stringReplace(tmp, ":", "");
+                tmp = stripSpace(tmp);
                 result[tmp] = [];
                 scriptOpen = tmp;
             }else {
@@ -161,8 +162,7 @@ ns.parseScript = function (data) {
 };
 
 
-
-fs.readFile("./" + (argv.run()[0] || "test.txt"), "utf-8", function (err, data) {
+fs.readFile(argv.run().targets[0] || "test.txt", "utf-8", function (err, data) {
     if(err) throw err;
     data = data.toString().split("\n");
     while(data[data.length-1] == ""){
@@ -170,7 +170,7 @@ fs.readFile("./" + (argv.run()[0] || "test.txt"), "utf-8", function (err, data) 
     }
     var parser = ns.parseScript(data);
     var script = JSON.stringify(parser).replace(/\\r/g, "");
-    fs.writeFile("./script.json", script, function (err) {
+    fs.writeFile(argv.run().targets[1] || "script.json", script, function (err) {
         if(err) throw err
     })
 });

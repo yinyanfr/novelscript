@@ -24,6 +24,13 @@ ns.importState = function (stat) {
     ns.state = ns.controls.statePassable(stat) || ns.default.state
 };
 
+ns.initState = function () {
+    ns.state.state.round = 0;
+    ns.state.state.script = Object.keys(ns.data)[0];
+    ns.state.stack = ns.data[ns.state.script][0];
+    ns.storeState();
+};
+
 /**
  * a exemple of the state of novelscript
  * this is JUST an example, as you HAVE TO modify everything in control.js
@@ -41,12 +48,16 @@ ns.dev.statExample = {
     timestamp: "2016-02-14 15:20:00",
     // time
     state: {
-        round: 0,
+        round: null,
         // time that the game is completed
-        paragraph: "id01",
+        script: "id01",
         // name pf present reading
-        dialogue: 0,
+        position: 0
         // position pf paragraph
+    },
+    stack: {
+        speaker: null,
+        dialogue: "",
         cg: [],
         bg: 0,
         bgm: 0
