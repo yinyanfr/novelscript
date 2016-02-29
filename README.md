@@ -1,26 +1,15 @@
-# Find me on facebook (Page in Chinese)
-https://www.facebook.com/pages/%E8%90%8C%E5%A8%98%E7%99%BE%E7%A7%91/221502514610838
+```
+Notice: Strange way of javascript is being used.
+```
 
-# Notice
-Strange way of javascript is being used.
+# What's new
+2/29 - 3/4 少女考试中，暂停工作一周
 
 # NovelScript
 <img src="http://gal.yinyan.fr/demo/hina/hina.png" />
 <img src="http://yinyan.fr/d/nsldemo.png" />
 
 This is NovelScript.
-## intro
-This project aims to present galgames(also known as visual novels) on webpage, full-screen or in a certain element of DOM.
-
-The first target is to construct the basic structure system so as to make simple and short presentations of visual novels, which can be integrated in web articles. And this will be released as NovelScript-Light in a file called "NovelScript.light.js".
-
-The second target is to complete features of a visual novel reader, and the lecture of scripts(those of galgames) from external test files will be formed, and a framework will also be released so that normal user can easily build there own web galgames with NovelScript. This will be released as NovelScript, with a framework(May be called "NovelScript-UI").
-
-The third target is to do with the server side, using python, php and mysql to make the web game a on line game, so that scripts will be stored in sql, both user account and comment/danmaku. This will be released as NovelScript-Server
-
-Yin Yan
-
-这一段没有什么意义就不写中文了, 总之NovelScript回来了.
 
 # Process
 ## changement of developping plan
@@ -79,5 +68,5 @@ New Feature:
 
 # Credit
 
-<a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
+<a href="https://segmentfault.com/a/1190000000684923">preload.js by Joe</a>
 
