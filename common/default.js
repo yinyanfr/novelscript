@@ -29,3 +29,4 @@ ns.default.state = {
     }
 };
 
+ns.default.dialogueDisplay = ns.typer.flush;

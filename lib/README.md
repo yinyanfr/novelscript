@@ -18,29 +18,24 @@ Align.fullscreen($) // ... against window
 一个简单的点击按钮变化台词的示例（草稿）
 
 ```javascript
-function aux() { //正常的点击进行动画
-    $("#shell").html("");
-    var tmp = list.shift();
-    $(window).unbind("click",aux).bind("click",function(){
-        aux2(tmp);
-    }); // 动画开始后取消点击效果，避免线程冲突
-    // 修改点击效果为 aux2(n)
-    if (list.length > 0) {
-        typer.flush($("#shell"), tmp, 10, function(){
-            $(window).unbind("click").bind("click",aux);
-        })
-    }
-}
-
-function aux2(n){
-    $("#shell").finish().html(n); // 终止动画
-    $(window).unbind("click").bind("click",aux); // 修改点击效果
-}
-
-
-function main() {
-    $(window).bind("click",aux);
-}
+        var dial = stack.dialogue;
+        var move = function () {
+            stage.$dial.html("");
+            stage.$main.unbind("click")
+                .bind("click", stop);
+                // 2. 动作开始后修改鼠标动作，防止重复触发
+            ns.typer.flush(stage.$dial, dial, 10, function () {
+                stage.$main.unbind("click")
+                    .bind("click", move)
+                    // 4. 动作正常结束之后，恢复鼠标功能
+            })
+        };
+        var stop = function () {
+            stage.$dial.finish().html(dial);
+            stage.$main.unbind("click")
+                .bind("click", move)
+        }; // 3. 动作中的鼠标功能改为停止动作立即显示台词
+        stage.$main.bind("click", move)  // 1. 点击鼠标开始动作
 ```
 ## preload.js
 预加载功能，图片部分引用自 <a href="http://jr3.me/javascriptshi-xian-tu-pian-de-yu-jia-zai-gong-neng/">preload.js by Joe</a>
