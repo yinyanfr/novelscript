@@ -5,9 +5,6 @@
 ns.ui.frame = function () {
     var width = ns.$frame.width();
     var height = ns.$frame.height();
-    ns.$frame.css({
-        position: "relative"
-    });
     // mainstage
     var stage = {};
 
@@ -34,3 +31,5 @@ ns.ui.frame = function () {
 
     return stage
 };
+
+ns.stage = {};

@@ -8,7 +8,8 @@ ns.ui.initTheme = function (style) {
             width: style.width,
             height: style.height,
             "background-color": "#f3f3f3",
-            "background-size": style.width+"px "+style.height+"px"
+            "background-size": style.width+"px "+style.height+"px",
+            position: "relative"
         };
         hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
         hina.contentStyle = {

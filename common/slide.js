@@ -19,7 +19,7 @@ ns.slide = function () {
      * @param position
      */
     slide.changeStack = function (script, position) {
-        if(!script) throw "No target for slide.jumpScript.";
+        if (!script) throw "No target for slide.jumpScript.";
         position = position || 0;
         state.script = script;
         state.position = position;
@@ -51,7 +51,7 @@ ns.slide = function () {
      */
     slide.move = function () {
         //TODO merge and effect(0.2)
-        var how = ns.dp.getFromState().effect.typer || typer.flush;
+        var how = ns.typer.flush;
         stage.$dial.html("");
         stage.$main.unbind("click")
             .bind("click", stop);
@@ -74,7 +74,6 @@ ns.slide = function () {
      * bind the function
      */
     stage.$main.bind("click", slide.move);
-
     return slide
 };
 

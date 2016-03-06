@@ -27,7 +27,8 @@ ns.importState = function (stat) {
 ns.initState = function () {
     ns.state.state.round = 0;
     ns.state.state.script = Object.keys(ns.data)[0];
-    ns.state.stack = ns.data[ns.state.script][0];
+    ns.state.stack = ns.data[ns.state.state.script][0];
+    console.log(ns.state);
     ns.storeState();
 };
 
