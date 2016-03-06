@@ -4,16 +4,28 @@
 
 /**
  * TODO modify the condition to pass a state object to program and declination otherwise
- * @param stat
+ * @param state
  * @returns {boolean}
  */
-ns.controls.statePassable = function (stat) {
+ns.controls.statePassable = function (state) {
     if(true){
 
-        return stat
+        return state
     }else return false
 };
 
 ns.initControls = function () {
     ns.controls.theme = ns.ui.themes.hina;
+    // relation amang scripts paragraphes
+    ns.controls.relation = {
+        /*
+        script1: [
+            {
+                condition: true,
+                child: "script2"
+            }
+        ]
+        */
+    };
+
 };

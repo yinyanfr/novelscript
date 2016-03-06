@@ -7,40 +7,75 @@ ns.slide = function () {
     var stack = ns.state.stack;
     var state = ns.state.state;
     var stage = ns.stage;
-    slide.speaker = function () {
-        stage.$speaker.html(stack.speaker)
-    };
-    /**
-     * use ns.typer to make dialogues dynamic
-     * ns.typer is async so that special treatments are introduced
-     * TODO adapt ns.typer with $.Deffered()
-     * @param how : function, how dialogue are displayed
-     */
-    slide.dial = function (how) {
-        how = how || ns.default.dialogueDisplay; // which is, ns.typer.flush
-        var dial = stack.dialogue;
-        var move = function () {
-            stage.$dial.html("");
-            stage.$main.unbind("click")
-                .bind("click", stop);
-            how(stage.$dial, dial, 10, function () {
-                stage.$main.unbind("click")
-                    .bind("click", move)
-            })
-        };
-        var stop = function () {
-            stage.$dial.finish().html(dial);
-            stage.$main.unbind("click")
-                .bind("click", move)
-        };
-        stage.$main.bind("click", move)
-    };
     /**
      * update the displat of a slide
      */
     slide.repaint = function () {
+        slide.speaker();
+    };
+    /**
+     * change to another script, with position defined or 0
+     * @param script
+     * @param position
+     */
+    slide.changeStack = function (script, position) {
+        if(!script) throw "No target for slide.jumpScript.";
+        position = position || 0;
+        state.script = script;
+        state.position = position;
+        stack = ns.dp.stackFix(script, position);
+    };
+    /**
+     * jump to another script, with position defined or 0
+     * @param script
+     * @param position
+     */
+    slide.jumpScript = function (script, position) {
+        slide.changeStack(script, position);
+        slide.move()
+    };
+    /**
+     * TODO for next time
+     */
+    slide.next = function () {
 
-    }
+    };
+
+    slide.speaker = function () {
+        stage.$speaker.html(stack.speaker)
+    };
+
+    var dial = stack.dialogue;
+    /**
+     * main: make a display to the screen
+     */
+    slide.move = function () {
+        //TODO merge and effect(0.2)
+        var how = ns.dp.getFromState().effect.typer || typer.flush;
+        stage.$dial.html("");
+        stage.$main.unbind("click")
+            .bind("click", stop);
+        slide.repaint();
+        slide.next();
+        how(stage.$dial, dial, 10, function () {
+            stage.$main.unbind("click")
+                .bind("click", slide.move)
+        })
+    };
+    /**
+     * intermediate function for controlling typer
+     */
+    var stop = function () {
+        stage.$dial.finish().html(dial);
+        stage.$main.unbind("click")
+            .bind("click", slide.move)
+    };
+    /**
+     * bind the function
+     */
+    stage.$main.bind("click", slide.move);
+
+    return slide
 };
 
 ns.slides = {};
