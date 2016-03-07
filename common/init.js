@@ -2,10 +2,17 @@
  * Created by yan on 16/2/14.
  */
 
-ns.init = function (data, $frame) {
+/**
+ * init a novelscript example
+ * @param data
+ * @param $frame
+ * @param callback
+ */
+ns.init = function (data, $frame, callback) {
     if (!data) throw "failed to load script data.";
     ns.data = data;
     ns.$frame = $frame || $("body");
+    ns.callback = callback;
     console.log(ns.$frame.css("height"));
     // init data
     // ns.dp = ns.initDp(Object.create(ns.data)); // data processor (which is closed though) should not not modify any data

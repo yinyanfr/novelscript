@@ -34,9 +34,9 @@ ns.initDp = function (data) {
                     }
                 }
             }
-            if(!stack.cg || stack.cg == 0) lack.push("cg");
-            if(!stack.bg || stack.bg == 0) lack.push("bg");
-            if(!stack.bgm || stack.bgm == 0) lack.push("bgm");
+            if(!stack.cg) lack.push("cg");
+            if(!stack.bg) lack.push("bg");
+            if(!stack.bgm) lack.push("bgm");
             if(!lack.length) return false;
             else return lack;
         };
@@ -52,7 +52,18 @@ ns.initDp = function (data) {
             }
         };
         var fixFigure = function () {
-            //TODO
+            var figure = [];
+            for(var i = 0; i < position; i++){
+                var thisFigure = dp.get(script, i).figure;
+                if(thisFigure){
+                    for(var j = 0; j < thisFigure.length; j++){
+                        if(thisFigure[j] != ""){
+                            figure[j] = thisFigure[j]
+                        }
+                    }
+                }
+            }
+            stack.figure = figure;
         };
         // main fix
         for(var i = 0; i < lack.length; i++){

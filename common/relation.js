@@ -18,6 +18,8 @@ ns.initRelation = function () {
             }
         }
     }
+    // the last one
+    relation[i] = null;
 };
 
 ns.relation = {};
