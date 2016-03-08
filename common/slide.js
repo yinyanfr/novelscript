@@ -87,14 +87,29 @@ ns.slide = function () {
         if(stack.cg === 0 || stack.cg === "0") slide.bg();
         else slide.changeBackgroundImage(stack.cg)
     };
+    slide.figures = [];
     slide.figure = function () {
-        //TODO this is huge
+        slide.figures = [];
+        for(var i = 0; i < stack.figure.length - 1; i++){
+            slide.figures.push($("<img />")
+                .attr("src", stack.figure[i])
+                .css("float", "left"))
+        }
+        slide.figures.push($("<img />")
+            .attr("src", stack.figure[i]));
+        for(i = 0; i < slide.figures.length; i++){
+            slide.figures = slide.figures.css(ns.controls.theme.default.figureImageStyle)
+                .appendTo(stage.$figure)
+        }
     };
+
+    var dial = stack.dialogue;
 
     /**
      * main: make a display to the screen
      */
     slide.move = function () {
+        dial = stack.dialogue; // update dial
         //TODO merge and effect(0.2)
         var how = ns.typer.flush;
         stage.$dial.html("");
@@ -102,7 +117,7 @@ ns.slide = function () {
             .bind("click", stop);
         slide.repaint();
         slide.next();
-        how(stage.$dial, stack.dialogue, 10, function () {
+        how(stage.$dial, dial, 10, function () {
             stage.$main.unbind("click")
                 .bind("click", slide.move)
         })
@@ -111,7 +126,7 @@ ns.slide = function () {
      * intermediate function for controlling typer
      */
     var stop = function () {
-        stage.$dial.finish().html(stack.dialogue);
+        stage.$dial.finish().html(dial);
         stage.$main.unbind("click")
             .bind("click", slide.move)
     };

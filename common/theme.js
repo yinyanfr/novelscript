@@ -12,6 +12,14 @@ ns.ui.initTheme = function (style) {
             position: "relative"
         };
         hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
+        hina.figureStyle = {
+            margin: "0 auto",
+            position: "absolute",
+            bottom: 0
+        };
+        hina.figureImageStyle = {
+            height: 0.8 * style.height
+        };
         hina.contentStyle = {
             width: style.width * 0.7,
             height: style.height / 4,

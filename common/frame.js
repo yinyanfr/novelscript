@@ -11,6 +11,8 @@ ns.ui.frame = function () {
     stage.$main = $("<div></div>")
         .css(ns.controls.theme.mainstageStyle);
 
+    stage.$figure = $("<div></div>").css(ns.controls.theme.figureStyle);
+
     stage.$content = $("<div></div>")
         .css(ns.controls.theme.contentStyle)
         .appendTo(stage.$main);
