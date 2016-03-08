@@ -13,9 +13,8 @@ ns.init = function (data, $frame, callback) {
     ns.data = data;
     ns.$frame = $frame || $("body");
     ns.callback = callback;
-    console.log(ns.$frame.css("height"));
     // init data
-    // ns.dp = ns.initDp(Object.create(ns.data)); // data processor (which is closed though) should not not modify any data
+    ns.dp = ns.initDp(ns.data); // data processor (which is closed though) should not not modify any data
     // import state
     ns.importState(ns.getStoredState());
     // init state if needed

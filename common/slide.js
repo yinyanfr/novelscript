@@ -42,12 +42,13 @@ ns.slide = function () {
      * to next position
      */
     slide.next = function () {
-        if(stage.position < dp.get(stage.script).length){
-            stage.position++;
-            var next = dp.get(stage.script, stage.position);
+        if(state.position < dp.get(state.script).length){
+            state.position++;
+            var next = dp.get(state.script, state.position);
             // speaker, dial
             stack.speaker = next.speaker;
             stack.dialogue = next.dialogue;
+            /*
             // cg, bg, bgm
             var list = ["cg", "bg", "bgm"];
             (function (l) {
@@ -59,6 +60,7 @@ ns.slide = function () {
             for(var j = 0; j < next.figure.length; j++){
                 if(next.figure[j] != "") stack.figure[j] = next.figure[j]
             }
+            */
         }
         else{
             var r = relation[stage.script];
@@ -66,7 +68,7 @@ ns.slide = function () {
             else {
                 for(var i = 0; i < r.length; i++){
                     if(r[i].condition){
-                        slide.changeStack(r[i]);
+                        slide.jumpScript(r[i]);
                         return true
                     }
                 }
@@ -116,11 +118,11 @@ ns.slide = function () {
         stage.$main.unbind("click")
             .bind("click", stop);
         slide.repaint();
-        slide.next();
-        how(stage.$dial, dial, 10, function () {
+        how(stage.$dial, dial, 20, function () {
             stage.$main.unbind("click")
                 .bind("click", slide.move)
-        })
+        });
+        slide.next();
     };
     /**
      * intermediate function for controlling typer
