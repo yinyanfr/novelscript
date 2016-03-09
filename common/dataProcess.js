@@ -72,6 +72,35 @@ ns.initDp = function (data) {
         }
         return stack
     };
+
+    dp.resourceCollector = function (data) {
+        data = data || ns.data;
+        var media = {};
+        media.images = [];
+        media.audios = [];
+        // resource collector version front-end
+        var keys = Object.keys(data);
+        for(var key = 0; key < keys.length; key++){
+            var script = data[Object.keys[data][key]];
+            for(var i = 0; i < script.length; i++){
+                // figure
+                for(var figure = 0; figure < script[i].figure.length; figure++){
+                    var f = script[i].figure[figure];
+                    if(f && (!media.images.indexOf(f))) media.images.push(f)
+                }
+                // cg, bg, bgm
+                var cg = script[i].cg;
+                if(cg && (!media.images.indexOf(cg))) media.images.push(cg);
+                var bg = script[i].bg;
+                if(bg && (!media.images.indexOf(bg))) media.images.push(bg);
+                var bgm = script[i].bgm;
+                if(bgm && (!media.audios.indexOf(bgm))) media.audios.push(bgm);
+
+                return media;
+            }
+        }
+
+    };
     return dp
 };
 

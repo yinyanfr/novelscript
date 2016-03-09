@@ -2,6 +2,12 @@
  * Created by yan on 16/2/14.
  */
 
+// TODO automatic resource collector
+ns.media = {
+    images: [],
+    audios: []
+};
+
 /**
  * TODO modify the condition to pass a state object to program and declination otherwise
  * @param state

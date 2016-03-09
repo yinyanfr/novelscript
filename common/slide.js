@@ -48,7 +48,7 @@ ns.slide = function () {
             // speaker, dial
             stack.speaker = next.speaker;
             stack.dialogue = next.dialogue;
-            /*
+            /* TODO yet not worked
             // cg, bg, bgm
             var list = ["cg", "bg", "bgm"];
             (function (l) {
