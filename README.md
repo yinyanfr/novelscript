@@ -24,7 +24,7 @@ The new plan aims to quick iteration of versions in order to suit the process of
 新的开发计划基于已有代码,希望在短期内快速迭代版本,以适应游戏开发的需要.
 ## ongoing
 ### NovelScript 0.1 "hina"
-65%
+90%
 
 Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel, 
 with dialogue, portrait, background dessin and simple music playing functions.
@@ -42,7 +42,9 @@ And effects as well, which is also builded in present code, and will finally be 
 
 Version 0.3 will start to bring a framework of interface that holds the main process of NovelScript.
 
-进度15% 0.3版本将提供一个简单的界面接口
+Also, the preloading feature will be completed
+
+进度15% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
 ## togo
 ### NovelScript 0.4 "Naru"
 In version 0.4, the functionality of music playing will be redesigned so as to allow controls and sound effects.
@@ -68,6 +70,8 @@ New Feature:
 
 新功能: 1. 游戏段落分歧结构图和人物关系图, 2. 相册和音乐集功能, 3. 建立人物关系系统
 
+### NovelScript 0.7 "tsubasa"
+这一版本将开始引入本项目最重要的功能：通过对剧本的识别，自动为台词分配角色立绘
 
 # Credit
 
