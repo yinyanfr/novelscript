@@ -13,7 +13,7 @@ ns.ui.initTheme = function (style) {
         };
         hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
         hina.figureStyle = {
-            margin: "0 auto",
+            width: style.width,
             position: "absolute",
             bottom: 0
         };
@@ -38,6 +38,7 @@ ns.ui.initTheme = function (style) {
         hina.contentStyle.left = (style.width - widthContent) / 2;
         hina.dialogueStyle["border-radius"] = (widthContent/2) + "px/" + (heightContent/2) + "px";
         hina.speakerStyle = {
+            "background-color": "#87CEEB",
             position: "absolute",
             left: 0,
             top: 0

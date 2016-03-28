@@ -16,6 +16,7 @@ ns.slide = function () {
         if(stack.speaker) slide.speaker();
         if(stack.bg) slide.bg();
         if(stack.cg) slide.cg();
+        if(stack.figure && stack.figure.length) slide.figure();
     };
     /**
      * change to another script, with position defined or 0
@@ -45,10 +46,10 @@ ns.slide = function () {
         if(state.position < dp.get(state.script).length){
             state.position++;
             var next = dp.get(state.script, state.position);
+            // TODO terminal check
             // speaker, dial
             stack.speaker = next.speaker;
             stack.dialogue = next.dialogue;
-            /* TODO yet not worked
             // cg, bg, bgm
             var list = ["cg", "bg", "bgm"];
             (function (l) {
@@ -60,7 +61,13 @@ ns.slide = function () {
             for(var j = 0; j < next.figure.length; j++){
                 if(next.figure[j] != "") stack.figure[j] = next.figure[j]
             }
-            */
+            var tmp = [];
+            for(j = 0; j < stack.figure.length; j++){
+                if(stack.figure[j] !== 0 && stack.figure[j] !== "0"){
+                    tmp.push(stack.figure[j])
+                }
+            }
+            stack.figure = tmp.slice()
         }
         else{
             var r = relation[stage.script];
@@ -83,7 +90,8 @@ ns.slide = function () {
         stage.$main.css("background-image", "url("+url+")")
     };
     slide.bg = function () {
-        slide.changeBackgroundImage(stack.bg)
+        //TODO management of repo * 3
+        slide.changeBackgroundImage("tmp/e/"+stack.bg)
     };
     slide.cg = function () {
         if(stack.cg === 0 || stack.cg === "0") slide.bg();
@@ -92,17 +100,19 @@ ns.slide = function () {
     slide.figures = [];
     slide.figure = function () {
         slide.figures = [];
+        stage.$figure.html("");
         for(var i = 0; i < stack.figure.length - 1; i++){
             slide.figures.push($("<img />")
-                .attr("src", stack.figure[i])
-                .css("float", "left"))
+                .attr("src", "tmp/e/" + stack.figure[i]));
+                //.css("float", "left"))
         }
         slide.figures.push($("<img />")
-            .attr("src", stack.figure[i]));
+            .attr("src", "tmp/e/" + stack.figure[i]));
         for(i = 0; i < slide.figures.length; i++){
-            slide.figures = slide.figures.css(ns.controls.theme.default.figureImageStyle)
+            slide.figures[i].css(ns.controls.theme.figureImageStyle)
                 .appendTo(stage.$figure)
         }
+        console.log(stack.figure);
     };
 
     var dial = stack.dialogue;

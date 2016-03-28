@@ -3,7 +3,10 @@ Notice: Strange way of javascript is being used.
 ```
 
 # What's new
-2/29 - 3/4 少女考试中，暂停工作一周
+```
+Version 0.1 is coming
+```
+<img src="http://gal.yinyan.fr/demo/hina/new328.png" />
 
 # NovelScript
 <img src="http://gal.yinyan.fr/demo/hina/hina.png" />
