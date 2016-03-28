@@ -15,7 +15,8 @@ ns.ui.initTheme = function (style) {
         hina.figureStyle = {
             width: style.width,
             position: "absolute",
-            bottom: 0
+            bottom: 0,
+            "text-align": "center"
         };
         hina.figureImageStyle = {
             height: 0.8 * style.height

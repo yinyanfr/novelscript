@@ -12,8 +12,7 @@ ns.ui.frame = function () {
         .css(ns.controls.theme.mainstageStyle);
 
     stage.$figure = $("<div></div>").css(ns.controls.theme.figureStyle)
-        .appendTo(stage.$main)
-        .attr("align", "center");
+        .appendTo(stage.$main);
 
     stage.$content = $("<div></div>")
         .css(ns.controls.theme.contentStyle)
