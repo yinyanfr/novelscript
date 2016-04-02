@@ -1,13 +1,26 @@
 # Documentation
 ```
+At least we have something out， functions are coming soon in future versions.
+至少我们有个雏形了，其他的功能会稍后出现在后续版本中
+```
+
+```
 This is a document for NovelScript 0.1 "hina"
 这是为NovelScript 0.1 "hina" 版本准备的文档
 ```
+
+## 0. Functions to Expect in Next Versions
+* bgm and voice
+* save and load
+* conflict and condition
+* preloader
+* interface
 
 ## 1. Get Started 开始使用
 ### 1.1 Integrate NovelScript
 ```html
 <script src="path/NovelScript.min.js"></script>
+<script src="path/control.js"></script>
 ```
 NovelScript occupies 2 global Javascript variables as ```NovelScript``` and ```ns```, no DOM object is occupied. NovelScript is based on jQuery, please import it at first.
 
@@ -41,18 +54,6 @@ This will start the game and display the slide from script ```script``` and posi
 
 此函数将开始游戏，并展示参数所指向的剧本名和页数，默认值为第一个剧本的第一页
 
-ns.start returns a ```$.Deferred.promise()``` Object, which means you can manually add to a callback function:
-
-此函数返回```$.Deferred.promise()```对象，因此可以手动添加回调函数：
-```javascript
-$.when(ns.start())
-  .done(function(){
-      ...
-    })
-  .fail(function(){
-      ...
-    })
-```
 
 ## 2. Script Parser 剧本生成器
 NovelScript is designed to reduce redundant works, as for script writers, NoveScript Script Parser can generate the JSON data needed from simple formatting script as:
@@ -121,4 +122,52 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
 {"welcome":[{"speaker":null,"dialogue":"梦里不觉秋已深，余情岂是为他人。 "},{"speaker":null,"dialogue":""},{"speaker":"[泽村]","figure":["sawamura_tdr.png","katou_normal.png"],"bg":"ano_ona_no_house.jpg","bgm":"ready.mp3","dialogue":"我和伦也才不是那种关系！"},{"speaker":null,"dialogue":" "},{"speaker":"[霞丘]","figure":["","kasumigaoka_ironic.png","hyoutou_normal.png"],"bgm":"star.mp3","dialogue":"毕竟是冒牌的青梅竹马。"},{"speaker":null,"dialogue":""},{"speaker":null,"figure":["0","0","0"],"dialogue":"我还是继续装睡吧……"},{"speaker":null,"dialogue":""},{"merge":true,"mergeBody":["我在漫无目的的生活里突然有了要做的事情","我遇到了改变了我漫无目的的的生活的人"]},{"speaker":null,"dialogue":""}]}
 ```
 
-## 3. Settings (TODO)
+## 3. Settings
+In current version, the argument ```setting``` provides just 2 settings, theme and path, where there is merely one theme (other themes and costume theme functions are on there way)
+
+此版本中```setting```只能设置主题和路径，其中主题只有这一种（其他主题和自定义主题功能将在后续版本提供）
+
+Example:
+
+例子：
+```javascript
+{
+    theme: "hina",
+    path: {
+        figure: "tmp/e/",
+        cg: "tmp/e/",
+        bg: "tmp/e/",
+        bgm: "tmp/e/"
+    }
+}
+```
+
+## 4. controls
+ - ```controls.js``` will serve in future versions.
+
+ - ```controls.js``` 将在后续版本中发挥作用。
+
+## 5. Customization 自定义功能
+### 5.1 callback 回调函数
+The callback function is replaced by ```$.Deferred()```
+
+NovelScript的回调函数功能现在由```$.Deferred()```承担
+
+- ```ns.$deferred``` is a ```$.Deferred()``` Object, which means you can manually add to a callback function:
+
+- ```ns.$deferred```是一个```$.Deferred()```对象，因此可以手动添加回调函数：
+
+```javascript
+$.when(ns.$deferred)
+  .done(function(){
+      ...
+    })
+  .fail(function(){
+      ...
+    })
+```
+
+- ```done``` will be triggered once the game script reaches an end.
+剧本文件通过游戏浏览完成之后，```done```将被触发
+
+## 5. API Reference API文档 （TODO）

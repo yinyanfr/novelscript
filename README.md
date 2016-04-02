@@ -3,16 +3,19 @@ Notice: Strange way of javascript is being used.
 ```
 
 # What's new
+<a href="http://gal.yinyan.fr/demo/hina/">Demo Site</a>
+
 ```
-Version 0.1 is coming
+Version 0.1 is released, with its demo site published
+
+By the way, the current version is published without preloadimg functions, so you may would like to wait a little while so that are pictures are loaded
+
+这个版本没有preloading，所以在图片加载完成前你可能需要等待一段时间
 ```
 <img src="http://gal.yinyan.fr/demo/hina/new328.png" />
 
-# NovelScript
-<img src="http://gal.yinyan.fr/demo/hina/hina.png" />
-<img src="http://yinyan.fr/d/nsldemo.png" />
-
-This is NovelScript.
+# Documentation
+<a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
 
 # Process
 ## changement of developping plan
@@ -22,14 +25,16 @@ The new plan aims to quick iteration of versions in order to suit the process of
 
 游戏的剧本,音乐,绘画工作已经开始,NovelScript将为了配合游戏进度进行重新开发,
 新的开发计划基于已有代码,希望在短期内快速迭代版本,以适应游戏开发的需要.
-## ongoing
+
+## checked
 ### NovelScript 0.1 "hina"
-90%
 
 Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel, 
 with dialogue, portrait, background dessin and simple music playing functions.
 
 进度65% 0.1版本是项目的基础,将实现一个单纯的galgame展示功能
+
+## ongoing
 ### NovelScript 0.2 "hane"
 85%
 
