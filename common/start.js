@@ -7,13 +7,12 @@
  * start the galgame from script and position given
  * @param script
  * @param position
- * @returns $.Deferred.promise()
  */
 ns.start = function (script, position) {
     var dp = ns.dp;
+    var slide = ns.slide();
     script = script || dp.firstScript();
     position = position || 0;
-    var def = $.Deferred();
-    
-    return def.promise()
+    slide.move();
+    slide.active();
 };

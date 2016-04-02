@@ -19,7 +19,9 @@ ns.initRelation = function () {
         }
     }
     // the last one
-    relation[i] = null;
+    relation[scripts[i]] = null;
+
+    return relation
 };
 
 ns.relation = {};

@@ -9,6 +9,7 @@
  * @param setting
  */
 ns.init = function (data, $frame, setting) {
+    ns.$deferred = $.Deferred();
     if (!data) throw "failed to load script data.";
     ns.data = data;
     ns.$frame = $frame || $("body");
@@ -23,11 +24,12 @@ ns.init = function (data, $frame, setting) {
         width: ns.$frame.width(),
         height: ns.$frame.height()
     });
-
     ns.initControls(setting);
     ns.relation = ns.initRelation();
     ns.stage = ns.ui.frame();
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();
+    ns.resource = ns.initResource(setting);
+    ns.start();
 
 };

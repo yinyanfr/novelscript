@@ -30,10 +30,7 @@ ns.default.state = {
 };
 
 ns.default.setting = {
-    theme: "hina",
-    relation: {
-
-    }
+    theme: "hina"
 };
 
 ns.default.dialogueDisplay = ns.typer.flush;

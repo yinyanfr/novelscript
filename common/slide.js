@@ -47,7 +47,7 @@ ns.slide = function () {
      * to next position
      */
     slide.next = function () {
-        if(state.position < dp.get(state.script).length){
+        if(state.position < dp.get(state.script).length - 1){
             state.position++;
             var next = dp.get(state.script, state.position);
             // TODO terminal check
@@ -62,20 +62,23 @@ ns.slide = function () {
                 }
             })(list);
             // figure
-            for(var j = 0; j < next.figure.length; j++){
-                if(next.figure[j] != "") stack.figure[j] = next.figure[j]
-            }
-            var tmp = [];
-            for(j = 0; j < stack.figure.length; j++){
-                if(stack.figure[j] !== 0 && stack.figure[j] !== "0"){
-                    tmp.push(stack.figure[j])
+            if(next.figure) {
+                for (var j = 0; j < next.figure.length; j++) {
+                    if (next.figure[j] != "") stack.figure[j] = next.figure[j]
                 }
+                var tmp = [];
+                for (j = 0; j < stack.figure.length; j++) {
+                    if (stack.figure[j] !== 0 && stack.figure[j] !== "0") {
+                        tmp.push(stack.figure[j])
+                    }
+                }
+                stack.figure = tmp.slice()
             }
-            stack.figure = tmp.slice()
         }
         else{
-            var r = relation[stage.script];
-            if(r === null) ns.callback();
+
+            var r = relation[state.script];
+            if(r === null) ns.$deferred.resolve();
             else {
                 for(var i = 0; i < r.length; i++){
                     if(r[i].condition){
@@ -116,7 +119,7 @@ ns.slide = function () {
             slide.figures[i].css(ns.controls.theme.figureImageStyle)
                 .appendTo(stage.$figure)
         }
-        console.log(stack.figure);
+        //console.log(stack.figure);
     };
 
     var dial = stack.dialogue;
@@ -137,6 +140,7 @@ ns.slide = function () {
                 .bind("click", slide.move)
         });
         slide.next();
+        console.log(relation);
     };
     /**
      * intermediate function for controlling typer
@@ -149,7 +153,12 @@ ns.slide = function () {
     /**
      * bind the function
      */
-    stage.$main.bind("click", slide.move);
+
+    slide.active = function () {
+        stage.$main.bind("click", slide.move);
+    };
+
+    //slide.active();
     return slide
 };
 
