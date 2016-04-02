@@ -2,18 +2,37 @@
 Notice: Strange way of javascript is being used.
 ```
 
-# What's new
+# What's does NovelScript do?
+- from simple script
+```
+[script: room]
+[音姬][otome1.png][bg: room.jpg][bgm: 07.mp3]这是一个NovelScript0.1版本的演示工程。
+[由梦][, yume1.png]这里用到的全部图片都来自初音岛2。
+[雪村][otome2.png, , anzu_n.png]背景音乐来自之后会公开的《立夏》。
+[雪村][, anzu_b.png, yume3.png]NovelScript的剧本可以用方便的方法写成，详情请见文档。
+[音姬][otome2.png, 0, ]这一部分演示了人物立绘的变动方法。
+[bg: 0]现在黑屏啦。
+[bg: classroom.jpg]现在切换到了教室。
+[bg: restaurant.jpg]现在切换到了食堂。
+[cg: anzu.jpg]CG是覆盖在背景之上的，
+[cg: anzu2.jpg]这一部分演示了CG和背景的变动方法。
+[cg: 0]去除CG后，背景图又回到之前的背景啦。
+最后祝您，身体健康，谢谢。
+```
+- to visual novel
+
+  <img src="http://gal.yinyan.fr/demo/hina/new42.png" />
+
 <a href="http://gal.yinyan.fr/demo/hina/">Demo Site</a>
 
 ```
 Version 0.1 is released, with its demo site published
 
-By the way, the current version is published without preloading functions, 
+By the way, the current version is published without preloading functions,
 so you may would like to wait a little while before that all pictures are loaded
 
 这个版本没有preloading，所以在图片加载完成前你可能需要等待一段时间
 ```
-<img src="http://gal.yinyan.fr/demo/hina/new328.png" />
 
 # Documentation
 <a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
@@ -30,7 +49,7 @@ The new plan aims to quick iteration of versions in order to suit the process of
 ## checked
 ### NovelScript 0.1 "hina"
 
-Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel, 
+Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel,
 with dialogue, portrait, background dessin and simple music playing functions.
 
 进度65% 0.1版本是项目的基础,将实现一个单纯的galgame展示功能
@@ -69,7 +88,7 @@ NovelScript-light将根据0.5版本发布,同时发布基于此项目的游戏"�
 
 ## future plan
 ### NovelScript 0.6 "kizuna"
-New Feature: 
+New Feature:
     1. storyline and relationship plan,
     2. album
     3. default prototype of relationship and merge system
@@ -82,4 +101,3 @@ New Feature:
 # Credit
 
 <a href="https://segmentfault.com/a/1190000000684923">preload.js by Joe</a>
-
