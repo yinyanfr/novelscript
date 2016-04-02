@@ -7,20 +7,21 @@ ns.initResource = function (setting) {
     resource.images = {};
     resource.audios = {};
     resource.get = function (type, name) {
-        // 0.1 not yet preloader
+        //TODO 0.1 not yet preloader
         switch (type){
             case "figure":
                 return $("<img />").attr("src", setting.path["figure"] + name);
             case "cg":
-                return $("<img />").attr("src", setting.path["cg"] + name);
+                return setting.path["cg"] + name;
             case "bg":
-                return $("<img />").attr("src", setting.path["bg"] + name);
+                return setting.path["bg"] + name;
             case "bgm":
                 return $("<audio></audio>").attr("src", setting.path["bgm"] + name);
             default:
                 throw "No specified type " + type
         }
-    }
+    };
+    return resource
 };
 
 ns.resource = {};

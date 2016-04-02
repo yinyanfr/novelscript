@@ -30,6 +30,6 @@ ns.init = function (data, $frame, setting) {
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();
     ns.resource = ns.initResource(setting);
-    ns.start();
+    // ns.start();
 
 };

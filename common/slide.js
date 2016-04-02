@@ -13,6 +13,7 @@ ns.slide = function () {
     var stage = ns.stage;
     var dp = ns.dp;
     var relation = ns.relation;
+    var resource = ns.resource;
     /**
      * update the display of a slide
      */
@@ -97,24 +98,28 @@ ns.slide = function () {
         stage.$main.css("background-image", "url("+url+")")
     };
     slide.bg = function () {
-        //TODO management of repo * 3
-        slide.changeBackgroundImage("tmp/e/"+stack.bg)
+        if(stack.bg === 0 || stack.bg === "0") stage.$main.css("background-image", "none");
+        else slide.changeBackgroundImage(resource.get("bg", stack.bg))
     };
     slide.cg = function () {
-        if(stack.cg === 0 || stack.cg === "0") slide.bg();
-        else slide.changeBackgroundImage(stack.cg)
+        if(stack.cg === 0 || stack.cg === "0"){
+            slide.bg();
+            stage.$figure.show();
+        }
+        else{
+            stage.$figure.hide();
+            slide.changeBackgroundImage(resource.get("cg", stack.cg))
+        }
     };
     slide.figures = [];
     slide.figure = function () {
         slide.figures = [];
         stage.$figure.html("");
         for(var i = 0; i < stack.figure.length - 1; i++){
-            slide.figures.push($("<img />")
-                .attr("src", "tmp/e/" + stack.figure[i]));
+            slide.figures.push(resource.get("figure", stack.figure[i]));
                 //.css("float", "left"))
         }
-        slide.figures.push($("<img />")
-            .attr("src", "tmp/e/" + stack.figure[i]));
+        slide.figures.push(resource.get("figure", stack.figure[i]));
         for(i = 0; i < slide.figures.length; i++){
             slide.figures[i].css(ns.controls.theme.figureImageStyle)
                 .appendTo(stage.$figure)
@@ -140,7 +145,7 @@ ns.slide = function () {
                 .bind("click", slide.move)
         });
         slide.next();
-        console.log(relation);
+        //console.log(stack)
     };
     /**
      * intermediate function for controlling typer

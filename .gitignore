@@ -11,3 +11,4 @@ jquery-*
 *.(mp3|ogg)
 *.(jpg|png)
 page.js
+*.js___jb_old___
