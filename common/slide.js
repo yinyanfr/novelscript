@@ -18,7 +18,8 @@ ns.slide = function () {
      * update the display of a slide
      */
     slide.repaint = function () {
-        if(stack.speaker) slide.speaker();
+        //if(stack.speaker)
+        slide.speaker();
         if(stack.bg) slide.bg();
         if(stack.cg) slide.cg();
         if(stack.figure && stack.figure.length) slide.figure();
@@ -51,7 +52,6 @@ ns.slide = function () {
         if(state.position < dp.get(state.script).length - 1){
             state.position++;
             var next = dp.get(state.script, state.position);
-            // TODO terminal check
             // speaker, dial
             stack.speaker = next.speaker;
             stack.dialogue = next.dialogue;
@@ -92,7 +92,12 @@ ns.slide = function () {
     };
 
     slide.speaker = function () {
-        stage.$speaker.html(stack.speaker);
+        if(!stack.speaker){
+            stage.$speaker.hide()
+        }else {
+            stage.$speaker.html(stack.speaker)
+                .show();
+        }
     };
     slide.changeBackgroundImage = function (url) {
         stage.$main.css("background-image", "url("+url+")")
