@@ -8,7 +8,8 @@ Notice: Strange way of javascript is being used.
 ```
 Version 0.1 is released, with its demo site published
 
-By the way, the current version is published without preloadimg functions, so you may would like to wait a little while so that are pictures are loaded
+By the way, the current version is published without preloading functions, 
+so you may would like to wait a little while before that all pictures are loaded
 
 这个版本没有preloading，所以在图片加载完成前你可能需要等待一段时间
 ```
