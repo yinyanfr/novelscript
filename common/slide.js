@@ -2,6 +2,10 @@
  * Created by Ian on 2016/2/28.
  */
 
+/**
+ * activate the frame
+ * @returns {{}}
+ */
 ns.slide = function () {
     var slide = {};
     var stack = ns.state.stack;

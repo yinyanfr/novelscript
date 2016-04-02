@@ -20,18 +20,10 @@ ns.controls.statePassable = function (state) {
     }else return false
 };
 
-ns.initControls = function () {
-    ns.controls.theme = ns.ui.themes.hina;
+ns.initControls = function (setting) {
+    setting = setting || ns.default.setting;
+    ns.controls.theme = setting.theme;
     // relation amang scripts paragraphes
-    ns.controls.relation = {
-        /*
-        script1: [
-            {
-                condition: true,
-                child: "script2"
-            }
-        ]
-        */
-    };
+    ns.controls.relation = setting.relation
 
 };

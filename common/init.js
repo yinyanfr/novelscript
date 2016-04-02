@@ -6,13 +6,12 @@
  * init a novelscript example
  * @param data
  * @param $frame
- * @param callback
+ * @param setting
  */
-ns.init = function (data, $frame, callback) {
+ns.init = function (data, $frame, setting) {
     if (!data) throw "failed to load script data.";
     ns.data = data;
     ns.$frame = $frame || $("body");
-    ns.callback = callback;
     // init data
     ns.dp = ns.initDp(ns.data); // data processor (which is closed though) should not not modify any data
     // import state
@@ -25,7 +24,7 @@ ns.init = function (data, $frame, callback) {
         height: ns.$frame.height()
     });
 
-    ns.initControls();
+    ns.initControls(setting);
     ns.relation = ns.initRelation();
     ns.stage = ns.ui.frame();
     ns.stage.$main.appendTo(ns.$frame);

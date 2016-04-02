@@ -29,4 +29,11 @@ ns.default.state = {
     }
 };
 
+ns.default.setting = {
+    theme: "hina",
+    relation: {
+
+    }
+};
+
 ns.default.dialogueDisplay = ns.typer.flush;

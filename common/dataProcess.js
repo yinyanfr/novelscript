@@ -95,12 +95,15 @@ ns.initDp = function (data) {
                 if(bg && (!media.images.indexOf(bg))) media.images.push(bg);
                 var bgm = script[i].bgm;
                 if(bgm && (!media.audios.indexOf(bgm))) media.audios.push(bgm);
-
-                return media;
             }
         }
-
+        return media
     };
+
+    dp.firstScript = function () {
+        return data[Object.keys(data)[0]]
+    };
+
     return dp
 };
 
