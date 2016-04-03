@@ -17,6 +17,16 @@ This is a document for NovelScript 0.1 "hina"
 * interface
 
 ## 1. Get Started 开始使用
+### 1.0 Get Nightly Build 获得当前开发中的版本
+```bash
+$ git clone https://github.com/yinyanfr/NovelScript.git
+$ npm install argv
+$ npm install minify
+$ node tool/make.js
+```
+and get ```res.js``` and ```res.min.js``` in tool/.
+
+```res.js``` 和 ```res.min.js```将在 tool 文件夹中生成。
 ### 1.1 Integrate NovelScript
 ```html
 <script src="path/NovelScript.min.js"></script>

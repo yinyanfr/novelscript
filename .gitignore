@@ -1,5 +1,5 @@
 .idea/
-*.html
+index.html
 *.css
 test*
 debug
@@ -12,3 +12,5 @@ jquery-*
 *.(jpg|png)
 page.js
 *.js___jb_old___
+res.js
+res.min.js
