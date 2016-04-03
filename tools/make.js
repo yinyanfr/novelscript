@@ -35,7 +35,7 @@ function combine(list, str){
     fs.readFile(list.shift(), "utf-8", function (err, data) {
         if(err) throw err;
         if(list.length == 0){
-            fs.writeFile("res.js", str, function (err) {
+            fs.writeFile("res.js", str + data, function (err) {
                 if(err) throw err;
                 minify('res.js', function(error, data) {
                     if (error)
@@ -58,6 +58,7 @@ fs.readFile(argv.run().targets[0] || "example.html", "utf-8", function (err, dat
         data.length--
     }
     var list = getList(data, '../');
+    console.log(list)
     combine(list, "");
 });
 
