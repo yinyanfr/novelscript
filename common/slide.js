@@ -14,15 +14,16 @@ ns.slide = function () {
     var dp = ns.dp;
     var relation = ns.relation;
     var resource = ns.resource;
+    slide.before = null;
     /**
      * update the display of a slide
      */
     slide.repaint = function () {
         //if(stack.speaker)
         slide.speaker();
-        if(stack.bg) slide.bg();
-        if(stack.cg) slide.cg();
-        if(stack.figure && stack.figure.length) slide.figure();
+        if (stack.bg) slide.bg();
+        if (stack.cg) slide.cg();
+        if (stack.figure && stack.figure.length) slide.figure();
     };
     /**
      * change to another script, with position defined or 0
@@ -49,7 +50,8 @@ ns.slide = function () {
      * to next position
      */
     slide.next = function () {
-        if(state.position < dp.get(state.script).length - 1){
+        slide.before = $.extend({}, stack);
+        if (state.position < dp.get(state.script).length - 1) {
             state.position++;
             var next = dp.get(state.script, state.position);
             // speaker, dial
@@ -58,12 +60,12 @@ ns.slide = function () {
             // cg, bg, bgm
             var list = ["cg", "bg", "bgm"];
             (function (l) {
-                for(var i = 0; i < l.length; i++){
-                    if(next[l[i]]) stack[l[i]] = next[l[i]]
+                for (var i = 0; i < l.length; i++) {
+                    if (next[l[i]]) stack[l[i]] = next[l[i]]
                 }
             })(list);
             // figure
-            if(next.figure) {
+            if (next.figure) {
                 for (var j = 0; j < next.figure.length; j++) {
                     if (next.figure[j] != "") stack.figure[j] = next.figure[j]
                 }
@@ -76,13 +78,13 @@ ns.slide = function () {
                 stack.figure = tmp.slice()
             }
         }
-        else{
+        else {
 
             var r = relation[state.script];
-            if(r === null) ns.$deferred.resolve();
+            if (r === null) ns.$deferred.resolve();
             else {
-                for(var i = 0; i < r.length; i++){
-                    if(r[i].condition){
+                for (var i = 0; i < r.length; i++) {
+                    if (r[i].condition) {
                         slide.jumpScript(r[i]);
                         return true
                     }
@@ -92,26 +94,60 @@ ns.slide = function () {
     };
 
     slide.speaker = function () {
-        if(!stack.speaker){
+        if (!stack.speaker) {
             stage.$speaker.hide()
-        }else {
+        } else {
             stage.$speaker.html(stack.speaker)
                 .show();
         }
     };
     slide.changeBackgroundImage = function (url) {
-        stage.$main.css("background-image", "url("+url+")")
+        if (!slide.before) {
+            stage.$bg.css("background-image", "url(" + url + ")")
+                .css("background-size", "100% 100%")
+        } else if (slide.before.cg != stack.cg || slide.before.bg != stack.bg) {
+            /*
+            stage.$bg.show().css({
+                    "background-image": "url(" + url + ")",
+                    filter: "blur(30px)"
+                    //transform: "scale(2)"
+                })
+                .animate({
+                    opacity: "0.5"
+                }, 500, function () {
+                    stage.$bg.css({
+                            "background-image": "url(" + url + ")",
+                            filter: "blur(0px)"
+                            //transform: "scale(1)"
+                        })
+                        .animate({
+                            opacity: "1"
+                        }, 500)
+                })
+                */
+            stage.$bg.show().css({
+                "background-image": "url(" + url + ")"
+            })
+        }
+
+        if (slide.before) {
+            //console.log(slide.before.dialogue)
+            //console.log(stack.dialogue)
+        }
     };
     slide.bg = function () {
-        if(stack.bg === 0 || stack.bg === "0") stage.$main.css("background-image", "none");
+        if (stack.bg === 0 || stack.bg === "0") {
+            stage.$main.css("background-image", "none");
+            stage.$bg.fadeOut("fast")
+        }
         else slide.changeBackgroundImage(resource.get("bg", stack.bg))
     };
     slide.cg = function () {
-        if(stack.cg === 0 || stack.cg === "0"){
+        if (stack.cg === 0 || stack.cg === "0") {
             slide.bg();
             stage.$figure.show();
         }
-        else{
+        else {
             stage.$figure.hide();
             slide.changeBackgroundImage(resource.get("cg", stack.cg))
         }
@@ -120,16 +156,15 @@ ns.slide = function () {
     slide.figure = function () {
         slide.figures = [];
         stage.$figure.html("");
-        for(var i = 0; i < stack.figure.length - 1; i++){
+        for (var i = 0; i < stack.figure.length - 1; i++) {
             slide.figures.push(resource.get("figure", stack.figure[i]));
-                //.css("float", "left"))
+            //.css("float", "left"))
         }
         slide.figures.push(resource.get("figure", stack.figure[i]));
-        for(i = 0; i < slide.figures.length; i++){
+        for (i = 0; i < slide.figures.length; i++) {
             slide.figures[i].css(ns.controls.theme.figureImageStyle)
                 .appendTo(stage.$figure)
         }
-        //console.log(stack.figure);
     };
 
     var dial = stack.dialogue;

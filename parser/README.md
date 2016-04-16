@@ -59,3 +59,9 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
 
 # 关于旧版本
 旧版本的剧本生成器由 charlotte 完成，由于剧本逻辑的变化，已经弃用，源码可在历史commits 以及 contributor 中查看
+
+# 构想中的功能
+## 能够表示立绘动画效果的新的立绘结构
+```
+[yuyao1.png come left 1000, nanzhi1.png fadeOut 200]她看到连雨遥出现在教室的门口，收回了脸上的表情，重新坐在了座位上
+```

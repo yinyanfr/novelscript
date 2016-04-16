@@ -11,7 +11,7 @@ ns.ui.initTheme = function (style) {
             "background-size": style.width+"px "+style.height+"px",
             position: "relative"
         };
-        hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
+        // hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
         hina.figureStyle = {
             width: style.width,
             position: "absolute",
