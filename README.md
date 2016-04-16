@@ -52,7 +52,7 @@ The new plan aims to quick iteration of versions in order to suit the process of
 Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel,
 with dialogue, portrait, background dessin and simple music playing functions.
 
-进度65% 0.1版本是项目的基础,将实现一个单纯的galgame展示功能
+0.1版本是项目的基础,将实现一个单纯的galgame展示功能
 
 ## ongoing
 ### NovelScript 0.2 "hane"
@@ -86,18 +86,7 @@ and the first game "Lixia intro" will be released using NovelScript-light
 
 NovelScript-light将根据0.5版本发布,同时发布基于此项目的游戏"立夏 序章"
 
-## future plan
-### NovelScript 0.6 "kizuna"
-New Feature:
-    1. storyline and relationship plan,
-    2. album
-    3. default prototype of relationship and merge system
-
-新功能: 1. 游戏段落分歧结构图和人物关系图, 2. 相册和音乐集功能, 3. 建立人物关系系统
-
-### NovelScript 0.7 "tsubasa"
-这一版本将开始引入本项目最重要的功能：通过对剧本的识别，自动为台词分配角色立绘
-
 # Credit
+https://github.com/CreateJS/PreloadJS
 
-<a href="https://segmentfault.com/a/1190000000684923">preload.js by Joe</a>
+https://github.com/CreateJS/SoundJS
