@@ -173,19 +173,32 @@ ns.slide = function () {
      * main: make a display to the screen
      */
     slide.move = function () {
-        dial = stack.dialogue; // update dial
-        //TODO merge and effect(0.2)
-        var how = ns.typer.flush;
-        stage.$dial.html("");
-        stage.$main.unbind("click")
-            .bind("click", stop);
-        slide.repaint();
-        how(stage.$dial, dial, 20, function () {
+        var move = function () {
+            dial = stack.dialogue; // update dial
+            //TODO merge and effect(0.2)
+            var how = ns.typer.flush;
+            stage.$dial.html("");
             stage.$main.unbind("click")
-                .bind("click", slide.move)
-        });
-        slide.next();
-        //console.log(stack)
+                .bind("click", stop);
+            slide.repaint();
+            how(stage.$dial, dial, 20, function () {
+                stage.$main.unbind("click")
+                    .bind("click", slide.move)
+            });
+            slide.next();
+            //console.log(stack)
+        };
+        // effect
+        var effect = dp.getFromState().effect;
+        if(effect){
+            slide.deactive();
+            effect.execute(function () {
+                slide.active();
+                move();
+            })
+        }else {
+            move()
+        }
     };
     /**
      * intermediate function for controlling typer
@@ -201,6 +214,10 @@ ns.slide = function () {
 
     slide.active = function () {
         stage.$main.bind("click", slide.move);
+    };
+
+    slide.deactive = function () {
+        stage.$main.unbind("click")
     };
 
     //slide.active();

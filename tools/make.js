@@ -7,7 +7,7 @@ var argv = require("argv");
 var minify = require("minify");
 
 function getList(data, path){
-    var exception = [/jquery-/, /control\.js/, /page\.js/];
+    var exception = [/jquery-/, /page\.js/];
     var except = function (script, exception) {
         for(var i = 0; i < exception.length; i++){
             if(script.match(exception[i])) return true;
@@ -51,14 +51,14 @@ function combine(list, str){
     })
 }
 
-fs.readFile(argv.run().targets[0] || "example.html", "utf-8", function (err, data) {
+fs.readFile(argv.run().targets[0] || "../index.html", "utf-8", function (err, data) {
     if (err) throw err;
     data = data.toString().split("\n");
     while (data[data.length - 1] == "") {
         data.length--
     }
     var list = getList(data, '../');
-    console.log(list)
+    console.log(list);
     combine(list, "");
 });
 

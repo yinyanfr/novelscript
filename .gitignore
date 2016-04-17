@@ -1,5 +1,4 @@
 .idea/
-index.html
 *.css
 test*
 debug
@@ -10,7 +9,6 @@ jquery-*
 *.json
 *.(mp3|ogg)
 *.(jpg|png)
-page.js
 *.js___jb_old___
 res.js
 res.min.js

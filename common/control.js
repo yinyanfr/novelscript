@@ -19,14 +19,3 @@ ns.controls.statePassable = function (state) {
         return state
     }else return false
 };
-
-
-ns.initControls = function (setting) {
-    setting = setting || ns.default.setting;
-    ns.controls.theme = ns.ui.themes[setting.theme];
-    // relation amang scripts paragraphes
-    ns.controls.relation = {
-        /* TODO for version 0.2
-         */
-    };
-};

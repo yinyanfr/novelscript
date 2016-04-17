@@ -1,6 +1,6 @@
 /**
  * Created by Ian on 2015/11/27.
- * requiring jQuery 1.11.3, align.js, preload.js
+ * requiring jQuery 1.11.3, align.js
  * effect plugin diapo for NovelScript 1.0 "Hina"
  * creating a serveral slice of diapo in a vacant element aginst its parent element
  * for furthur document, please see readme
@@ -15,23 +15,19 @@
  * @param iter : boolean, true if using the iterate method
  * @param stop : boolean, true if diaporama stops when the list is done, when in iterate mode
  */
-var diapo = function (list, $stage, bgColor, time, iter, stop) {
+ns.diapo = function (list, $stage, bgColor, time, iter, stop) {
     var diapo = {};
     diapo.originBgColor = $stage.css("background-color");
     var isImg = function (element) {
-        if(!element.jquery) return element.slice(-3) == "jpg" || element.slice(-3) == "png";
+        if (!element.jquery) return element.slice(-3) == "jpg" || element.slice(-3) == "png";
         else return false
     };
-    /**
-     * preload pictures from the list before launch
-     * @param callback
-     */
-    diapo.preload = function (callback) {
-        preloadImgMain(list.filter(isImg), callback)
-    };
-    diapo.$slide = $("<div></div>").hide();
+    diapo.$slide = $("<div></div>").hide()
+        .css({
+            color: "white",
+            "font-size": "300%"
+        });
     diapo.slideRec = function (list, callback) {
-        console.log("rec");
         if (!list.length) diapo.recover(callback);
         else {
             var thisSlide = list[0];
@@ -41,7 +37,7 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
                 } else return thisSlide
             })());
             var tmpWidth = diapo.$slide.width();
-            Align.full(diapo.$slide);
+            diapo.$slide.align("full");
             diapo.$slide.width(tmpWidth);
             diapo.$slide.fadeIn(time, function () {
                 diapo.$slide.fadeOut(time, function () {
@@ -53,16 +49,13 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
     diapo.slideIter = function (list, callback) {
         var slideIterate = function (i) {
             var thisSlide = list[i];
-            console.log(thisSlide);
             diapo.$slide.html((function () {
-                console.log(list);
-                console.log(isImg(thisSlide));
                 if (isImg(thisSlide)) {
                     return $("<img />").attr("src", thisSlide)
                 } else return thisSlide
             })());
             var tmpWidth = diapo.$slide.width();
-            Align.full(diapo.$slide);
+            diapo.$slide.align("full");
             diapo.$slide.width(tmpWidth);
             diapo.$slide.fadeIn(time, function () {
                 diapo.$slide.delay(2000).fadeOut(1000)
@@ -73,11 +66,10 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
             return function () {
                 slideIterate(i);
                 i++;
-                if (i >= list.length){
+                if (i >= list.length) {
                     i = 0;
-                    if(stop) clearInterval(_iterator)
+                    if (stop) clearInterval(_iterator)
                 }
-                console.log(i);
             }
         };
         var _counter = counter();
@@ -85,19 +77,20 @@ var diapo = function (list, $stage, bgColor, time, iter, stop) {
         var _iterator = setInterval(_counter, 3 * time)
     };
     diapo.recover = function (callback) {
+        $stage.children().show();
         $stage.css("background-color", diapo.originBgColor);
         callback();
     };
     diapo.execute = function (callback) {
-        callback = callback || function(){return 0};
+        $stage.children().hide();
+        callback = callback || function () {
+                return 0
+            };
         $stage.append(diapo.$slide);
-        Align.full(diapo.$slide);
+        diapo.$slide.align("full");
         $stage.css("background-color", bgColor);
-        //TODO problems with preload, preload need deferred paremeters!
-        //diapo.preload(function () {
-            if (!iter) diapo.slideRec(list, callback);
-            else diapo.slideIter(list, callback);
-        //})
+        if (!iter) diapo.slideRec(list, callback);
+        else diapo.slideIter(list, callback);
     };
     return diapo
 };
