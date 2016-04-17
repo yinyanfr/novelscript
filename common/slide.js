@@ -183,15 +183,22 @@ ns.slide = function () {
                 stage.$merge.html("").show();
                 for(var i = 0; i < mergeBody.length; i++){
                     (function (j) {
-                        stage.$merge.append($("<div></div>")
-                            .css(theme.choiceStyle)
-                            .html(mergeBody[j])
-                            .click(function (event) {
-                                event.stopPropagation();
-                                slide.active();
-                                stage.$merge.hide();
-                                mergeFunctions[mergeBody[j]]()
-                            }))
+                        if(mergeFunctions[mergeBody[j]].condition){
+                            stage.$merge.append($("<div></div>")
+                                .css(theme.choiceStyle)
+                                .html(mergeBody[j])
+                                .click(function (event) {
+                                    event.stopPropagation();
+                                    slide.active();
+                                    stage.$merge.hide();
+                                    mergeFunctions[mergeBody[j]].func()
+                                }))
+                        }else if(mergeFunctions[mergeBody[i]].gray){
+                            stage.$merge.append($("<div></div>")
+                                .css(theme.choiceStyle)
+                                .css("background-color", "rgba(0, 0, 0, 0.2)")
+                                .html(mergeBody[j]))
+                        }
                     })(i)
                 }
             }else {

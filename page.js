@@ -18,7 +18,7 @@ var json = {
             "mergeBody": [
                 "去第三页",
                 "去第五页",
-                "去第八页"
+                "去听音乐会"
             ],
             "dialogue":"刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能"
         },
@@ -188,14 +188,21 @@ $(document).ready(function () {
 
     ns.director = function () {
         var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
-        //ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
+        ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
 
-        ns.merge.add("room", 1, [function () {
-            ns.slides.jumpScript("room", 3)
-        }, function () {
-            ns.slides.jumpScript("room", 5)
-        }, function () {
-            ns.slides.jumpScript("room", 8)
+        ns.merge.add("room", 1, [{
+            condition: true,
+            func: function () {
+                ns.slides.jumpScript("room", 3)
+            }
+        }, {
+            condition: true,
+            func: function () {
+                ns.slides.jumpScript("room", 5)
+            }
+        }, {
+            condition: false,
+            gray: true
         }]);
     };
 

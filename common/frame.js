@@ -34,12 +34,12 @@ ns.ui.frame = function () {
 
     stage.$speaker = $("<h2></h2>")
         .css(ns.controls.theme.speakerStyle)
-        .html("武也")
+        .html("进度条")
         .appendTo(stage.$content);
 
     stage.$dial = $("<p></p>")
         .css(ns.controls.theme.dialStyle)
-        .html("那样就更差劲了吧，<br>一辈子都不要忘了自己惹哭过的少女的模样啊！")
+        .html("少女加载中")
         .appendTo(stage.$content);
 
     stage.$merge = $("<div></div>")
