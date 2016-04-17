@@ -36,7 +36,7 @@ ns.slide = function () {
         state.script = script;
         state.position = position;
         stack = ns.dp.stackFix(script, position);
-    };
+};
     /**
      * jump to another script, with position defined or 0
      * @param script
@@ -79,13 +79,12 @@ ns.slide = function () {
             }
         }
         else {
-
             var r = relation[state.script];
             if (r === null) ns.$deferred.resolve();
             else {
                 for (var i = 0; i < r.length; i++) {
                     if (r[i].condition) {
-                        slide.jumpScript(r[i]);
+                        slide.changeStack(r[i].child, r[i].position);
                         return true
                     }
                 }
@@ -104,7 +103,6 @@ ns.slide = function () {
     slide.changeBackgroundImage = function (url) {
         if (!slide.before) {
             stage.$bg.css("background-image", "url(" + url + ")")
-                .css("background-size", "100% 100%")
         } else if (slide.before.cg != stack.cg || slide.before.bg != stack.bg) {
             /*
             stage.$bg.show().css({

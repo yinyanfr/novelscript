@@ -9,7 +9,7 @@
 ns.initDp = function (data) {
     var dp = {};
     dp.get = function (script, position) {
-        if(!position) return data[script];
+        if(position === undefined) return data[script];
         else return data[script][position]
     };
     dp.getFromState= function () {
@@ -22,14 +22,16 @@ ns.initDp = function (data) {
      */
     dp.stackFix = function (script, position) {
         var stack = dp.get(script, position);
-        if(position == 0) return stack;
+        if(position == 0){
+            return stack;
+        }
         var isIncomplete = function (stack) {
             var lack = [];
             if(!stack.figure) lack.push("figure");
             else {
                 for(var i = 0; i < stack.figure.length; i++){
-                    if(stack.figure == "" || stack.figure == 0){
-                        lack.push("cg");
+                    if(stack.figure[i] === "" || stack.figure[i] === 0){
+                        lack.push("figure");
                         break;
                     }
                 }
@@ -42,18 +44,9 @@ ns.initDp = function (data) {
         };
         var lack = isIncomplete(stack);
         if(!lack) return stack;
-        var fix = function (which) {
-            var pre;
-            for(var i = position; i >= 0; i--){
-                pre = dp.get(script, i)[which];
-                if(pre[which] && pre[which] != 0){
-                    stack[which] = pre[which]
-                }
-            }
-        };
-        var fixFigure = function () {
+        var fix = function () {
             var figure = [];
-            for(var i = 0; i < position; i++){
+            for(var i = 0; i <= position; i++){
                 var thisFigure = dp.get(script, i).figure;
                 if(thisFigure){
                     for(var j = 0; j < thisFigure.length; j++){
@@ -62,14 +55,29 @@ ns.initDp = function (data) {
                         }
                     }
                 }
+                var thisCg = dp.get(script, i).cg;
+                if(thisCg){
+                    stack.cg = thisCg
+                }
+                var thisBg = dp.get(script, i).bg;
+                if(thisBg){
+                    stack.bg = thisBg
+                }
+                var thisBgm = dp.get(script, i).bgm;
+                if(thisBg){
+                    stack.bgm = thisBgm
+                }
             }
-            stack.figure = figure;
+            var tmp = [];
+            for (j = 0; j < figure.length; j++) {
+                if (figure[j] !== 0 && figure[j] !== "0") {
+                    tmp.push(figure[j])
+                }
+            }
+            stack.figure = tmp;
         };
         // main fix
-        for(var i = 0; i < lack.length; i++){
-            if(lack[i] == "figure") fixFigure();
-            else fix(lack[i])
-        }
+        fix();
         return stack
     };
 

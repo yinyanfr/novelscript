@@ -15,7 +15,8 @@ ns.ui.frame = function () {
         .css({
             width: width,
             height: height,
-            transition: "all 0.5s"
+            transition: "all 0.5s",
+            "background-size": "100% 100%"
         })
         .appendTo(stage.$main);
 
