@@ -7,6 +7,7 @@ Notice: Strange way of javascript is being used.
 ```
 [script: room]
 [音姬][otome1.png][bg: room.jpg][bgm: 07.mp3]这是一个NovelScript0.1版本的演示工程。
+[merge][去第三页, 去第五页, 去听音乐会]刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能
 [由梦][, yume1.png]这里用到的全部图片都来自初音岛2。
 [雪村][otome2.png, , anzu_n.png]背景音乐来自之后会公开的《立夏》。
 [雪村][, anzu_b.png, yume3.png]NovelScript的剧本可以用方便的方法写成，详情请见文档。
@@ -19,20 +20,13 @@ Notice: Strange way of javascript is being used.
 [cg: 0]去除CG后，背景图又回到之前的背景啦。
 最后祝您，身体健康，谢谢。
 ```
-- to visual novel
+- to visual novels
 
   <img src="http://gal.yinyan.fr/demo/hina/new42.png" />
+  <br />
+  <img src="http://gal.yinyan.fr/demo/hane/hane.jpg" />
 
 <a href="http://gal.yinyan.fr/demo/hina/">Demo Site</a>
-
-```
-Version 0.1 is released, with its demo site published
-
-By the way, the current version is published without preloading functions,
-so you may would like to wait a little while before that all pictures are loaded
-
-这个版本没有preloading，所以在图片加载完成前你可能需要等待一段时间
-```
 
 # Documentation
 <a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
@@ -54,22 +48,23 @@ with dialogue, portrait, background dessin and simple music playing functions.
 
 0.1版本是项目的基础,将实现一个单纯的galgame展示功能
 
-## ongoing
 ### NovelScript 0.2 "hane"
-85%
 
 Version 0.2 will add to merge function("the choices"), to Novelscript, which is actually there is present code.
 And effects as well, which is also builded in present code, and will finally be dicided its structure.
 
-进度85% 0.2 版本将会加入已有的分歧和效果器系统
+0.2 版本将会加入已有的分歧和效果器系统
+
+## ongoing
+
 ### NovelScript 0.3 "karata"
-15%
+65%
 
 Version 0.3 will start to bring a framework of interface that holds the main process of NovelScript.
 
 Also, the preloading feature will be completed
 
-进度15% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
+进度65% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
 ## togo
 ### NovelScript 0.4 "Naru"
 In version 0.4, the functionality of music playing will be redesigned so as to allow controls and sound effects.
@@ -87,6 +82,6 @@ and the first game "Lixia intro" will be released using NovelScript-light
 NovelScript-light将根据0.5版本发布,同时发布基于此项目的游戏"立夏 序章"
 
 # Credit
-https://github.com/CreateJS/PreloadJS
+PreloadJS https://github.com/CreateJS/PreloadJS
 
-https://github.com/CreateJS/SoundJS
+SoundJS https://github.com/CreateJS/SoundJS

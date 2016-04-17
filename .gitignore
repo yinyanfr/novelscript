@@ -12,3 +12,4 @@ jquery-*
 *.js___jb_old___
 res.js
 res.min.js
+*.pdf

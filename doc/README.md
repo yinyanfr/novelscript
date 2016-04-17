@@ -5,15 +5,14 @@ At least we have something out， functions are coming soon in future versions.
 ```
 
 ```
-This is a document for NovelScript 0.1 "hina"
-这是为NovelScript 0.1 "hina" 版本准备的文档
+This is a document for NovelScript 0.2 "hane"
+这是为NovelScript 0.2 "hane" 版本准备的文档
 ```
 
 ## 0. Functions to Expect in Next Versions
 * bgm and voice
 * save and load
-* conflict and condition
-* preloader
+* preloader (packed)
 * interface
 
 ## 1. Get Started 开始使用
@@ -30,7 +29,6 @@ and get ```res.js``` and ```res.min.js``` in tool/.
 ### 1.1 Integrate NovelScript
 ```html
 <script src="path/NovelScript.min.js"></script>
-<script src="path/control.js"></script>
 ```
 NovelScript occupies 2 global Javascript variables as ```NovelScript``` and ```ns```, no DOM object is occupied. NovelScript is based on jQuery, please import it at first.
 
@@ -119,12 +117,12 @@ var json = ns.parseScript(data) // data : string, the content of input.txt
  * 1. 立绘仍然继承上一句台词，在对应的位置写入0来消除这个位置的立绘
  * 2. cg bg bgm 也通过写入0来消除，消除cg会恢复原先的背景，消除背景背景会变成默认图片（ns.default.ui.bg），消除bgm音乐会停止
  */
-// 特殊 （0.2版本加入）
-[merge][我在漫无目的的生活里突然有了要做的事情, 我遇到了改变了我漫无目的的的生活的人][我在意话剧的事情, 我在意喻南之]
-/*
- * 通过[merge]为剧本增加分歧选项， 第一个括号里是选项文本，第二个括号（可选）是简单模式中显示的选项文本
- * 你仍然需要在程序中指定各选项的出现的条件和callback， 参见lib/README.md
- */
+ // 特殊 （0.2版本加入）
+ [merge][我在漫无目的的生活里突然有了要做的事情, 我遇到了改变了我漫无目的的的生活的人]我在想什么呢？
+ /*
+  * 通过[merge]为剧本增加分歧选项， 第一个括号里是选项文本，括号之后的是对话的文本内容
+  * 你仍然需要在程序中指定各选项的出现的条件和callback， 参见doc/README.md - 4.2 ns.director
+  */
 ```
 
 #### 由以上文本生成的JSON
@@ -152,10 +150,110 @@ Example:
 }
 ```
 
-## 4. controls
- - ```controls.js``` will serve in future versions.
+## 4. ns.initControls and ns.director() [0.2+]
+### 4.1 ns.initControls
+ - ```controls.js``` is no more seperated, ```ns.initControls``` is used instead. See example from page.js (in the source code).
 
- - ```controls.js``` 将在后续版本中发挥作用。
+ - ```controls.js``` 不在作为一个独立文件，改为使用```ns.initControls```函数。请参照源代码中的page.js
+
+ Example:
+ ```javascript
+ ns.initControls = function (setting) {
+        setting = setting || ns.default.setting;
+        ns.controls.theme = ns.ui.themes[setting.theme];
+        // relation amang scripts paragraphes
+        ns.controls.relation = {
+
+        };
+    };
+  ```
+
+-  where ```setting``` is the same object used in ```ns.init```, and ```ns.controls.theme``` controls the default theme.
+
+-  ```setting``` 与 ```ns.init``` 中使用的参数是同一个对象， ```ns.controls.theme``` 控制默认主题。
+
+#### 4.1.1 ns.contols.relation
+
+Relation is imported to direct a simple structure of scripts, by controling the possibilities when a script reaches an end. The default relationship is linaire.
+
+Relation 提供了对剧本间关系的简单控制，默认的关系是线性的。
+
+Example addition to relation:
+```javascript
+    ns.controls.relation = {
+        "room": [
+            {
+                condition: true,
+                child: "room2",
+                position: 0
+            }, {
+                condition: true,
+                child: "room2",
+                position: 3
+            }
+        ]
+    }
+```
+
+When multiple possibilities exists, the first one the condition of which is true will take effect.
+
+当存在多个可能性时，第一个condition 为 true 的可能性将会生效。
+
+
+### 4.2 ns.director
+ - ```ns.director``` is the function where you can add events such as effet and confilict choices to the play.
+
+ - ```ns.director``` 函数用于添加播放效果和分歧选项。
+
+ Example:
+ ```javascript
+ ns.director = function () {
+        var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
+        ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
+
+        ns.merge.add("room", 1, [{
+            condition: true,
+            func: function () {
+                ns.slides.jumpScript("room", 3)
+            }
+        }, {
+            condition: true,
+            func: function () {
+                ns.slides.jumpScript("room", 5)
+            }
+        }, {
+            condition: false,
+            gray: true
+        }]);
+    };
+  ```
+#### 4.2.1 Effects
+Effects are shown <b>before</b> everything including conflicts. Please find the instruction of each effect in plugin/README.pdf
+
+效果会最先执行，请于 plugin/README.pdf 获知每个效果器的用法
+
+#### 4.2.2 Confilicts
+No one knows why in NovelScript confilicts are called ```merge```.
+
+不知道为什么，分歧选项在NovelScript里被叫做 ```merge```。
+
+- ```ns.merge.listNonDistrib()``` lists out every merge that is not distributed with its functions, and it is automatically checked.
+- ```ns.merge.listNonDistrib()``` 会列出还没有分配功能的分歧，会自动执行。
+
+Example of a choice:
+```javascript
+  {
+    condition: true,
+    gray: true,
+    func: function () {
+        ns.slides.jumpScript("room", 3)
+    }
+  }
+```
+
+where ```condition``` controls if this choice will be shown, ```gray``` the choice will show up but in gray and not available fot clicking if true and the condition if false, ```func``` is the function.
+
+其中 ```condition``` 控制选项出现的条件， ```gray```为 true 且 condition 为 false 时选项会以灰色无法点击的状态出现， ```func``` 是点击时执行的函数。
 
 ## 5. Customization 自定义功能
 ### 5.1 callback 回调函数
