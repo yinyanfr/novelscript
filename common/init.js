@@ -30,6 +30,9 @@ ns.init = function (data, $frame, setting) {
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();
     ns.resource = ns.initResource(setting);
+    ns.merge = ns.initMerge();
+    ns.director();
+    ns.merge.listNonDistrib();
     // ns.start();
     var queue = new createjs.LoadQueue();
     (function () {

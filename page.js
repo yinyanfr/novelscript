@@ -11,7 +11,16 @@ var json = {
             ],
             "bg": "room.jpg",
             "bgm": "07.mp3",
-            "dialogue": "这是一个NovelScript0.1版本的演示工程。"
+            "dialogue": "这是一个NovelScript0.2版本的演示工程。"
+        },
+        {
+            "merge": true,
+            "mergeBody": [
+                "去第三页",
+                "去第五页",
+                "去第八页"
+            ],
+            "dialogue":"刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能"
         },
         {
             "speaker": "[由梦]",
@@ -175,10 +184,20 @@ $(document).ready(function () {
             /* TODO for version 0.2
              */
         };
-        var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
-        //ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
     };
 
+    ns.director = function () {
+        var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
+        //ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
+
+        ns.merge.add("room", 1, [function () {
+            ns.slides.jumpScript("room", 3)
+        }, function () {
+            ns.slides.jumpScript("room", 5)
+        }, function () {
+            ns.slides.jumpScript("room", 8)
+        }]);
+    };
 
     var $div = $("<div></div>").css({
         width: 1280,

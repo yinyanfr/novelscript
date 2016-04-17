@@ -14,6 +14,7 @@ ns.slide = function () {
     var dp = ns.dp;
     var relation = ns.relation;
     var resource = ns.resource;
+    var theme = ns.controls.theme;
     slide.before = null;
     /**
      * update the display of a slide
@@ -138,7 +139,7 @@ ns.slide = function () {
             stage.$main.css("background-image", "none");
             stage.$bg.fadeOut("fast")
         }
-        else slide.changeBackgroundImage(resource.get("bg", stack.bg))
+        else slide.changeBackgroundImage(ns.resource.get("bg", stack.bg))
     };
     slide.cg = function () {
         if (stack.cg === 0 || stack.cg === "0") {
@@ -147,7 +148,7 @@ ns.slide = function () {
         }
         else {
             stage.$figure.hide();
-            slide.changeBackgroundImage(resource.get("cg", stack.cg))
+            slide.changeBackgroundImage(ns.resource.get("cg", stack.cg))
         }
     };
     slide.figures = [];
@@ -155,10 +156,10 @@ ns.slide = function () {
         slide.figures = [];
         stage.$figure.html("");
         for (var i = 0; i < stack.figure.length - 1; i++) {
-            slide.figures.push(resource.get("figure", stack.figure[i]));
+            slide.figures.push(ns.resource.get("figure", stack.figure[i]));
             //.css("float", "left"))
         }
-        slide.figures.push(resource.get("figure", stack.figure[i]));
+        slide.figures.push(ns.resource.get("figure", stack.figure[i]));
         for (i = 0; i < slide.figures.length; i++) {
             slide.figures[i].css(ns.controls.theme.figureImageStyle)
                 .appendTo(stage.$figure)
@@ -172,19 +173,42 @@ ns.slide = function () {
      */
     slide.move = function () {
         var move = function () {
-            dial = stack.dialogue; // update dial
-            //TODO merge and effect(0.2)
-            var how = ns.typer.flush;
-            stage.$dial.html("");
-            stage.$main.unbind("click")
-                .bind("click", stop);
-            slide.repaint();
-            how(stage.$dial, dial, 20, function () {
+            var merge = dp.getFromState().merge;
+            if(merge){
+                slide.repaint();
+                stage.$dial.html(dp.getFromState().dialogue);
+                slide.deactive();
+                var mergeBody = dp.getFromState().mergeBody;
+                var mergeFunctions = dp.getFromState().mergeFunctions;
+                stage.$merge.html("").show();
+                for(var i = 0; i < mergeBody.length; i++){
+                    (function (j) {
+                        stage.$merge.append($("<div></div>")
+                            .css(theme.choiceStyle)
+                            .html(mergeBody[j])
+                            .click(function (event) {
+                                event.stopPropagation();
+                                slide.active();
+                                stage.$merge.hide();
+                                mergeFunctions[mergeBody[j]]()
+                            }))
+                    })(i)
+                }
+            }else {
+                dial = stack.dialogue; // update dial
+                //TODO merge and effect(0.2)
+                var how = ns.typer.flush;
+                stage.$dial.html("");
                 stage.$main.unbind("click")
-                    .bind("click", slide.move)
-            });
-            slide.next();
-            //console.log(stack)
+                    .bind("click", stop);
+                slide.repaint();
+                how(stage.$dial, dial, 20, function () {
+                    stage.$main.unbind("click")
+                        .bind("click", slide.move)
+                });
+                slide.next();
+                //console.log(stack)
+            }
         };
         // effect
         var effect = dp.getFromState().effect;

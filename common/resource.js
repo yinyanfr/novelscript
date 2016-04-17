@@ -7,7 +7,6 @@ ns.initResource = function (setting) {
     resource.images = {};
     resource.audios = {};
     resource.get = function (type, name) {
-        //TODO 0.1 not yet preloader
         switch (type){
             case "figure":
                 return $("<img />").attr("src", setting.path["figure"] + name);

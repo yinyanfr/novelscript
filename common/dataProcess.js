@@ -112,6 +112,20 @@ ns.initDp = function (data) {
         return data[Object.keys(data)[0]]
     };
 
+    /**
+     * Go throughout the whole data, and do f to each page
+     * @param f
+     */
+    dp.throughout = function (f) {
+        var keys = Object.keys(data);
+        for(var i = 0; i < keys.length; i++){
+            var script = data[keys[i]];
+            for(var j = 0; j < script.length; j++){
+                f(script[j])
+            }
+        }
+    };
+
     return dp
 };
 

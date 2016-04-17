@@ -7,6 +7,7 @@ ns.ui.frame = function () {
     var height = ns.$frame.height();
     // mainstage
     var stage = {};
+    var theme = ns.controls.theme;
 
     stage.$main = $("<div></div>")
         .css(ns.controls.theme.mainstageStyle);
@@ -40,6 +41,11 @@ ns.ui.frame = function () {
         .css(ns.controls.theme.dialStyle)
         .html("那样就更差劲了吧，<br>一辈子都不要忘了自己惹哭过的少女的模样啊！")
         .appendTo(stage.$content);
+
+    stage.$merge = $("<div></div>")
+        .css(theme.mergeStyle)
+        .appendTo(stage.$main)
+        .hide();
 
     return stage
 };

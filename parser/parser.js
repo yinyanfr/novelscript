@@ -88,6 +88,7 @@ ns.parser = function (data) {
             if(Array.isArray(mergeBody)){
                 res.mergeBody = mergeBody
             }
+            res.dialogue = dial.replace(/\[.*\]/g, "");
             return res
         }
         // normal

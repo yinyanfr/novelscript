@@ -9,7 +9,8 @@ ns.ui.initTheme = function (style) {
             height: style.height,
             "background-color": "#f3f3f3",
             "background-size": style.width+"px "+style.height+"px",
-            position: "relative"
+            position: "relative",
+            "font-family": "YouYuan, Microsoft YaHei UI, Microsoft Yahei, 黑体"
         };
         // hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
         hina.figureStyle = {
@@ -50,6 +51,23 @@ ns.ui.initTheme = function (style) {
             left: widthContent / 8,
             top: heightContent / 5
         };
+        hina.mergeStyle = {
+            width: 0.3 * style.width,
+            position: "absolute",
+            top: 0.25 * style.height
+        };
+        var mergeWidth = hina.mergeStyle.width;
+        hina.mergeStyle.left = (style.width - mergeWidth) / 2;
+        hina.choiceStyle = {
+            width: "inherit",
+            height: "45px",
+            "background-color": "rgba(135, 206, 235, 0.5)",
+            "font-size": "150%",
+            "padding": "5px",
+            "margin-bottom": "10px",
+            "text-align": "center"
+        };
+        hina.choiceStyle["line-height"] = hina.choiceStyle.height;
 
     })(ns.ui.themes.hina);
 };
