@@ -26,7 +26,7 @@ Notice: Strange way of javascript is being used.
   <br />
   <img src="http://gal.yinyan.fr/demo/hane/hane.jpg" />
 
-<a href="http://gal.yinyan.fr/demo/hina/">Demo Site</a>
+<a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
 
 # Documentation
 <a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
