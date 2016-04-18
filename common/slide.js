@@ -191,7 +191,7 @@ ns.slide = function () {
                                     event.stopPropagation();
                                     slide.active();
                                     stage.$merge.hide();
-                                    mergeFunctions[mergeBody[j]].func()
+                                    mergeFunctions[mergeBody[j]].callback()
                                 }))
                         }else if(mergeFunctions[mergeBody[i]].gray){
                             stage.$merge.append($("<div></div>")
@@ -220,11 +220,27 @@ ns.slide = function () {
         // effect
         var effect = dp.getFromState().effect;
         if(effect){
-            slide.deactive();
-            effect.execute(function () {
-                slide.active();
-                move();
-            })
+            var type = effect.effectType;
+            if(!type || !type.sync){
+                slide.deactive();
+                if(type && !type.deffered){
+                    effect.execute(function () {
+                        slide.active();
+                        move();
+                    })
+                }else {
+                    $.when(effect.execute())
+                        .done(function () {
+                            slide.active();
+                            move();
+                        })
+                }
+            }else {
+                if(type && type.sync){
+                    effect.execute();
+                    move()
+                }
+            }
         }else {
             move()
         }

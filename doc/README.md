@@ -232,6 +232,24 @@ Effects are shown <b>before</b> everything including conflicts. Please find the 
 
 效果会最先执行，请于 plugin/README.pdf 获知每个效果器的用法
 
+- ```execute``` is required for every effect plugins, a async effect that passes a callback function should contain a callback function as parameter in ```execute```
+- ```execute``` 是必须的，用于执行效果，需要借助异步执行的效果需要在execute的参数中包含一个回调函数
+
+- ```effectType``` provide the way of executing an effect.
+- ```effectType``` 用于表示效果的执行方式
+
+Example:
+```javascript
+diapo.effectType = {
+  sync: false,
+  deffered: false
+}
+```
+
+where ```sync``` shows if this effect is synchronised, and ```deffered``` is true when this effect.execute return a $.Deffered() Object, and is false when it passes a callback function
+
+其中 ```sync``` 表示效果是否同步的， ```deffered``` 为真时 effect.execute 返回一个$.Deffered()对象，为假时借助回调函数传递信息
+
 #### 4.2.2 Confilicts
 No one knows why in NovelScript confilicts are called ```merge```.
 
@@ -245,15 +263,15 @@ Example of a choice:
   {
     condition: true,
     gray: true,
-    func: function () {
+    callback: function () {
         ns.slides.jumpScript("room", 3)
     }
   }
 ```
 
-where ```condition``` controls if this choice will be shown, ```gray``` the choice will show up but in gray and not available fot clicking if true and the condition if false, ```func``` is the function.
+where ```condition``` controls if this choice will be shown, ```gray``` the choice will show up but in gray and not available fot clicking if true and the condition if false, ```callback``` is the function.
 
-其中 ```condition``` 控制选项出现的条件， ```gray```为 true 且 condition 为 false 时选项会以灰色无法点击的状态出现， ```func``` 是点击时执行的函数。
+其中 ```condition``` 控制选项出现的条件， ```gray```为 true 且 condition 为 false 时选项会以灰色无法点击的状态出现， ```callback``` 是点击时执行的函数。
 
 ## 5. Customization 自定义功能
 ### 5.1 callback 回调函数
@@ -263,7 +281,7 @@ NovelScript的回调函数功能现在由```$.Deferred()```承担
 
 - ```ns.$deferred``` is a ```$.Deferred()``` Object, which means you can manually add to a callback function:
 
-- ```ns.$deferred```是一个```$.Deferred()```对象，因此可以手动添加回调函数：
+其中 ```ns.$deferred``` 是一个```$.Deferred()```对象，因此可以手动添加回调函数：
 
 ```javascript
 $.when(ns.$deferred)
@@ -278,4 +296,4 @@ $.when(ns.$deferred)
 - ```done``` will be triggered once the game script reaches an end.
 剧本文件通过游戏浏览完成之后，```done```将被触发
 
-## 5. API Reference API文档 （TODO）
+## 6. API Reference API文档 （TODO）

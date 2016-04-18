@@ -191,12 +191,12 @@ $(document).ready(function () {
 
         ns.merge.add("room", 1, [{
             condition: true,
-            func: function () {
+            callback: function () {
                 ns.slides.jumpScript("room", 3)
             }
         }, {
             condition: true,
-            func: function () {
+            callback: function () {
                 ns.slides.jumpScript("room", 5)
             }
         }, {
