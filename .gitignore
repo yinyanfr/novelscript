@@ -13,3 +13,5 @@ jquery-*
 res.js
 res.min.js
 *.pdf
+*/*.html
+*/*.css
