@@ -85,3 +85,5 @@ NovelScript-light将根据0.5版本发布,同时发布基于此项目的游戏"�
 PreloadJS https://github.com/CreateJS/PreloadJS
 
 SoundJS https://github.com/CreateJS/SoundJS
+
+JQuery-Snowfall https://github.com/loktar00/JQuery-Snowfall

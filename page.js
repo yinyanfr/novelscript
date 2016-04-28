@@ -189,7 +189,7 @@ $(document).ready(function () {
 
         var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
         ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
-        
+
 
         ns.merge.add("room", 1, [{
             condition: true,
