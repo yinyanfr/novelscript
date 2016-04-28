@@ -152,12 +152,12 @@ Example:
 
 ## 4. ns.initControls and ns.director() [0.2+]
 ### 4.1 ns.initControls
- - ```controls.js``` is no more seperated, ```ns.initControls``` is used instead. See example from page.js (in the source code).
+- ```controls.js``` is no more seperated, ```ns.initControls``` is used instead. See example from page.js (in the source code).
 
- - ```controls.js``` 不在作为一个独立文件，改为使用```ns.initControls```函数。请参照源代码中的page.js
+- ```controls.js``` 不在作为一个独立文件，改为使用```ns.initControls```函数。请参照源代码中的page.js
 
  Example:
- ```javascript
+```javascript
  ns.initControls = function (setting) {
         setting = setting || ns.default.setting;
         ns.controls.theme = ns.ui.themes[setting.theme];
@@ -166,7 +166,7 @@ Example:
 
         };
     };
-  ```
+```
 
 -  where ```setting``` is the same object used in ```ns.init```, and ```ns.controls.theme``` controls the default theme.
 
@@ -201,12 +201,12 @@ When multiple possibilities exists, the first one the condition of which is true
 
 
 ### 4.2 ns.director
- - ```ns.director``` is the function where you can add events such as effet and confilict choices to the play.
+- ```ns.director``` is the function where you can add events such as effet and confilict choices to the play.
 
- - ```ns.director``` 函数用于添加播放效果和分歧选项。
+- ```ns.director``` 函数用于添加播放效果和分歧选项。
 
  Example:
- ```javascript
+```javascript
  ns.director = function () {
         var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
         ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
@@ -226,7 +226,7 @@ When multiple possibilities exists, the first one the condition of which is true
             gray: true
         }]);
     };
-  ```
+```
 #### 4.2.1 Effects
 Effects are shown <b>before</b> everything including conflicts. Please find the instruction of each effect in plugin/README.pdf
 
@@ -294,6 +294,36 @@ $.when(ns.$deferred)
 ```
 
 - ```done``` will be triggered once the game script reaches an end.
-剧本文件通过游戏浏览完成之后，```done```将被触发
+  剧本文件通过游戏浏览完成之后，```done```将被触发
+
+
+
+### 5.2 Preload & Loading bar (0.3 +)
+
+ns.preload and ns.loadingbar are written in the same file (ns.preload), both require preloadjs from createjs.
+
+ns.preload 和 ns.loadingbar 写于同一个文件中，两者都需要preloadjs。
+
+#### 5.2.1 Preload
+
+```javascript
+ns.preload(list, path, each, callback)
+```
+
+where `list` is an array of path, `path` is to complete each relative path, `each` is the function that will launch each time a file is loaded, `callback` is the callback function. Besides, `ns,preload` returns a $.Deferred().premise() object, you can use $.Deferred() instead of callback.
+
+其中 `list` 是包含路径的数组，`path` 用于补全相对路径，`each` 是每个文件加载完成时执行的函数，`callback` 是回调函数。此外，`ns.preload` 返回一个 Deferred 对象，可用于替换回调函数。
+
+#### 5.2.2 Loading bar
+
+```javascript
+ns.loadingbar(list, path, callback)
+```
+
+where `list` is an array of path, `path` is to complete each relative path, `callback` is the callback function. `ns.loadingbar` returns a jQuery div. Css styles can be added into `theme.loadingbarStyle` and `theme.loadingbarInterneStyle` where `theme` is the theme that is used in NovelScript.
+
+其中 `list` 是包含路径的数组，`path` 用于补全相对路径，`callback` 是回调函数。`ns.loadingbar`返回一个jQuery div。Css样式可于`theme.loadingbarStyle` 和  ` theme.loadingbarInterneStyle` 添加，其中`theme`为NovelScript所应用的主题。
+
+ 
 
 ## 6. API Reference API文档 （TODO）

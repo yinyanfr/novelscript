@@ -32,6 +32,13 @@ ns.preload = function (list, path, each, callback) {
     return def.promise()
 };
 
+/**
+ * init a loadingbar
+ * @param list
+ * @param path
+ * @param callback
+ * @returns {*|jQuery|HTMLElement}
+ */
 ns.loadingbar = function (list, path, callback) {
     var theme = ns.controls.theme;
     path = path || "";
