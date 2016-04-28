@@ -33,42 +33,15 @@ ns.init = function (data, $frame, setting) {
     ns.merge = ns.initMerge();
     ns.director();
     ns.merge.listNonDistrib();
-    // ns.start();
-    /*
-    var queue = new createjs.LoadQueue();
-    (function () {
-        var n = 1;
-        queue.on("fileload", function () {
-            ns.stage.$dial.html("图片加载中"+n+"/"+testlist.length);
-            n++
-        })
-    })();
-    queue.on("complete", function () {
-        ns.start()
-    }, this);
-    */
+
     var testlist = ["anzu.jpg", "anzu2.jpg", "anzu_b.png", "anzu_l.png", "anzu_n.png", "classroom.jpg", "koharu.jpg",
         "otome1.png", "otome2.png", "otome3.png", "restaurant.jpg", "room.jpg", "sf.png",
         "yume1.png", "yume2.png", "yume3.png"];
-    /*
-    for(var i = 0; i < testlist.length; i++){
-        queue.loadFile("tmp/e/"+testlist[i]);
-    }
-    */
 
-    /*
-    var n = 1;
-    ns.preload(testlist, "tmp/e/", function () {
-        ns.stage.$dial.html("图片加载中"+n+"/"+testlist.length);
-        n++
-    }, function () {
-        ns.start()
-    })
-    */
     var $lb = ns.loadingbar(testlist, "tmp/e/", function () {
+        $lb.hide();
+        ns.$frame.children().show();
         ns.start();
-        $lb.hide(0);
-        ns.$frame.children().show()
     });
     ns.$frame.children().hide(0, function () {
         $lb.appendTo(ns.$frame).align("full")
