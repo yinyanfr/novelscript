@@ -55,6 +55,8 @@ ns.init = function (data, $frame, setting) {
         queue.loadFile("tmp/e/"+testlist[i]);
     }
     */
+
+    /*
     var n = 1;
     ns.preload(testlist, "tmp/e/", function () {
         ns.stage.$dial.html("图片加载中"+n+"/"+testlist.length);
@@ -62,5 +64,14 @@ ns.init = function (data, $frame, setting) {
     }, function () {
         ns.start()
     })
+    */
+    var $lb = ns.loadingbar(testlist, "tmp/e/", function () {
+        ns.start();
+        $lb.hide(0);
+        ns.$frame.children().show()
+    });
+    ns.$frame.children().hide(0, function () {
+        $lb.appendTo(ns.$frame).align("full")
+    });
 
 };
