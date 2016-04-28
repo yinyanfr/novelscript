@@ -14,11 +14,9 @@ ns.preload = function (list, path, each, callback) {
     path = path || "";
     var def = $.Deferred();
     var queue = new createjs.LoadQueue();
-    queue.on("fileload", function () {
-        if (each) {
-            each()
-        }
-    });
+    if(each){
+        queue.on("fileload", each)
+    }
     queue.on("complete", function () {
         def.resolve();
         if (callback) {

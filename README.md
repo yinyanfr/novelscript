@@ -6,7 +6,7 @@ Notice: Strange way of javascript is being used.
 - from simple script
 ```
 [script: room]
-[音姬][otome1.png][bg: room.jpg][bgm: 07.mp3]这是一个NovelScript0.1版本的演示工程。
+[音姬][otome1.png][bg: room.jpg][bgm: 07.mp3]这是一个NovelScript0.2版本的演示工程。
 [merge][去第三页, 去第五页, 去听音乐会]刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能
 [由梦][, yume1.png]这里用到的全部图片都来自初音岛2。
 [雪村][otome2.png, , anzu_n.png]背景音乐来自之后会公开的《立夏》。
@@ -58,13 +58,13 @@ And effects as well, which is also builded in present code, and will finally be 
 ## ongoing
 
 ### NovelScript 0.3 "karata"
-65%
+75%
 
 Version 0.3 will start to bring a framework of interface that holds the main process of NovelScript.
 
 Also, the preloading feature will be completed
 
-进度65% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
+进度75% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
 ## togo
 ### NovelScript 0.4 "Naru"
 In version 0.4, the functionality of music playing will be redesigned so as to allow controls and sound effects.
