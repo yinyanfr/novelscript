@@ -1,5 +1,10 @@
 ```
-Notice: Strange way of javascript is being used.
+关于五月以来停工的说明：
+五月：毕业设计加班
+六月上旬：期末考试
+六月下旬：家中遭窃，电脑消失
+七八月：回国学车
+预定九月份安排好学校相关的事情之后再次开工
 ```
 
 # What's does NovelScript do?
