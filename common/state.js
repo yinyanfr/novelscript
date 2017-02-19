@@ -49,7 +49,7 @@ ns.dev.statExample = {
     // time
     state: {
         round: null,
-        // time that the game is completed
+        // times that the game was completed
         script: "id01",
         // name pf present reading
         position: 0

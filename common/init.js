@@ -18,7 +18,7 @@ ns.init = function (data, $frame, setting) {
     // import state
     ns.importState(ns.getStoredState());
     // init state if needed
-    if (!ns.state.state.round) ns.initState();
+    if (ns.state.state.round === undefined || ns.state.state.round === null) ns.initState();
     // form frame ui
     ns.ui.initTheme({
         width: ns.$frame.width(),

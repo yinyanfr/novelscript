@@ -3,15 +3,29 @@
  */
 
 /**
+ * This part lecture scenario json and give infos back on
+ * 见文档“备忘录”部分
  * dp = data processor
  * @param data: Obj, scriptObject
  */
 ns.initDp = function (data) {
     var dp = {};
+    /**
+     * dp.get return a serif indicating script and position given from the scenario json obj
+     * a script if no position is given
+     * @param script
+     * @param position
+     * @returns {*}
+     */
     dp.get = function (script, position) {
         if(position === undefined) return data[script];
         else return data[script][position]
     };
+
+    /**
+     * do a dp.get where script and position are read from ns.state.state
+     * @returns {*}
+     */
     dp.getFromState= function () {
         return dp.get(ns.state.state.script, ns.state.state.position)
     };

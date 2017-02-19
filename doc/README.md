@@ -1,3 +1,57 @@
+# 备忘录
+## NovelScript的基本思路
+### 不完整式剧本的读取方式
+NovelScript采用增删式的剧本标记语言（见下文或首页），
+游戏进行过程中，正常翻页时会根据标记语言下一句剧本的增删标记来调整显示中的立绘等元素 `dp.slide`，
+同时将调整结果储存在临时变量中，在存档时该变量会被写入存档，读档时也将根据存档中的记录恢复显示。
+
+非正常翻页时，如整段跳过或因为选项导致的移动，NovelScript会从目标剧本处开始处理，
+首先通过目标对话本身检测是否缺少媒体内容，
+<s>然后通过逆循环来补充缺少的内容</s>现在的版本已经改为正循环了 `dp.stackFix`。
+
+### 每次启动NovelScript之后发生的事情
+- 读取剧本文件
+- 读取媒体文件列表（如果没有提供则会遍历全剧本收集媒体文件的链接 `dp.resourceCollector`）
+- 等待媒体文件加载（分步加载的功能还没有做）
+- 读取浏览器缓存中的存档文件（没有则视为新游戏）
+- 开始游戏或读取存档文件（后者还没有做）
+
+## 术语列表 API Reminder
+```
+由于开发过程中的反复，术语列表中会存在：
+两个意义相同但是范畴不同的概念使用了同一名称，
+同一个概念使用了两个名称，
+某个概念使用了其反义词作为名称，
+某个概念使用了迷之缩写。
+```
+
+```
+JavaScript是一个函数式语言，所以下文中提到“对象”“函数”的时候，说的是类似于class的数据结构
+```
+
+- data: 包含整个剧本的json object，一个剧本
+- script: data中的一个区块，一段剧本
+- position: script中的一项，一句对话
+- state: 使用了统一名字的两个概念
+    - `ns.state`: 游戏的总状态，和写入存档文件的部分一样，由此可以获得正在进行的游戏的全部进度
+    - `ns.state.state`: 一个不幸和父属性重名了的对象，包含了游戏的周目数，剧本编号和对话位置信息
+- stack:
+    - `ns.state.stack`: 包含此刻应该显示在舞台上所有内容
+- relation:
+    - `ns.controls.relation`: 这个relation不是好感度的意思，
+    是一个记录剧本之间指向关系的表，用于判断在一个script结束之后应该跳转到哪一个script
+- merge:
+    - `ns.merge`: 带选项的分歧点，来自Git的同名功能，即多个版本（剧本）经过程序员（玩家）的选择后，只保留其中一个留在进度路线上
+- frame & stage: 使用了两个名字的同一概念
+    - `ns.stage`: 负责舞台上ui显示的对象
+    - `ns.ui.frame`: 用于初始化`ns.stage`的函数
+- dp: Data Procressor
+    - `ns.dp`: 用来完成备忘录里说的事情
+- resource:
+    - `ns.resource`: 将媒体文件转化到ui上的对象
+- store:
+    - `ns.store`: 一个用来储存其他对象的对象
+
 # Documentation
 ```
 At least we have something out， functions are coming soon in future versions.
