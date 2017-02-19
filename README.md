@@ -1,13 +1,15 @@
-```
-关于五月以来停工的说明：
-五月：毕业设计加班
-六月上旬：期末考试
-六月下旬：家中遭窃，电脑消失
-七八月：回国学车
-预定九月份安排好学校相关的事情之后再次开工
-```
+## 主要特点
+
+- 简化的剧本标记语言：
+  - 格式简单，不需要写代码
+  - 通过简单的增删标记来修改媒体，不需要重复书写
+- 完全可定制的外观
+- 插件式的程序结构
+
+
 
 # What's does NovelScript do?
+
 - from simple script
 ```
 [script: room]
@@ -37,13 +39,8 @@
 <a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
 
 # Process
-## changement of developping plan
-All codes are being rebuild, but are not back to zero. Current legacy is sufficient to build several releasing versions.
-
-The new plan aims to quick iteration of versions in order to suit the process of the game "Lixia" for which novelscript is served.
-
-游戏的剧本,音乐,绘画工作已经开始,NovelScript将为了配合游戏进度进行重新开发,
-新的开发计划基于已有代码,希望在短期内快速迭代版本,以适应游戏开发的需要.
+## 复活了
+今年<s>终于</s>要写完了
 
 ## checked
 ### NovelScript 0.1 "hina"
