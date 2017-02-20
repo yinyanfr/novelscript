@@ -50,6 +50,8 @@ ns.dev.statExample = {
     state: {
         round: null,
         // times that the game was completed
+        dearness: {},
+        //  好感度
         script: "id01",
         // name pf present reading
         position: 0

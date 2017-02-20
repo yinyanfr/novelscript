@@ -51,6 +51,18 @@ ns.slide = function () {
      * to next position
      */
     slide.next = function () {
+        // take condition after
+        ns.readyAfter(state.script, state.position);
+        var cond = dp.getFromState().condition;
+        if(cond && cond.after){
+            if(cond.after === false){
+                ns.termination();
+            }else if(Array.isArray(cond.after)){
+                slide.jumpScript(cond.after[0], cond.after[1])
+            }
+        }
+
+        // then
         slide.before = $.extend({}, stack);
         if (state.position < dp.get(state.script).length - 1) {
             state.position++;
@@ -218,32 +230,43 @@ ns.slide = function () {
             }
         };
         // effect
-        var effect = dp.getFromState().effect;
-        if(effect){
-            var type = effect.effectType;
-            if(!type || !type.sync){
-                slide.deactive();
-                if(type && !type.deffered){
-                    effect.execute(function () {
-                        slide.active();
-                        move();
-                    })
-                }else {
-                    $.when(effect.execute())
-                        .done(function () {
+        var effectTaking = function () {
+            var effect = dp.getFromState().effect;
+            if(effect){
+                var type = effect.effectType;
+                if(!type || !type.sync){
+                    slide.deactive();
+                    if(type && !type.deffered){
+                        effect.execute(function () {
                             slide.active();
                             move();
                         })
+                    }else {
+                        $.when(effect.execute())
+                            .done(function () {
+                                slide.active();
+                                move();
+                            })
+                    }
+                }else {
+                    if(type && type.sync){
+                        effect.execute();
+                        move()
+                    }
                 }
             }else {
-                if(type && type.sync){
-                    effect.execute();
-                    move()
-                }
+                move()
             }
-        }else {
-            move()
-        }
+        };
+        // condition
+        var condition = function () {
+            ns.readyBefore(state.script, state.position);
+            var cond = dp.getFromState().condition;
+            if(!cond) effectTaking();
+            else if(cond && cond.before) effectTaking();
+            else slide.next()
+        };
+        condition()
     };
     /**
      * intermediate function for controlling typer
