@@ -26,7 +26,11 @@ ns.init = function (data, $frame, setting) {
     });
     ns.initControls(setting);
     ns.relation = ns.initRelation();
-    ns.stage = ns.ui.frame();
+    // init the default theme for the reference of others
+    var tempTheme = $.extend({}, ns.controls.theme);
+    ns.ui.frame(ns.ui.themes.default);
+    ns.ui.frame(tempTheme);
+    ns.ui.frame(ns.ui.themes.novel);
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();
     ns.resource = ns.initResource(setting);
@@ -39,10 +43,11 @@ ns.init = function (data, $frame, setting) {
         "yume1.png", "yume2.png", "yume3.png"];
 
     var $lb = ns.loadingbar(testlist, "tmp/e/", function () {
-        $lb.hide();
-        ns.$frame.children().show();
+        $lb.remove();
         ns.start();
+        ns.$frame.children().show();
     });
+
     ns.$frame.children().hide(0, function () {
         $lb.appendTo(ns.$frame).align("full")
     });

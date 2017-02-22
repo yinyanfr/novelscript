@@ -2,74 +2,112 @@
  * Created by Ian on 2016/2/27.
  */
 ns.ui.initTheme = function (style) {
-    ns.ui.themes.hina = {};
-    (function (hina) {
-        hina.mainstageStyle = {
+
+    //default
+    // generic: defaut skin with version 0.1, global initialisation
+    ns.ui.themes.default = {};
+    var df = function(){
+        var df = {};
+        df.mainstageStyle = {
             width: style.width,
             height: style.height,
             "background-color": "#f3f3f3",
             "background-size": style.width+"px "+style.height+"px",
             position: "relative",
-            "font-family": "YouYuan, Microsoft YaHei UI, Microsoft Yahei, 黑体"
+            "font-family": "YouYuan, ZhunYuan, Microsoft YaHei UI, Microsoft Yahei, 黑体"
         };
-        // hina.mainstageStyle["background-image"] = "url('tmp/e/koharu.jpg')";
-        hina.figureStyle = {
+        df.figureStyle = {
             width: style.width,
             position: "absolute",
             bottom: 0,
             "text-align": "center"
         };
-        hina.figureImageStyle = {
+        df.figureImageStyle = {
             height: 0.8 * style.height
         };
-        hina.contentStyle = {
+        df.contentStyle = {
             width: style.width * 0.7,
             height: style.height / 4,
             position: "absolute",
-            bottom: 0,
-            "background-image": "url('tmp/e/sf.png')"
+            bottom: 0
         };
-        hina.dialogueStyle = {
+        df.dialogueStyle = {
             width: "inherit",
             height: "inherit",
-            "background-color": "#87CEEB",
+            "background-color": "gray",
             "opacity": 0.4
         };
-        var widthContent = hina.contentStyle.width;
-        var heightContent = hina.contentStyle.height;
-        hina.contentStyle.left = (style.width - widthContent) / 2;
-        hina.dialogueStyle["border-radius"] = (widthContent/2) + "px/" + (heightContent/2) + "px";
-        hina.speakerStyle = {
-            "background-color": "#87CEEB",
+        // add novel mode token
+        df.novelMode = false;
+        var widthContent = df.contentStyle.width;
+        var heightContent = df.contentStyle.height;
+        df.contentStyle.left = (style.width - widthContent) / 2;
+        df.speakerStyle = {
+            "background-color": "gray",
             position: "absolute",
             left: 0,
             top: 0
         };
-        hina.dialStyle = {
+        df.dialStyle = {
             "font-size": "150%",
             position: "absolute",
             left: widthContent / 8,
             top: heightContent / 5
         };
-        hina.mergeStyle = {
+        df.mergeStyle = {
             width: 0.3 * style.width,
             position: "absolute",
             top: 0.25 * style.height
         };
-        var mergeWidth = hina.mergeStyle.width;
-        hina.mergeStyle.left = (style.width - mergeWidth) / 2;
-        hina.choiceStyle = {
+        var mergeWidth = df.mergeStyle.width;
+        df.mergeStyle.left = (style.width - mergeWidth) / 2;
+        df.choiceStyle = {
             width: "inherit",
             height: "45px",
-            "background-color": "rgba(135, 206, 235, 0.5)",
+            "background-color": "gray",
             "font-size": "150%",
             "padding": "5px",
             "margin-bottom": "10px",
             "text-align": "center"
         };
-        hina.choiceStyle["line-height"] = hina.choiceStyle.height;
+        df.choiceStyle["line-height"] = df.choiceStyle.height;
 
+        return df;
+    };
+    ns.ui.themes.default = df();
+
+
+    // hina: defaut skin with version 0.2
+    ns.ui.themes.hina = df();
+    (function (hina) {
+        hina.contentStyle[ "background-image"] = "url('tmp/e/sf.png')";
+        var widthContent = hina.contentStyle.width;
+        var heightContent = hina.contentStyle.height;
+        hina.dialogueStyle["border-radius"] = (widthContent/2) + "px/" + (heightContent/2) + "px";
+        hina.speakerStyle["background-color"] = "#87CEEB";
+        hina.dialogueStyle["background-color"] = "#87CEEB";
+        hina.choiceStyle["background-color"] = "rgba(135, 206, 235, 0.5)";
     })(ns.ui.themes.hina);
+
+    // theatre mode
+    // theatre: default theatre mode theme packed with ver 0.3
+    ns.ui.themes.theatre = df();
+    (function (theatre) {
+        theatre.dialogueStyle["background-color"] = "transparent";
+        theatre.speakerStyle["background-color"] = "transparent";
+        theatre.dialStyle["font-size"] = "200%";
+        theatre.dialStyle["text-shadow"] = "0 0 8px white";
+        theatre.dialStyle["background-color"] = "rgba(150, 150, 150, 0.5)";
+    })(ns.ui.themes.theatre);
+
+    // novel mode
+    // novel: default novel mode theme packed with ver 0.3
+    ns.ui.themes.novel = df();
+    (function (novel) {
+        novel.novelMode = true;
+        novel.contentStyle.height = "100%";
+    })(ns.ui.themes.novel)
+
 };
 
 ns.ui.themes = {};

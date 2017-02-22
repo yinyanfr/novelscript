@@ -15,6 +15,8 @@ ns.slide = function () {
     var relation = ns.relation;
     var resource = ns.resource;
     var theme = ns.controls.theme;
+    var history = ns.history;
+    var top = theme.dialStyle.top;
     slide.before = null;
     /**
      * update the display of a slide
@@ -231,6 +233,27 @@ ns.slide = function () {
         };
         // effect
         var effectTaking = function () {
+            history.pushAll(stack);
+            console.log(history.novel.stack);
+            if(theme.novelMode){
+                stage.$dialPrepend.html("").show();
+                stage.$dial.css({
+                    top: top * ((function (n) {
+                        if(n > 0) return 2 * n + 1;
+                        else return 1
+                    })(history.novel.stack.length - 1))
+                });
+                if(history.novel.stack.length > 1){
+                    for(var i = 0; i < history.novel.stack.length - 1; i++){
+                        var tmp = history.novel.stack[i];
+                        stage.$dialPrepend.append($("<div></div>")
+                            .html(tmp.dialogue)
+                            .css({
+                                "margin-top": top
+                            }))
+                    }
+                }
+            }
             var effect = dp.getFromState().effect;
             if(effect){
                 var type = effect.effectType;
