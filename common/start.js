@@ -10,9 +10,10 @@
  */
 ns.start = function (script, position) {
     var dp = ns.dp;
-    var slide = ns.slide();
-    script = script || dp.firstScript();
+    var slide = ns.slides;
+    script = script || dp.firstScriptName();
     position = position || 0;
-    slide.move();
-    slide.active();
+
+    slide.changeStack(script, position);
+    slide.move()
 };

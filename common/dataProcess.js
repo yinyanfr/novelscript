@@ -126,6 +126,10 @@ ns.initDp = function (data) {
         return data[Object.keys(data)[0]]
     };
 
+    dp.firstScriptName = function () {
+        return Object.keys(data)[0]
+    };
+
     /**
      * Go throughout the whole data, and do f to each page
      * @param f

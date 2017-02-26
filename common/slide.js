@@ -16,7 +16,6 @@ ns.slide = function () {
     var resource = ns.resource;
     var theme = ns.controls.theme;
     var history = ns.history;
-    var top = theme.dialStyle.top;
     slide.before = null;
     /**
      * update the display of a slide
@@ -223,10 +222,55 @@ ns.slide = function () {
                 stage.$main.unbind("click")
                     .bind("click", stop);
                 slide.repaint();
-                how(stage.$dial, dial, 20, function () {
+
+                var longdial = function(indice){
+                    return function (how, dial, f) {
+                        return how(stage.$dial, dial[indice], 100, function () {
+                            stage.$main.unbind("click")
+                                .bind("click", f)
+                        });
+                    }
+                };
+                var indice, tmpfun;
+                if(Array.isArray(dial)){
+                    /*
+                    indice = 0;
+                    tmpfun = function () {
+                        longdial(how, dial[indice], function () {
+                            indice++;
+                            if(indice < dial.length) return slide.move;
+                            else return slide.move
+                        })
+                    };
+                    tmpfun()
+                    */
+                    how(stage.$dial, dial[0], 100, function () {
+                        stage.$main.unbind("click")
+                            .bind("click", function () {
+                                how(stage.$dial, dial[1], 100, function () {
+                                    stage.$main.unbind("click")
+                                        .bind("click", function () {
+                                            how(stage.$dial, dial[2], 100, function () {
+                                                stage.$main.unbind("click")
+                                                    .bind("click", slide.move)
+                                            });
+                                        })
+                                });
+                            })
+                    });
+                }else{
+                    how(stage.$dial, dial, 1000, function () {
+                        stage.$main.unbind("click")
+                            .bind("click", slide.move)
+                    });
+                }
+
+                /*
+                how(stage.$dial, dial, 200, function () {
                     stage.$main.unbind("click")
                         .bind("click", slide.move)
                 });
+                */
                 slide.next();
                 //console.log(stack)
             }
@@ -234,7 +278,8 @@ ns.slide = function () {
         // effect
         var effectTaking = function () {
             history.pushAll(stack);
-            console.log(history.novel.stack);
+            //console.log(history.novel.stack);
+            var top = theme.dialStyle.top;
             if(theme.novelMode){
                 stage.$dialPrepend.html("").show();
                 stage.$dial.css({
@@ -253,6 +298,8 @@ ns.slide = function () {
                             }))
                     }
                 }
+            }else{
+                stage.$dialPrepend.hide();
             }
             var effect = dp.getFromState().effect;
             if(effect){

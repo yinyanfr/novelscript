@@ -139,7 +139,13 @@ ns.parser = function (data) {
                 .replace(/\]/, "")
         }
         // last thing : parse dialogue
-        res.dialogue = dial.replace(/\[.*\]/g, "");
+        // new: parse addition
+        res.dialogue = dial.replace(/\[[^\+]*\]/g, "");
+        var addition = /\[\+\]/g;
+        if(dial.match(addition)){
+            res.multi = true;
+            res.dialogue = res.dialogue.split(/\[\+\]/g);
+        }
         return res
     };
 

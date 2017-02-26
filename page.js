@@ -11,24 +11,20 @@ var json = {
             ],
             "bg": "room.jpg",
             "bgm": "07.mp3",
-            "dialogue": "这是一个NovelScript0.2版本的演示工程。"
+            "dialogue": "这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。",
+            "multi": true
         },
         {
-            "merge": true,
-            "mergeBody": [
-                "去第三页",
-                "去第五页",
-                "去听音乐会"
-            ],
-            "dialogue":"刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能"
-        },
-        {
-            "speaker": "[由梦]",
+            "speaker": "[1由梦]",
             "figure": [
                 "",
                 "yume1.png"
             ],
-            "dialogue": "这里用到的全部图片都来自初音岛2。"
+            "dialogue": [
+                "最后祝您，",
+                "身体健康，",
+                "谢谢。"
+            ]
         },
         {
             "speaker": "[雪村]",
@@ -46,7 +42,7 @@ var json = {
                 "anzu_b.png",
                 "yume3.png"
             ],
-            "dialogue": "你可以尝试改动右侧的剧本文本，点击提交然后查看变化，剧本会重新加载。"
+            "dialogue": "NovelScript的剧本可以用方便的方法写成，详情请见文档。"
         },
         {
             "speaker": "[音姬]",
@@ -59,7 +55,6 @@ var json = {
         },
         {
             "speaker": null,
-            "bg": "0",
             "dialogue": "现在黑屏啦。"
         },
         {
@@ -74,106 +69,27 @@ var json = {
         },
         {
             "speaker": null,
-            "cg": "anzu.jpg",
             "dialogue": "CG是覆盖在背景之上的，"
         },
         {
             "speaker": null,
-            "cg": "anzu2.jpg",
             "dialogue": "这一部分演示了CG和背景的变动方法。"
         },
         {
             "speaker": null,
-            "cg": "0",
             "dialogue": "去除CG后，背景图又回到之前的背景啦。"
         },
         {
             "speaker": null,
-            "dialogue": "最后祝您，身体健康，谢谢。"
-        }
-    ],
-    "room2": [
-        {
-            "speaker": "[音姬]",
-            "figure": [
-                "otome1.png"
+            "dialogue": [
+                "最后祝您，",
+                "身体健康，",
+                "谢谢。"
             ],
-            "bg": "room.jpg",
-            "bgm": "07.mp3",
-            "dialogue": "这是一个NovelScript0.1版本的演示工程。"
-        },
-        {
-            "speaker": "[由梦]",
-            "figure": [
-                "",
-                "yume1.png"
-            ],
-            "dialogue": "这里用到的全部图片都来自初音岛2。"
-        },
-        {
-            "speaker": "[雪村]",
-            "figure": [
-                "otome2.png",
-                "",
-                "anzu_n.png"
-            ],
-            "dialogue": "背景音乐来自之后会公开的《立夏》。"
-        },
-        {
-            "speaker": "[雪村]",
-            "figure": [
-                "",
-                "anzu_b.png",
-                "yume3.png"
-            ],
-            "dialogue": "你可以尝试改动右侧的剧本文本，点击提交然后查看变化，剧本会重新加载。"
-        },
-        {
-            "speaker": "[音姬]",
-            "figure": [
-                "otome2.png",
-                "0",
-                ""
-            ],
-            "dialogue": "这一部分演示了人物立绘的变动方法。"
-        },
-        {
-            "speaker": null,
-            "bg": "0",
-            "dialogue": "现在黑屏啦。"
-        },
-        {
-            "speaker": null,
-            "bg": "classroom.jpg",
-            "dialogue": "现在切换到了教室。"
-        },
-        {
-            "speaker": null,
-            "bg": "restaurant.jpg",
-            "dialogue": "现在切换到了食堂。"
-        },
-        {
-            "speaker": null,
-            "cg": "anzu.jpg",
-            "dialogue": "CG是覆盖在背景之上的，"
-        },
-        {
-            "speaker": null,
-            "cg": "anzu2.jpg",
-            "dialogue": "这一部分演示了CG和背景的变动方法。"
-        },
-        {
-            "speaker": null,
-            "cg": "0",
-            "dialogue": "去除CG后，背景图又回到之前的背景啦。"
-        },
-        {
-            "speaker": null,
-            "dialogue": "最后祝您，身体健康，谢谢。"
+            "multi": true
         }
     ]
 };
-
 $(document).ready(function () {
 
     ns.initControls = function (setting) {
