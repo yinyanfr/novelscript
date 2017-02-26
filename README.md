@@ -48,12 +48,14 @@ Documents in English been stopped with no demand being raised during the time
 # ReleaseNote
 目前的版本：0.3 "sodatsu"
 - 新增和修改
+    - 预加载功能和加载条
     - 修改condition的结构，增加每句台词显示前和显示后两个时机
     - 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能，添加自定义主题的入口
     - 现在支持分步显示的台词了
 - bug修正
     - 修改0.2版本错误封入的旧版本parser.js
     - 修改第一页无法插入动画的错误
+    
 <a href="https://github.com/yinyanfr/NovelScript/blob/master/doc/ReleaseNote.md">点此查阅 ReleaseNote</a>
 
 下一版本的更新计划：0.4 "naru"

@@ -1,7 +1,18 @@
 # Release Note
 
 ## 0.3版新增及变化的内容
-### 1 修改condition的结构，增加每句台词显示前和显示后两个时机
+### 1 预加载功能和加载条
+```javascript
+ns.preload(list, path, each, callback)
+```
+其中 `list` 是包含路径的数组，`path` 用于补全相对路径，`each` 是每个文件加载完成时执行的函数，`callback` 是回调函数。此外，`ns.preload` 返回一个 Deferred 对象，可用于替换回调函数。
+
+```javascript
+ns.loadingbar(list, path, callback)
+```
+其中 `list` 是包含路径的数组，`path` 用于补全相对路径，`callback` 是回调函数。`ns.loadingbar`返回一个jQuery div。Css样式可于`theme.loadingbarStyle` 和  ` theme.loadingbarInterneStyle` 添加，其中`theme`为NovelScript所应用的主题。
+
+### 2 修改condition的结构，增加每句台词显示前和显示后两个时机
 - 前者用于为台词的出现设定条件，
 - 后者指定台词结束后的跳转方向
 - 两者都可以为台词的显示前后增加运算
@@ -39,7 +50,7 @@ ns.condition("intro", 4, function (state) {
 });
 ```
 
-### 2 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能，添加自定义主题的入口
+### 3 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能，添加自定义主题的入口
 涉及到的修改：
 - ns.<s>ui.</s>frame
 - ns.<s>ui.</s>themes
@@ -58,12 +69,12 @@ ns.addTheme(themes, df, stageWidth, stageHeight){
 ```
 主题对象的属性参见文档主页面
 
-### 3 现在支持分步显示的台词了
+### 4 现在支持分步显示的台词了
 标记语言： 在对话中使用[+]标记来分割台词，如：最后祝您，[+]身体健康，[+]谢谢
 
 json：如果dialogue为数组，那么它就是一句可以分步显示的台词
 
 效果：自然播放时，分步台词将在每一步停顿，等待操作，在每一步播放过程中点击鼠标将跳过对话，直接显示出目前的分步
 
-### 4 新的选项页面（TODO）
+### 5 新的选项页面（TODO）
 这个功能被推到0.4版了
