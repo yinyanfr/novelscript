@@ -142,12 +142,10 @@ ns.parser = function (data) {
         // new: parse addition
         res.dialogue = dial.replace(/\[[^\+]*\]/g, "");
         var addition = /\[\+\]/g;
-        /*
         if(dial.match(addition)){
             res.multi = true;
             res.dialogue = res.dialogue.split(/\[\+\]/g);
         }
-        */
         return res
     };
 

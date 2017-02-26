@@ -2,7 +2,9 @@
  * Created by Ian on 2016/2/27.
  */
 ns.initTheme = function (style) {
-
+    if(!style) style = {};
+    if(!style.width) style.width = ns.$frame.width();
+    if(!style.height) style.height = ns.$frame.height();
     //default
     // generic: defaut skin with version 0.1, global initialisation
     ns.themes.default = {};
@@ -102,6 +104,7 @@ ns.initTheme = function (style) {
 
     // novel mode
     // novel: default novel mode theme packed with ver 0.3
+    // dropped temporarily
     ns.themes.novel = df();
     (function (novel) {
         novel.novelMode = true;
@@ -111,7 +114,7 @@ ns.initTheme = function (style) {
     var tmpThemes;
 
     if(ns.addTheme){
-        ns.addTheme(tmpThemes, df);
+        ns.addTheme(tmpThemes, df, style.width, style.height);
         var k = Object.keys(tmpThemes);
         for(var i = 1; i < k; i++){
             if(ns.themes[k[i]]){

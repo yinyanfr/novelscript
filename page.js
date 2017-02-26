@@ -11,20 +11,28 @@ var json = {
             ],
             "bg": "room.jpg",
             "bgm": "07.mp3",
-            "dialogue": "这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。这里用到的全部图片都来自初音岛2。",
+            "dialogue": [
+                "您好，",
+                "这是一个NovelScript0.3版本的演示工程。"
+            ],
             "multi": true
         },
         {
-            "speaker": "[1由梦]",
+            "merge": true,
+            "mergeBody": [
+                "去第三页",
+                "去第五页",
+                "去听音乐会"
+            ],
+            "dialogue": "刚才是效果器功能的一个实例（幻灯片），现在是选项分歧功能"
+        },
+        {
+            "speaker": "[由梦]",
             "figure": [
                 "",
                 "yume1.png"
             ],
-            "dialogue": [
-                "最后祝您，",
-                "身体健康，",
-                "谢谢。"
-            ]
+            "dialogue": "这里用到的全部图片都来自初音岛2。"
         },
         {
             "speaker": "[雪村]",
@@ -55,6 +63,7 @@ var json = {
         },
         {
             "speaker": null,
+            "bg": "0",
             "dialogue": "现在黑屏啦。"
         },
         {
@@ -69,14 +78,17 @@ var json = {
         },
         {
             "speaker": null,
+            "cg": "anzu.jpg",
             "dialogue": "CG是覆盖在背景之上的，"
         },
         {
             "speaker": null,
+            "cg": "anzu2.jpg",
             "dialogue": "这一部分演示了CG和背景的变动方法。"
         },
         {
             "speaker": null,
+            "cg": "0",
             "dialogue": "去除CG后，背景图又回到之前的背景啦。"
         },
         {
@@ -90,6 +102,7 @@ var json = {
         }
     ]
 };
+
 $(document).ready(function () {
 
     ns.initControls = function (setting) {
@@ -102,9 +115,8 @@ $(document).ready(function () {
     };
 
     ns.director = function () {
-        // 为了测试所以去掉这个效果了
-        //var l = ["为什么会变成这样呢？", "第一次有了喜欢的人", "第一次有了一生的挚友", "为什么会这样呢？"];
-        //ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
+        var l = ["Demo site", "Powered by NovelScript 0.3"];
+        ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
 
         ns.merge.add("room", 1, [{
             condition: true,

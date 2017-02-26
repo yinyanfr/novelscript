@@ -24,6 +24,8 @@ ns.diapo = function (list, $stage, bgColor, time, iter, stop) {
     };
     diapo.$slide = $("<div></div>").hide()
         .css({
+            width: "100%",
+            "text-align": "center",
             color: "white",
             "font-size": "300%"
         });
@@ -79,6 +81,7 @@ ns.diapo = function (list, $stage, bgColor, time, iter, stop) {
     diapo.recover = function (callback) {
         $stage.children().show();
         $stage.css("background-color", diapo.originBgColor);
+        diapo.$slide.remove();
         callback();
     };
     diapo.execute = function (callback) {

@@ -67,6 +67,7 @@ ns.loadingbar = function (list, path, callback) {
         $lbInterne.width($lbInterne.width() + step)
     };
     ns.preload(list, path, each, function () {
+        ns.$frame.html("");
         if (callback) {
             callback()
         }

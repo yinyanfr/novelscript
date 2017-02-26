@@ -1,15 +1,15 @@
-## 主要特点
+```
+注意 - 非主流的javascript
+出于开发者的怪癖：
+本项目的思路和代码实现中包含大量函数式编程的内容
+本项目使用es5和jQuery
+本项目不使用java式的COO方法
 
-- 简化的剧本标记语言：
-  - 格式简单，不需要写代码
-  - 通过简单的增删标记来修改媒体，不需要重复书写
-- 完全可定制的外观
-- 插件式的程序结构
-
-
+另外英文文档已经停止继续提供了 
+Documents in English been stopped with no demand being raised during the time
+```
 
 # What's does NovelScript do?
-
 - from simple script
 ```
 [script: room]
@@ -25,7 +25,7 @@
 [cg: anzu.jpg]CG是覆盖在背景之上的，
 [cg: anzu2.jpg]这一部分演示了CG和背景的变动方法。
 [cg: 0]去除CG后，背景图又回到之前的背景啦。
-最后祝您，身体健康，谢谢。
+最后祝您，[+]身体健康，[+]谢谢。
 ```
 - to visual novels
 
@@ -35,53 +35,30 @@
 
 <a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
 
+## 主要特点
+- 简化的剧本标记语言：
+  - 格式简单，不需要写代码
+  - 通过简单的增删标记来修改媒体，不需要重复书写
+- 完全可定制的外观
+- 插件式的程序结构
+
 # Documentation
 <a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
 
-# Process
-## 复活了
-今年<s>终于</s>要写完了
+# ReleaseNote
+目前的版本：0.3 "sodatsu"
+- 新增和修改
+    - 修改condition的结构，增加每句台词显示前和显示后两个时机
+    - 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能，添加自定义主题的入口
+    - 现在支持分步显示的台词了
+- bug修正
+    - 修改0.2版本错误封入的旧版本parser.js
+    - 修改第一页无法插入动画的错误
+<a href="https://github.com/yinyanfr/NovelScript/blob/master/doc/ReleaseNote.md">点此查阅 ReleaseNote</a>
 
-## checked
-### NovelScript 0.1 "hina"
-
-Version 0.1 is the base of the whole project, which provides a basic presentation of a powerpoint-like visual novel,
-with dialogue, portrait, background dessin and simple music playing functions.
-
-0.1版本是项目的基础,将实现一个单纯的galgame展示功能
-
-### NovelScript 0.2 "hane"
-
-Version 0.2 will add to merge function("the choices"), to Novelscript, which is actually there is present code.
-And effects as well, which is also builded in present code, and will finally be dicided its structure.
-
-0.2 版本将会加入已有的分歧和效果器系统
-
-## ongoing
-
-### NovelScript 0.3 "karata"
-75%
-
-Version 0.3 will start to bring a framework of interface that holds the main process of NovelScript.
-
-Also, the preloading feature will be completed
-
-进度75% 0.3版本将提供一个简单的界面接口，同时预加载功能将在此版本中完成
-## togo
-### NovelScript 0.4 "Naru"
-In version 0.4, the functionality of music playing will be redesigned so as to allow controls and sound effects.
-
-0.4版本将重新设计音乐播放器,并修改音乐和音效的逻辑
-### NovelScript 0.5 "iroha"
-A option menu will be added to Version 0.5
-
-0.5 版本将会加入游戏选项菜单
-### NovelScript-light
-Novelscript 0.5 will be released as NovelScript-light,
-
-and the first game "Lixia intro" will be released using NovelScript-light
-
-NovelScript-light将根据0.5版本发布,同时发布基于此项目的游戏"立夏 序章"
+下一版本的更新计划：0.4 "naru"
+- 音乐播放器
+- 选项菜单
 
 # Credit
 PreloadJS https://github.com/CreateJS/PreloadJS

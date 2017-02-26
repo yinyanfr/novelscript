@@ -42,9 +42,10 @@ ns.init = function (data, $frame, setting) {
         "yume1.png", "yume2.png", "yume3.png"];
 
     var $lb = ns.loadingbar(testlist, "tmp/e/", function () {
-        $lb.remove();
+        ns.stage.$main.appendTo(ns.$frame);
+        ns.slides = ns.slide();
         ns.start();
-        ns.$frame.children().show();
+        //ns.$frame.children().show();
     });
 
     ns.$frame.children().hide(0, function () {

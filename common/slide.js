@@ -267,7 +267,7 @@ ns.slide = function () {
                 };
 
                 if(Array.isArray(dial)){
-                    longdial(stage.$dial, 0, dial, 200);
+                    longdial(stage.$dial, 0, dial, 20);
 
                 }else{
 
@@ -282,12 +282,6 @@ ns.slide = function () {
                     });
                 }
 
-                /*
-                how(stage.$dial, dial, 200, function () {
-                    stage.$main.unbind("click")
-                        .bind("click", slide.move)
-                });
-                */
                 slide.next();
                 //console.log(stack)
             }

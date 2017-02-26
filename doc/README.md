@@ -383,12 +383,12 @@ where `list` is an array of path, `path` is to complete each relative path, `cal
  
 
 ### 6. 自定义主题（0.3+）
-#### 6.1 ns.addtheme(themes, df)
-两个参数的分别代表ns.themes和复制默认灰色主题对象的函数
+#### 6.1 ns.addtheme
+新增了ns.addTheme(themes, df, stageWidth, stageHeight)，四个参数的分别代表ns.themes，复制默认灰色主题对象的函数，舞台的宽度和高度
 
-- 用例：
+用例：
 ```javascript
-ns.addTheme(themes, df){
+ns.addTheme(themes, df, stageWidth, stageHeight){
     themes.newTheme = df();
     //...
 }
@@ -408,6 +408,8 @@ newTheme.dialogueStyle = {
     "width": "100%"
 };
 ```
+
+默认的主题 https://github.com/yinyanfr/NovelScript/blob/master/doc/defaultTheme.md
 
 #### 6.2 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能
 涉及到的修改：
