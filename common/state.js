@@ -9,7 +9,6 @@ ns.state = {};
  * @param option: Object, for future versions
  */
 ns.getStoredState = function (option) {
-    console.log("haha", ns.store.local("nsstate"))
     return ns.store.local("nsstate")
 };
 

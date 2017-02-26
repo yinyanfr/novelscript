@@ -221,8 +221,17 @@ ns.slide = function () {
                 stage.$dial.html("");
                 slide.repaint();
 
-                var f1 = function (frame, indice, array, time) {
+                /**
+                 * 迷之递归
+                 * @param frame
+                 * @param indice
+                 * @param array
+                 * @param time
+                 */
+                var longdial = function (frame, indice, array, time) {
+                    // 遍历对话数组的每一项
                     if(indice < array.length - 1){
+                        // 不是最后一项的场合，将屏幕点击事件变为显示至今已经点出的步，然后变为启动下次递归
                         stage.$main.unbind("click")
                             .bind("click", function () {
                                 pause(function () {
@@ -232,13 +241,14 @@ ns.slide = function () {
                                     }
                                     return res
                                 }, function () {
-                                    f1(frame, indice+1, array, time)
+                                    longdial(frame, indice+1, array, time)
                                 })
                             });
+                        // 启动打字机动画，在自然播放的场合，将屏幕点击事件变为启动下次递归
                         return how(frame, array[indice], time, function () {
                             stage.$main.unbind("click")
                                 .bind("click", function () {
-                                    f1(frame, indice+1, array, time)
+                                    longdial(frame, indice+1, array, time)
                                 })
                         })
                     }
@@ -257,7 +267,7 @@ ns.slide = function () {
                 };
 
                 if(Array.isArray(dial)){
-                    f1(stage.$dial, 0, dial, 200);
+                    longdial(stage.$dial, 0, dial, 200);
 
                 }else{
 
@@ -353,7 +363,11 @@ ns.slide = function () {
         stage.$main.unbind("click")
             .bind("click", slide.move)
     };
-
+    /**
+     * 一个细化的stop
+     * @param dial
+     * @param f
+     */
     var pause = function (dial, f) {
         stage.$dial.finish().html(dial);
         stage.$main.unbind("click")

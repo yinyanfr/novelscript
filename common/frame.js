@@ -6,7 +6,7 @@
  * HUGE CHANGE: ns.ui.frame() now serves to directly overides ns.stage
  * @param theme
  */
-ns.ui.frame = function (theme) {
+ns.frame = function (theme) {
     var width = ns.$frame.width();
     var height = ns.$frame.height();
     // mainstage

@@ -20,7 +20,7 @@ ns.init = function (data, $frame, setting) {
     // init state if needed
     if (ns.state.state.round === undefined || ns.state.state.round === null) ns.initState();
     // form frame ui
-    ns.ui.initTheme({
+    ns.initTheme({
         width: ns.$frame.width(),
         height: ns.$frame.height()
     });
@@ -28,8 +28,8 @@ ns.init = function (data, $frame, setting) {
     ns.relation = ns.initRelation();
     // init the default theme for the reference of others
     var tempTheme = $.extend({}, ns.controls.theme);
-    ns.ui.frame(ns.ui.themes.default);
-    ns.ui.frame(tempTheme);
+    ns.frame(ns.themes.default);
+    ns.frame(tempTheme);
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();
     ns.resource = ns.initResource(setting);

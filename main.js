@@ -8,7 +8,6 @@ ns.version = 0.1;
 // all
 ns.effect = {};
 ns.dev = {};
-ns.ui = {};
 
 // constomization
 ns.controls = {};

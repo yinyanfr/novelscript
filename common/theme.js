@@ -1,11 +1,11 @@
 /**
  * Created by Ian on 2016/2/27.
  */
-ns.ui.initTheme = function (style) {
+ns.initTheme = function (style) {
 
     //default
     // generic: defaut skin with version 0.1, global initialisation
-    ns.ui.themes.default = {};
+    ns.themes.default = {};
     var df = function(){
         var df = {};
         df.mainstageStyle = {
@@ -74,43 +74,56 @@ ns.ui.initTheme = function (style) {
 
         return df;
     };
-    ns.ui.themes.default = df();
+    ns.themes.default = df();
 
 
     // hina: defaut skin with version 0.2
-    ns.ui.themes.hina = df();
+    ns.themes.hina = df();
     (function (hina) {
-        hina.contentStyle[ "background-image"] = "url('tmp/e/sf.png')";
+        hina.contentStyle["background-image"] = "url('tmp/e/sf.png')";
         var widthContent = hina.contentStyle.width;
         var heightContent = hina.contentStyle.height;
         hina.dialogueStyle["border-radius"] = (widthContent/2) + "px/" + (heightContent/2) + "px";
         hina.speakerStyle["background-color"] = "#87CEEB";
         hina.dialogueStyle["background-color"] = "#87CEEB";
         hina.choiceStyle["background-color"] = "rgba(135, 206, 235, 0.5)";
-    })(ns.ui.themes.hina);
+    })(ns.themes.hina);
 
     // theatre mode
     // theatre: default theatre mode theme packed with ver 0.3
-    ns.ui.themes.theatre = df();
+    ns.themes.theatre = df();
     (function (theatre) {
         theatre.dialogueStyle["background-color"] = "transparent";
         theatre.speakerStyle["background-color"] = "transparent";
         theatre.dialStyle["font-size"] = "200%";
         theatre.dialStyle["text-shadow"] = "0 0 8px white";
         theatre.dialStyle["background-color"] = "rgba(150, 150, 150, 0.5)";
-    })(ns.ui.themes.theatre);
+    })(ns.themes.theatre);
 
     // novel mode
     // novel: default novel mode theme packed with ver 0.3
-    ns.ui.themes.novel = df();
+    ns.themes.novel = df();
     (function (novel) {
         novel.novelMode = true;
         novel.contentStyle.height = "100%";
-    })(ns.ui.themes.novel)
+    })(ns.themes.novel);
+
+    var tmpThemes;
+
+    if(ns.addTheme){
+        ns.addTheme(tmpThemes, df);
+        var k = Object.keys(tmpThemes);
+        for(var i = 1; i < k; i++){
+            if(ns.themes[k[i]]){
+                throw "Overide failed: theme "+k[i]+" already exists"
+            }
+            ns.themes[k[i]] = tmpThemes[k[i]]
+        }
+    }
 
 };
 
-ns.ui.themes = {};
+ns.themes = {};
 
 
 // change theme in ns.control.theme

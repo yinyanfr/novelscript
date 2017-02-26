@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     ns.initControls = function (setting) {
         setting = setting || ns.default.setting;
-        ns.controls.theme = ns.ui.themes[setting.theme];
+        ns.controls.theme = ns.themes[setting.theme];
         // relation amang scripts paragraphes
         ns.controls.relation = {
 
