@@ -219,47 +219,54 @@ ns.slide = function () {
                 //TODO merge and effect(0.2)
                 var how = ns.typer.flush;
                 stage.$dial.html("");
-                stage.$main.unbind("click")
-                    .bind("click", stop);
                 slide.repaint();
 
-                var longdial = function(indice){
-                    return function (how, dial, f) {
-                        return how(stage.$dial, dial[indice], 100, function () {
-                            stage.$main.unbind("click")
-                                .bind("click", f)
-                        });
-                    }
-                };
-                var indice, tmpfun;
-                if(Array.isArray(dial)){
-                    /*
-                    indice = 0;
-                    tmpfun = function () {
-                        longdial(how, dial[indice], function () {
-                            indice++;
-                            if(indice < dial.length) return slide.move;
-                            else return slide.move
-                        })
-                    };
-                    tmpfun()
-                    */
-                    how(stage.$dial, dial[0], 100, function () {
+                var f1 = function (frame, indice, array, time) {
+                    if(indice < array.length - 1){
                         stage.$main.unbind("click")
                             .bind("click", function () {
-                                how(stage.$dial, dial[1], 100, function () {
-                                    stage.$main.unbind("click")
-                                        .bind("click", function () {
-                                            how(stage.$dial, dial[2], 100, function () {
-                                                stage.$main.unbind("click")
-                                                    .bind("click", slide.move)
-                                            });
-                                        })
-                                });
-                            })
-                    });
+                                pause(function () {
+                                    var res = "";
+                                    for(var i = 0; i < indice+1; i++){
+                                        res += array[i] + " "
+                                    }
+                                    return res
+                                }, function () {
+                                    f1(frame, indice+1, array, time)
+                                })
+                            });
+                        return how(frame, array[indice], time, function () {
+                            stage.$main.unbind("click")
+                                .bind("click", function () {
+                                    f1(frame, indice+1, array, time)
+                                })
+                        })
+                    }
+                    else {
+                        stage.$main.unbind("click")
+                            .bind("click", function () {
+                                stop(dial.join(" "))
+                            });
+
+                        return how(frame, array[indice++], time, function () {
+                            stage.$main.unbind("click")
+                                .bind("click", slide.move)
+                        })
+                    }
+
+                };
+
+                if(Array.isArray(dial)){
+                    f1(stage.$dial, 0, dial, 200);
+
                 }else{
-                    how(stage.$dial, dial, 1000, function () {
+
+                    stage.$main.unbind("click")
+                        .bind("click", function () {
+                            stop(dial)
+                        });
+
+                    how(stage.$dial, dial, 20, function () {
                         stage.$main.unbind("click")
                             .bind("click", slide.move)
                     });
@@ -341,10 +348,16 @@ ns.slide = function () {
     /**
      * intermediate function for controlling typer
      */
-    var stop = function () {
+    var stop = function (dial) {
         stage.$dial.finish().html(dial);
         stage.$main.unbind("click")
             .bind("click", slide.move)
+    };
+
+    var pause = function (dial, f) {
+        stage.$dial.finish().html(dial);
+        stage.$main.unbind("click")
+            .bind("click", f)
     };
     /**
      * bind the function

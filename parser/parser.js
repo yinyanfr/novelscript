@@ -114,16 +114,16 @@ ns.parser = function (data) {
             }
         }
         // parse cg
-        var cgRegex = /\[cg:(.+\.jpg|0)\]/; //verified
+        var cgRegex = /\[cg: *(.+\.jpg|0)\]/; //verified
         var cgMatch = dial.match(cgRegex);
         var cg = cgMatch && cgMatch[0];
         if(cg){
-            cg = cg.replace(/\[cg: ?/, "")
+            res.cg = cg.replace(/\[cg: ?/, "")
                 .replace(/\]/, "")
         }
 
         // parse bg
-        var bgRegex = /\[bg:(.+\.jpg|0)\]/; //verified
+        var bgRegex = /\[bg: *(.+\.jpg|0)\]/; //verified
         var bgMatch = dial.match(bgRegex);
         var bg = bgMatch && bgMatch[0];
         if(bg){
@@ -131,7 +131,7 @@ ns.parser = function (data) {
                 .replace(/\]/, "")
         }
         // parse bgm
-        var bgmRegex = /\[bgm:(.+\.(mp3|ogg)|0)\]/; //verified
+        var bgmRegex = /\[bgm: *(.+\.(mp3|ogg)|0)\]/; //verified
         var bgmMatch = dial.match(bgmRegex);
         var bgm = bgmMatch && bgmMatch[0];
         if(bgm){
@@ -142,10 +142,12 @@ ns.parser = function (data) {
         // new: parse addition
         res.dialogue = dial.replace(/\[[^\+]*\]/g, "");
         var addition = /\[\+\]/g;
+        /*
         if(dial.match(addition)){
             res.multi = true;
             res.dialogue = res.dialogue.split(/\[\+\]/g);
         }
+        */
         return res
     };
 
