@@ -93,7 +93,7 @@ ns.parser = function (data) {
         }
         // normal
         // parse speaker
-        var speakerRegex = /^\[[\u4e00-\u9fa5A-Za-z0-9 _-]+\]/; // verified
+        var speakerRegex = /^\[[\u4e00-\u9fa5A-Za-z0-9 _,，-]+\]/; // verified
         var speakerMatch = dial.match(speakerRegex);
         res.speaker = (speakerMatch) && (dial.match(speakerRegex)[0]) || null;
         dial = dial.replace(speakerRegex, ""); // parse speaker done
@@ -114,30 +114,74 @@ ns.parser = function (data) {
             }
         }
         // parse cg
-        var cgRegex = /\[cg: *(.+\.jpg|0)\]/; //verified
+        var cgRegex = /\[cg: *([^\[\]]+\.jpg|0)\]/; //verified
         var cgMatch = dial.match(cgRegex);
         var cg = cgMatch && cgMatch[0];
         if(cg){
-            res.cg = cg.replace(/\[cg: ?/, "")
+            res.cg = cg.replace(/\[cg: */, "")
                 .replace(/\]/, "")
         }
 
         // parse bg
-        var bgRegex = /\[bg: *(.+\.jpg|0)\]/; //verified
+        var bgRegex = /\[bg: *([^\[\]]+\.jpg|0)\]/; //verified
         var bgMatch = dial.match(bgRegex);
         var bg = bgMatch && bgMatch[0];
         if(bg){
-            res.bg = bg.replace(/\[bg: ?/, "")
+            res.bg = bg.replace(/\[bg: */, "")
                 .replace(/\]/, "")
         }
         // parse bgm
-        var bgmRegex = /\[bgm: *(.+\.(mp3|ogg)|0)\]/; //verified
+        var bgmRegex = /\[bgm: *([^\[\]]+\.(mp3|ogg)|0)\]/; //verified
         var bgmMatch = dial.match(bgmRegex);
         var bgm = bgmMatch && bgmMatch[0];
         if(bgm){
-            res.bgm = bgm.replace(/\[bgm: ?/, "")
+            res.bgm = bgm.replace(/\[bgm: */, "")
                 .replace(/\]/, "")
         }
+        // parse voice
+        //var voiceRegex = /\[voice: *(((.+\.(mp3|ogg), *)*.+\.(mp3|ogg); *)*(.+\.(mp3|ogg), *)* .+\.(mp3|ogg))\]/;
+        var voiceRegexSimp = /\[voice: *([^\[\]]+\.(mp3|ogg)[,;]? *)*[^\[\]]+\.(mp3|ogg)\]/; // verified
+        var voiceMatch = dial.match(voiceRegexSimp);
+        var voice = voiceMatch && voiceMatch[0];
+        if(voice){
+            res.voice = (function () {
+                var res = voice.replace(/\[voice: */, "")
+                    .replace(/\]/, "")
+                    .replace(/ /g, "");
+                if(voice.match(/;/)) {
+                    res = res.split(";");
+                    var i = 0;
+                    for (i; i < res.length; i++) {
+                        if(res[i].match(/,/)){
+                            res[i] = res[i].split(",")
+                        }
+                    }
+                }
+                return res
+            })()
+        }
+        // parce se
+        var seRegexSimp = /\[se: *([^\[\]]+\.(mp3|ogg)[,;]? *)*[^\[\]]+\.(mp3|ogg)\]/; // verified
+        var seMatch = dial.match(seRegexSimp);
+        var se = seMatch && seMatch[0];
+        if(se){
+            res.se = (function () {
+                var res = se.replace(/\[se: */, "")
+                    .replace(/\]/, "")
+                    .replace(/ /g, "");
+                if(se.match(/;/)) {
+                    res = res.split(";");
+                    var i = 0;
+                    for (i; i < res.length; i++) {
+                        if(res[i].match(/,/)){
+                            res[i] = res[i].split(",")
+                        }
+                    }
+                }
+                return res
+            })()
+        }
+
         // last thing : parse dialogue
         // new: parse addition
         res.dialogue = dial.replace(/\[[^\+]*\]/g, "");
