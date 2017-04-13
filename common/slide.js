@@ -232,35 +232,54 @@ ns.slide = function () {
                     // 遍历对话数组的每一项
                     if(indice < array.length - 1){
                         // 不是最后一项的场合，将屏幕点击事件变为显示至今已经点出的步，然后变为启动下次递归
-                        stage.$main.unbind("click")
-                            .bind("click", function () {
-                                pause(function () {
-                                    var res = "";
-                                    for(var i = 0; i < indice+1; i++){
-                                        res += array[i] + " "
-                                    }
-                                    return res
-                                }, function () {
-                                    longdial(frame, indice+1, array, time)
-                                })
+                        var longdialIntermediateShow = function () {
+                            pause(function () {
+                                var res = "";
+                                for(var i = 0; i < indice+1; i++){
+                                    res += array[i] + " "
+                                }
+                                return res
+                            }, function () {
+                                longdial(frame, indice+1, array, time)
+                            })
+                        };
+                        stage.$main.off("click")
+                            .on("click", function () {
+                                if(slide.reaction){
+                                    longdialIntermediateShow()
+                                }
                             });
                         // 启动打字机动画，在自然播放的场合，将屏幕点击事件变为启动下次递归
+                        var longdialRecursion = function () {
+                            longdial(frame, indice+1, array, time)
+                        };
                         return how(frame, array[indice], time, function () {
-                            stage.$main.unbind("click")
-                                .bind("click", function () {
-                                    longdial(frame, indice+1, array, time)
+                            stage.$main.off("click")
+                                .on("click", function () {
+                                    if(slide.reaction){
+                                        longdialRecursion();
+                                    }
                                 })
                         })
                     }
                     else {
-                        stage.$main.unbind("click")
-                            .bind("click", function () {
-                                stop(dial.join(" "))
-                            });
+                        var longdialTermination = function () {
+                            stop(dial.join(" "))
+                        };
+                        stage.$main.off("click")
+                            .on("click", function () {
+                                if(slide.reaction){
+                                    longdialTermination()
+                                }
 
+                            });
                         return how(frame, array[indice++], time, function () {
-                            stage.$main.unbind("click")
-                                .bind("click", slide.move)
+                            stage.$main.off("click")
+                                .on("click", function () {
+                                    if(slide.reaction){
+                                        slide.move()
+                                    }
+                                })
                         })
                     }
 
@@ -270,15 +289,23 @@ ns.slide = function () {
                     longdial(stage.$dial, 0, dial, 20);
 
                 }else{
-
-                    stage.$main.unbind("click")
-                        .bind("click", function () {
-                            stop(dial)
+                    var stopDial = function () {
+                        stop(dial)
+                    };
+                    stage.$main.off("click")
+                        .on("click", function () {
+                            if(slide.reaction){
+                                stopDial()
+                            }
                         });
 
                     how(stage.$dial, dial, 20, function () {
-                        stage.$main.unbind("click")
-                            .bind("click", slide.move)
+                        stage.$main.off("click")
+                            .on("click", function () {
+                                if(slide.reaction){
+                                    slide.move()
+                                }
+                            })
                     });
                 }
 
@@ -354,8 +381,12 @@ ns.slide = function () {
      */
     var stop = function (dial) {
         stage.$dial.finish().html(dial);
-        stage.$main.unbind("click")
-            .bind("click", slide.move)
+        stage.$main.off("click")
+            .on("click", function () {
+                if(slide.reaction){
+                    slide.move()
+                }
+            })
     };
     /**
      * 一个细化的stop
@@ -364,20 +395,36 @@ ns.slide = function () {
      */
     var pause = function (dial, f) {
         stage.$dial.finish().html(dial);
-        stage.$main.unbind("click")
-            .bind("click", f)
+        stage.$main.off("click")
+            .on("click", function () {
+                if(slide.reaction){
+                    f()
+                }
+            })
     };
     /**
      * bind the function
      */
 
     slide.active = function () {
-        stage.$main.bind("click", slide.move);
+        stage.$main.on("click", function () {
+            if(slide.reaction){
+                slide.move()
+            }
+            console.log(slide.event);
+        });
     };
 
     slide.deactive = function () {
-        stage.$main.unbind("click")
+        stage.$main.off("click");
     };
+
+    slide.reactive = function () {
+        console.log(slide.event);
+        stage.$main.on("click", slide.event)
+    };
+
+    slide.reaction = true;
 
     //slide.active();
     return slide

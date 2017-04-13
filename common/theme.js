@@ -91,12 +91,20 @@ ns.initTheme = function (style) {
             top: 0.1 * style.height,
             left: 0.1 * style.width,
             "z-index": 10,
-            "background-color": "#87CEEB"
+            "background-color": "#87CEEB",
+            opacity: 0.8,
+            "border-radius": "2em"
         };
         df.panelCrossStyle = {
-            width: "inherit",
-            height: "10px",
-            "text-align": "right"
+            padding: 5,
+            "font-size": 30,
+            "text-align": "right",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            border: "1px solid gray",
+            "border-radius": "1em",
+            "background-color": "transparent"
         };
 
         return df;

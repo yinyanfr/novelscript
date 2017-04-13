@@ -12,6 +12,7 @@
 ns.panel = function (name, options, tmp) {
     name = name || "Menu";
     options = options || [];
+    var slide = ns.slides;
     // init $ obj
     var $panel = $("<div></div>")
         .click(function (event) {
@@ -20,12 +21,8 @@ ns.panel = function (name, options, tmp) {
     var theme = ns.controls.theme;
     var main = ns.stage.$main;
     $panel.css(theme.panelStyle);
-    var $cross = $("<div></div>")
-        .html(name)
-        .append($("<span></span>")
-            .html("×"))
-        .css(theme.panelCrossStyle)
-        .click($panel.close);
+    var $cross = $("<button>close</button>")
+        .css(theme.panelCrossStyle);
     $panel.generate = function () {
         $panel.append($cross);
         var i = 0;
@@ -35,13 +32,16 @@ ns.panel = function (name, options, tmp) {
         return $panel
     };
     $panel.open = function () {
-        console.log($panel.height());
+        slide.reaction = false;
         if(!tmp){
             $panel.show();
         }else {
             $panel.generate().show()
         }
-        main.click($panel.close)
+        $cross.click(function () {
+            $panel.close();
+            slide.reaction = true
+        })
     };
     $panel.close = function () {
         if(!tmp){
