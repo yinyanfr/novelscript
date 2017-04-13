@@ -61,6 +61,16 @@ ns.initTheme = function (style) {
             position: "absolute",
             top: 0.25 * style.height
         };
+        df.sidebarStyle = {
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            border: "1px solid gray",
+            "border-radius": "0.5em"
+        };
+        df.sidebarButtonStyle = {
+            "background-color": "transparent"
+        };
         var mergeWidth = df.mergeStyle.width;
         df.mergeStyle.left = (style.width - mergeWidth) / 2;
         df.choiceStyle = {
@@ -73,6 +83,21 @@ ns.initTheme = function (style) {
             "text-align": "center"
         };
         df.choiceStyle["line-height"] = df.choiceStyle.height;
+        df.panelStyle = {
+            display: "none",
+            width: 0.8 * style.width,
+            height: 0.8 * style.height,
+            position: "absolute",
+            top: 0.1 * style.height,
+            left: 0.1 * style.width,
+            "z-index": 10,
+            "background-color": "#87CEEB"
+        };
+        df.panelCrossStyle = {
+            width: "inherit",
+            height: "10px",
+            "text-align": "right"
+        };
 
         return df;
     };

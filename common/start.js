@@ -11,9 +11,20 @@
 ns.start = function (script, position) {
     var dp = ns.dp;
     var slide = ns.slides;
+    var stage = ns.stage;
     script = script || dp.firstScriptName();
     position = position || 0;
 
     slide.changeStack(script, position);
-    slide.move()
+    ns.$frame.children().show();
+    stage.$optionPanel = ns.panel();
+    stage.$optionPanel.appendTo(stage.$main);
+    stage.$sidebar = ns.sidebar([$("<button>Menu</button>").click(function (event) {
+        event.stopPropagation();
+        //alert("clicked");
+        stage.$optionPanel.open()
+    })])
+        .appendTo(stage.$content);
+    slide.move();
+
 };

@@ -28,7 +28,7 @@ ns.init = function (data, $frame, setting) {
     ns.relation = ns.initRelation();
     // init the default theme for the reference of others
     var tempTheme = $.extend({}, ns.controls.theme);
-    ns.frame(ns.themes.default);
+    //ns.frame(ns.themes.default);
     ns.frame(tempTheme);
     ns.stage.$main.appendTo(ns.$frame);
     ns.slides = ns.slide();

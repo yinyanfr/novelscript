@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     ns.director = function () {
         var l = ["Demo site", "Powered by NovelScript 0.3"];
-        ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
+        //ns.dp.get("room", 0)["effect"] = ns.diapo(l, ns.$frame, "black", 1000);
 
         ns.merge.add("room", 1, [{
             condition: true,
