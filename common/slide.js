@@ -52,6 +52,7 @@ ns.slide = function () {
      * @param position
      */
     slide.jumpScript = function (script, position) {
+        console.log(script, position);
         slide.changeStack(script, position);
         slide.repaint();
         slide.empty();

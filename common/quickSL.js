@@ -48,9 +48,9 @@ ns.quickSL = function () {
                 ns.stage.$dial.finish();
                 ns.slides.reaction = false;
 
-                //ns.state.state = $.extend({}, tmpSL.state);
-                //ns.state.stack = $.extend({}, tmpSL.stack);
-                console.log(tmpSL.state)
+                ns.state.state = $.extend({}, tmpSL.state);
+                ns.state.stack = $.extend({}, tmpSL.stack);
+                console.log(tmpSL.state);
                 console.log(ns.state.state);
                 ns.slides.jumpScript(tmpSL.state.script, tmpSL.state.position);
 
