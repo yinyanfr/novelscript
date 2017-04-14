@@ -27,7 +27,8 @@ ns.slide = function () {
         stage.$main.css("background-image", "none");
     };
     slide.repaint = function () {
-        //if(stack.speaker)
+        //console.log(stack);
+        slide.empty();
         slide.speaker();
         if (stack.bg) slide.bg();
         if (stack.cg) slide.cg();
@@ -52,7 +53,7 @@ ns.slide = function () {
      */
     slide.jumpScript = function (script, position) {
         slide.changeStack(script, position);
-        //slide.repaint();
+        slide.repaint();
         slide.empty();
         slide.move()
     };
@@ -125,7 +126,7 @@ ns.slide = function () {
     slide.changeBackgroundImage = function (url) {
         if (!slide.before) {
             stage.$bg.css("background-image", "url(" + url + ")")
-        } else if (slide.before.cg != stack.cg || slide.before.bg != stack.bg) {
+        } else if (slide.before.cg !== stack.cg || slide.before.bg !== stack.bg) {
             /*
             stage.$bg.show().css({
                     "background-image": "url(" + url + ")",
@@ -189,17 +190,27 @@ ns.slide = function () {
 
     var dial = stack.dialogue;
 
+    slide.current = {
+        state: {},
+        stack: {}
+    };
+
     /**
      * main: make a display to the screen
      */
     slide.move = function () {
-        console.log(state,stack);
+        var how = ns.typer.flush;
+        slide.current.state = $.extend({}, state);
+        slide.current.stack = $.extend({}, stack);
         var move = function () {
             var merge = dp.getFromState().merge;
             if(merge){
-                slide.repaint();
-                stage.$dial.html(dp.getFromState().dialogue);
+                //slide.repaint();
+                stage.$dial.html("");
                 slide.deactive();
+                how(stage.$dial, dp.getFromState().dialogue, 20, function () {
+
+                });
                 var mergeBody = dp.getFromState().mergeBody;
                 var mergeFunctions = dp.getFromState().mergeFunctions;
                 stage.$merge.html("").show();
@@ -211,6 +222,7 @@ ns.slide = function () {
                                 .html(mergeBody[j])
                                 .click(function (event) {
                                     event.stopPropagation();
+                                    stage.$dial.finish();
                                     slide.active();
                                     stage.$merge.hide();
                                     mergeFunctions[mergeBody[j]].callback()
@@ -226,7 +238,6 @@ ns.slide = function () {
             }else {
                 dial = stack.dialogue; // update dial
                 //TODO merge and effect(0.2)
-                var how = ns.typer.flush;
                 stage.$dial.html("");
                 slide.repaint();
 

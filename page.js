@@ -122,7 +122,6 @@ $(document).ready(function () {
             condition: true,
             callback: function () {
                 ns.slides.jumpScript("room", 3)
-                console.log(ns.state)
             }
         }, {
             condition: true,

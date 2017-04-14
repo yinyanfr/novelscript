@@ -35,6 +35,7 @@ ns.initDp = function (data) {
      * @param position
      */
     dp.stackFix = function (script, position) {
+        console.log(position)
         var stack = dp.get(script, position);
         if(position === 0){
             return stack;
@@ -50,9 +51,9 @@ ns.initDp = function (data) {
                     }
                 }
             }
-            if(!stack.cg) lack.push("cg");
-            if(!stack.bg) lack.push("bg");
-            if(!stack.bgm) lack.push("bgm");
+            if(stack.cg === undefined) lack.push("cg");
+            if(stack.bg === undefined) lack.push("bg");
+            if(stack.bgm === undefined) lack.push("bgm");
             if(!lack.length) return false;
             else return lack;
         };
@@ -71,17 +72,18 @@ ns.initDp = function (data) {
                     }
                 }
                 var thisCg = dp.get(script, i).cg;
+                console.log(thisCg);
                 if(thisCg){
                     stack.cg = thisCg
-                }
+                }else stack.cg = 0;
                 var thisBg = dp.get(script, i).bg;
                 if(thisBg){
                     stack.bg = thisBg
-                }
+                }else stack.bg = 0;
                 var thisBgm = dp.get(script, i).bgm;
                 if(thisBg){
                     stack.bgm = thisBgm
-                }
+                }else stack.bgm = 0;
             }
             var tmp = [];
             for (j = 0; j < figure.length; j++) {
@@ -93,6 +95,7 @@ ns.initDp = function (data) {
         };
         // main fix
         fix();
+        console.log(stack);
         return stack
     };
 

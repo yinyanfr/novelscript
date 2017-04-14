@@ -19,6 +19,9 @@ ns.start = function (script, position) {
     ns.$frame.children().show();
     stage.$optionPanel = ns.panel();
     stage.$optionPanel.appendTo(stage.$main);
+    ns.qsl = ns.quickSL();
+    ns.quicksave = ns.qsl[0];
+    ns.quickload = ns.qsl[1];
     stage.$sidebar = ns.sidebar([
         $("<button>Q.Save</button>").click(function (event) {
             event.stopPropagation();
