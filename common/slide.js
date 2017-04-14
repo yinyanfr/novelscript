@@ -20,6 +20,12 @@ ns.slide = function () {
     /**
      * update the display of a slide
      */
+    slide.empty = function () {
+        stage.$speaker.empty();
+        stage.$dial.empty();
+        stage.$figure.empty();
+        stage.$main.css("background-image", "none");
+    };
     slide.repaint = function () {
         //if(stack.speaker)
         slide.speaker();
@@ -46,6 +52,8 @@ ns.slide = function () {
      */
     slide.jumpScript = function (script, position) {
         slide.changeStack(script, position);
+        //slide.repaint();
+        slide.empty();
         slide.move()
     };
     /**
@@ -185,6 +193,7 @@ ns.slide = function () {
      * main: make a display to the screen
      */
     slide.move = function () {
+        console.log(state,stack);
         var move = function () {
             var merge = dp.getFromState().merge;
             if(merge){

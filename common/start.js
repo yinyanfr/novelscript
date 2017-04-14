@@ -19,7 +19,18 @@ ns.start = function (script, position) {
     ns.$frame.children().show();
     stage.$optionPanel = ns.panel();
     stage.$optionPanel.appendTo(stage.$main);
-    stage.$sidebar = ns.sidebar([$("<button>Menu</button>").click(function (event) {
+    stage.$sidebar = ns.sidebar([
+        $("<button>Q.Save</button>").click(function (event) {
+            event.stopPropagation();
+            //alert("clicked");
+            ns.quicksave();
+        }),
+        $("<button>Q.load</button>").click(function (event) {
+            event.stopPropagation();
+            //alert("clicked");
+            ns.quickload();
+        }),
+        $("<button>Menu</button>").click(function (event) {
         event.stopPropagation();
         //alert("clicked");
         stage.$optionPanel.open()

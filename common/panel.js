@@ -7,9 +7,10 @@
  * where informations or options are displayed
  * @param name: str, name of the panel
  * @param options: array of $ obj
+ * @param css
  * @param tmp: boolean, true if the panel and all its children elements are generated only when it shows and killed when it closes
  */
-ns.panel = function (name, options, tmp) {
+ns.panel = function (name, options, css, tmp) {
     name = name || "Menu";
     options = options || [];
     var slide = ns.slides;
@@ -20,7 +21,7 @@ ns.panel = function (name, options, tmp) {
         });
     var theme = ns.controls.theme;
     var main = ns.stage.$main;
-    $panel.css(theme.panelStyle);
+    $panel.css(css || theme.panelStyle);
     var $cross = $("<button>close</button>")
         .css(theme.panelCrossStyle);
     $panel.generate = function () {

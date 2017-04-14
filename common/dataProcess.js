@@ -36,7 +36,7 @@ ns.initDp = function (data) {
      */
     dp.stackFix = function (script, position) {
         var stack = dp.get(script, position);
-        if(position == 0){
+        if(position === 0){
             return stack;
         }
         var isIncomplete = function (stack) {
@@ -58,13 +58,14 @@ ns.initDp = function (data) {
         };
         var lack = isIncomplete(stack);
         if(!lack) return stack;
+        // stack.cg = "0"; // fix the error when jump forward where a cg is never shown // useless
         var fix = function () {
             var figure = [];
             for(var i = 0; i <= position; i++){
                 var thisFigure = dp.get(script, i).figure;
                 if(thisFigure){
                     for(var j = 0; j < thisFigure.length; j++){
-                        if(thisFigure[j] != ""){
+                        if(thisFigure[j] !== ""){
                             figure[j] = thisFigure[j]
                         }
                     }
