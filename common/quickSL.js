@@ -33,6 +33,7 @@ ns.quickSL = function () {
     var tmpSL = {};
     var quicksaved = false;
     return [
+        // save
         function () {
             if(!quicksaved){
                 quicksaved = true
@@ -43,6 +44,7 @@ ns.quickSL = function () {
             //console.log(tmpSL.stack);
             ns.slides.reaction = true;
         },
+        // laod
         function () {
             if(quicksaved){
                 ns.stage.$dial.finish();

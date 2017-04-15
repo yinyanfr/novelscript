@@ -75,9 +75,10 @@ ns.slide = function () {
 
         // then
         slide.before = $.extend({}, stack);
-        console.log(slide.before)
-        // finally !
+        console.log(slide.before);
+        // finally ! (resolved for wrong jump backward
         ns.data[state.script][state.position] = $.extend({}, ns.tmpData[state.script][state.position]);
+        console.log(state.position, dp.get(state.script).length)
         if (state.position < dp.get(state.script).length - 1) {
             state.position++;
             var next = dp.get(state.script, state.position);
@@ -107,7 +108,7 @@ ns.slide = function () {
         }
         else {
             var r = relation[state.script];
-            if (r === null) ns.$deferred.resolve();
+            if (r === null || state.position > dp.get(state.script).length) ns.$deferred.resolve();
             else {
                 for (var i = 0; i < r.length; i++) {
                     if (r[i].condition) {
@@ -288,7 +289,8 @@ ns.slide = function () {
                     }
                     else {
                         var longdialTermination = function () {
-                            stop(dial.join(" "))
+                            slide.next();
+                            stop(dial.join(""))
                         };
                         stage.$main.off("click")
                             .on("click", function () {
@@ -301,6 +303,7 @@ ns.slide = function () {
                             stage.$main.off("click")
                                 .on("click", function () {
                                     if(slide.reaction){
+                                        slide.next();
                                         slide.move()
                                     }
                                 })
@@ -319,6 +322,7 @@ ns.slide = function () {
                     stage.$main.off("click")
                         .on("click", function () {
                             if(slide.reaction){
+                                slide.next();
                                 stopDial()
                             }
                         });
@@ -327,13 +331,14 @@ ns.slide = function () {
                         stage.$main.off("click")
                             .on("click", function () {
                                 if(slide.reaction){
+                                    slide.next();
                                     slide.move()
                                 }
                             })
                     });
                 }
 
-                slide.next();
+
                 //console.log(stack)
             }
         };

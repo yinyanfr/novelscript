@@ -39,7 +39,7 @@ ns.typer = (function () {
     };
 
     typer.flush = function ($selecter, string, speed, f) {
-        string = " " + string;
+        string = string;
         speed = speed || 10;
         f = f || function () {
                 return 0
