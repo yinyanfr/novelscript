@@ -35,17 +35,21 @@ ns.initDp = function (data) {
      * @param position
      */
     dp.stackFix = function (script, position) {
-        console.log(position)
-        var stack = dp.get(script, position);
+        // 读取未受到修改的剧本文件，并获取一份断开指针的副本
+        var stack = $.extend({}, ns.tmpData[script][position]);
+        // 如果位置是剧本第0句，那么剧本文件上的内容不需要修改，直接返回
         if(position === 0){
             return stack;
         }
+        // 在需要修改的情况，先找出所有的不完整项
         var isIncomplete = function (stack) {
             var lack = [];
+            // 如果未提供立绘，那很可能是不完整的
             if(!stack.figure) lack.push("figure");
             else {
+                // 如果提供立绘，则寻找其中的不完整项
                 for(var i = 0; i < stack.figure.length; i++){
-                    if(stack.figure[i] === "" || stack.figure[i] === 0){
+                    if(stack.figure[i] === "" || stack.figure[i] === 0 || stack.figure[i] === "0"){
                         lack.push("figure");
                         break;
                     }

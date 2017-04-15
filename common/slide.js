@@ -75,6 +75,9 @@ ns.slide = function () {
 
         // then
         slide.before = $.extend({}, stack);
+        console.log(slide.before)
+        // finally !
+        ns.data[state.script][state.position] = $.extend({}, ns.tmpData[state.script][state.position]);
         if (state.position < dp.get(state.script).length - 1) {
             state.position++;
             var next = dp.get(state.script, state.position);

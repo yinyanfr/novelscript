@@ -12,6 +12,7 @@ ns.init = function (data, $frame, setting) {
     ns.$deferred = $.Deferred();
     if (!data) throw "failed to load script data.";
     ns.data = data;
+    ns.tmpData = $.extend({}, data);
     ns.$frame = $frame || $("body");
     // init data
     ns.dp = ns.initDp(ns.data); // data processor (which is closed though) should not not modify any data
@@ -36,6 +37,9 @@ ns.init = function (data, $frame, setting) {
     ns.merge = ns.initMerge();
     ns.director();
     ns.merge.listNonDistrib();
+    ns.qsl = ns.quickSL();
+    ns.quicksave = ns.qsl[0];
+    ns.quickload = ns.qsl[1];
 
     var testlist = ["anzu.jpg", "anzu2.jpg", "anzu_b.png", "anzu_l.png", "anzu_n.png", "classroom.jpg", "koharu.jpg",
         "otome1.png", "otome2.png", "otome3.png", "restaurant.jpg", "room.jpg", "sf.png",
