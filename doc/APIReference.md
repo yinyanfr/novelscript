@@ -1,3 +1,0 @@
-# NovelScript API References
-
-//TODO
