@@ -11,7 +11,7 @@
       "transform-object-rest-spread"
     ]
   },
-  "main": "index.js",
+  "main": "NovelScript.js",
   "repository": "https://github.com/yinyanfr/NovelScript.git",
   "scripts": {
     "start": "npm run dev",
