@@ -1,15 +1,8 @@
-```
-注意 - 非主流的javascript
-出于开发者的怪癖：
-本项目的思路和代码实现中包含大量函数式编程的内容
-本项目使用es5和jQuery
-本项目不使用java式的COO方法
+# NovelScript
+[![npm](https://img.shields.io/npm/v/novelscript.svg)](https://www.npmjs.com/package/novelscript) [![npm](https://img.shields.io/npm/l/novelscript.svg)]()
 
-另外英文文档已经停止继续提供了 
-Documents in English been stopped with no demand being raised during the time
-```
+## A visual novel renderer based on React
 
-# What's does NovelScript do?
 - from simple script
 ```
 [script: room]
@@ -35,36 +28,10 @@ Documents in English been stopped with no demand being raised during the time
 
 <a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
 
-## 主要特点
-- 简化的剧本标记语言：
-  - 格式简单，不需要写代码
-  - 通过简单的增删标记来修改媒体，不需要重复书写
-- 完全可定制的外观
-- 插件式的程序结构
+## Documentation
 
-# Documentation
-<a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a>
+<a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a> (Not available for now)
 
-# ReleaseNote
-目前的版本：0.3 "sodatsu"
-- 新增和修改
-    - 预加载功能和加载条
-    - 修改condition的结构，增加每句台词显示前和显示后两个时机
-    - 取消ns.ui，将ns.ui下的属性并入ns，修改ns.frame()的功能，添加自定义主题的入口
-    - 现在支持分步显示的台词了
-- bug修正
-    - 修改0.2版本错误封入的旧版本parser.js
-    - 修改第一页无法插入动画的错误
-    
-<a href="https://github.com/yinyanfr/NovelScript/blob/master/doc/ReleaseNote.md">点此查阅 ReleaseNote</a>
+## Roadmap
 
-下一版本的更新计划：0.4 "naru"
-- 音乐播放器
-- 选项菜单
-
-# Credit
-PreloadJS https://github.com/CreateJS/PreloadJS
-
-SoundJS https://github.com/CreateJS/SoundJS
-
-JQuery-Snowfall https://github.com/loktar00/JQuery-Snowfall
+This project is now on its way of reconstruction. Further information will be added with progress.
