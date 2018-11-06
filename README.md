@@ -1,5 +1,5 @@
 # NovelScript
-[![npm](https://img.shields.io/npm/v/novelscript.svg)](https://www.npmjs.com/package/novelscript) [![npm](https://img.shields.io/npm/l/novelscript.svg)]()
+[![npm](https://img.shields.io/npm/v/novelscript.svg)](https://www.npmjs.com/package/novelscript) [![npm](https://img.shields.io/npm/l/novelscript.svg)]() [![Build Status](https://travis-ci.org/yinyanfr/NovelScript.svg?branch=master)](https://travis-ci.org/yinyanfr/NovelScript)
 
 ## A visual novel renderer based on React
 
@@ -27,6 +27,15 @@
   <img src="http://gal.yinyan.fr/demo/hane/hane.jpg" />
 
 <a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
+
+## Get Started
+```bash
+$ npm start
+```
+or
+```bash
+$ yarn start
+```
 
 ## Documentation
 

@@ -1,0 +1,6 @@
+install:
+  - npm i -g yarn && yarn
+
+script:
+  - yarn build
+
