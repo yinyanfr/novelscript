@@ -1,0 +1,22 @@
+[scene] start
+[bgm] bgm1
+[bg] classroom
+[join] yuyao normal
+[join] nanzhi normal
+[move] yuyao 20 0 1.1
+[move] nanzhi 20 0 0.9
+[yuyao] 非洲农业不发达，必须要有金坷垃
+
+[reset] yuyao nanzhi
+[move] nanzhi -40 0 1.1
+[move] yuyao -40 0 0.9
+[nanzhi] 日本资源太缺乏，必须要有金坷垃
+
+[label] label1
+[reset] yuyao nanzhi
+[join] lixia normal 1
+[lixia] 不能打架，不能打架，金坷垃好处都有啥，谁说对了就给他
+[leave] lixia fade
+[cg] dailylife
+[branch] jinkela
+[end]

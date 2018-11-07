@@ -1,0 +1,34 @@
+{
+    "start": [
+        {
+            "bgm": "bgm1.mp3",
+            "bg": "classroom.jpg",
+            "stage": [
+                {
+                    "character": "yuyao",
+                    "figure": "/yuyao/normal.png"
+                },
+                {
+                    "character": "nanzhi",
+                    "figure": "/nanzhi/normal.png"
+                }
+            ],
+            "animation": [
+                {
+                    "character": "yuyao",
+                    "x": 20,
+                    "zoom": 1.1
+                },
+                {
+                    "character": "nanzhi",
+                    "x": 20,
+                    "zoom": 0.9
+                }
+            ],
+            "talkbox": {
+                "character": "yuyao",
+                "text": "非洲农业不发达，必须要有金坷垃"
+            }
+        }
+    ]
+}
