@@ -15,6 +15,7 @@
   "dependencies": {
     "bulma": "^0.7.2",
     "node-sass": "^4.10.0",
+    "nsml": "0.0.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
