@@ -1,7 +1,7 @@
 {
   "name": "novelscript",
-  "version": "0.0.2",
-  "main": "src/NovelScript.js",
+  "version": "0.0.3",
+  "main": "src/Nova.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yinyanfr/NovelScript.git"
@@ -13,15 +13,15 @@
   },
   "homepage": "https://github.com/yinyanfr/NovelScript#readme",
   "dependencies": {
-    "bulma": "^0.7.2",
-    "node-sass": "^4.10.0",
-    "nsml": "0.0.1",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "react-scripts": "2.1.1",
-    "react-typing-animation": "^1.4.0",
-    "redux": "^4.0.1"
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "bulma": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-typing-animation": "^1.6.2",
+    "svg-loader": "^0.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,10 +32,16 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

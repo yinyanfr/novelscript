@@ -1,0 +1,31 @@
+{
+    "intro": {
+        "lines": [
+            {
+                "speaker": "音姬",
+                "avatar": "otome.png",
+                "figures": ["otome1.png", "yume1.png"],
+                "bg": "room.jpg",
+                "line": "这是一个nova 0.1版本的演示工程"
+            },
+            {
+                "speaker": "由梦",
+                "avatar": "yume.png",
+                "figures": ["yume1.png", "otome1.png"],
+                "bg": "classroom.jpg",
+                "line": "这里用到的全部图片都来自初音岛2"
+            },
+            {
+                "speaker": "雪村",
+                "avatar": "anzu.png",
+                "figures": ["otome1.png", "anzu1.png", "yume1.png"],
+                "bg": "restaurant.jpg",
+                "line": "右下角是功能按钮，但是现在还没有完成"
+            },
+            {
+                "bg": "room.jpg",
+                "line": "现在就只有这些内容了"
+            }
+        ]
+    }
+}

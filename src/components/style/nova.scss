@@ -1,0 +1,122 @@
+$line-area-height: 20vh;
+$line-area-width: 70vw;
+$line-area-background: rgba($color: skyblue, $alpha: 0.5);
+$line-area-background-fade: rgba($color: skyblue, $alpha: 0.25);
+$window-height: 100vh;
+$line-to-bottom: 25pt;
+$speaker-height: 1.5em;
+$speaker-width: 20%;
+
+.nova-stage {
+    height: $window-height;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    background-size: cover;
+
+    transition: background-image 0.5s;
+}
+
+.nova-line {
+    height: $line-area-height;
+    width: $line-area-width;
+    position: absolute;
+    bottom: $line-to-bottom;
+
+    border-radius: 2em;
+    background: $line-area-background;
+    background: linear-gradient($line-area-background, $line-area-background-fade);
+    // filter: blur(0.5px);
+    // box-shadow: 0 0 5px 10px $line-area-background;
+}
+
+.nova-speaker {
+    position: relative;
+    left: -10vw;
+    z-index: 6;
+    bottom: -2/3*$line-area-height;
+
+    font-size: 150%;
+
+    padding: 5px;
+    // padding-left: 15px;
+    text-indent: 1em;
+    height: $speaker-height;
+    width: $speaker-width;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,213,241,1) 0%, rgba(0,212,255,0) 100%);
+}
+
+.nova-speaker-placeholder {
+    position: relative;
+    left: -10vw;
+    z-index: 6;
+    bottom: -2/3*$line-area-height;
+
+    font-size: 150%;
+
+    padding: 5px;
+    // padding-left: 15px;
+    text-indent: 1em;
+    height: $speaker-height;
+    width: $speaker-width;
+    // background: rgb(2,0,36);
+    // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,213,241,1) 0%, rgba(0,212,255,0) 100%);
+}
+
+.nova-text {
+    text-indent: 2em;
+    padding-left: 10%;
+
+    font-size: $line-area-width / 50;
+}
+
+.nova-icon {
+    color: white;
+    opacity: 0.5;
+    font-size: 200%;
+
+    position: absolute;
+    bottom: -10pt;
+    // right: -25pt;
+    right: 0;
+}
+
+.nova-controls {
+    display: flex;
+    width: 15vw;
+    justify-content: space-between;
+}
+
+.nova-control-icon {
+    color: azure;
+}
+
+.nova-control-icon:hover {
+    text-shadow: 0 0 10px white;
+}
+
+.nova-figures {
+    display: flex;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.nova-figure-image {
+    max-width: $line-area-width / 2.5;
+}
+
+.nova-avatar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    // z-index: -1;
+}
+
+.nova-avatar-image {
+    width: 15vw
+}

@@ -1,7 +1,27 @@
 # NovelScript
-[![npm](https://img.shields.io/npm/v/novelscript.svg)](https://www.npmjs.com/package/novelscript) [![npm](https://img.shields.io/npm/l/novelscript.svg)]() [![Build Status](https://travis-ci.org/yinyanfr/NovelScript.svg?branch=master)](https://travis-ci.org/yinyanfr/NovelScript)
+[![npm](https://img.shields.io/npm/v/novelscript.svg)](https://www.npmjs.com/package/novelscript)
+![react](https://img.shields.io/npm/dependency-version/novelscript/react)
+![npm](https://img.shields.io/npm/l/novelscript.svg)
+[![Build Status](https://travis-ci.org/yinyanfr/NovelScript.svg?branch=master)](https://travis-ci.org/yinyanfr/NovelScript)
+![Dependencies](https://img.shields.io/david/yinyanfr/novelscript)
+![size](https://img.shields.io/github/repo-size/yinyanfr/novelscript)
+
+**This project uses functional components, which requires the latest version of React with the Hook API (v16.8+)**
 
 ## A visual novel renderer based on React
+```javascript
+import {
+  Scenario,
+  Stage
+}  from "./components/Nova"
+
+const App = () => (
+    <Scenario.Provider value={scenario}>
+        <Stage onFinish={finish} />
+    </Scenario.Provider>
+)
+```
+[Demo Site](http://nova.yinyan.fr/)
 
 - from simple script (<a href="https://github.com/yinyanfr/nsml">nsml</a>)
 ```nsml
@@ -24,6 +44,8 @@
   <img src="http://gal.yinyan.fr/demo/hina/new42.png" />
   <br />
   <img src="http://gal.yinyan.fr/demo/hane/hane.jpg" />
+
+(Of course this project doesn't support IE anymore, the link below is the legacy version demo site.)
 
 <a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
 
