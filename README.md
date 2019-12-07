@@ -60,7 +60,7 @@ $ yarn start
 
 ## Documentation
 
-<a href="https://github.com/yinyanfr/NovelScript/tree/master/doc">点此查阅文档 Documentation</a> (Not available for now)
+<a href="https://github.com/yinyanfr/NovelScript/tree/master/doc/legacy">点此查阅文档 Documentation</a> (Legacy)
 
 ## Roadmap
 
