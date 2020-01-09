@@ -3,6 +3,7 @@ import Line from "./Line"
 import {nextLine, firstLine, getLine} from "./utils/util"
 import Scenario from "./contexts/Scenario"
 import Figure from './Figure'
+import Choice from './Choice'
 
 const Stage = ({ className, onFinish, ...props }) => {
     const scenario = useContext(Scenario)
@@ -45,6 +46,11 @@ const Stage = ({ className, onFinish, ...props }) => {
                         }
                     </div>
                 )
+                : ""
+            }
+            {
+                line.choices
+                ? <Choice choices={line.choices} />
                 : ""
             }
             <Line line={line} next={next} setNext={setNext} />

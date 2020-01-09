@@ -1,0 +1,17 @@
+{
+    "intro": {
+        "lines": [
+            {
+                "speaker": "喻南之",
+                "avatar": "nanzhi_a.png",
+                "figures": ["nanzhi.png"],
+                "bg": "library.jpg",
+                "line": "我试着梳了新发型……",
+                "choices": [
+                    "哦……",
+                    "很适合……我觉得这个发型很适合你。"
+                ]
+            }
+        ]
+    }
+}

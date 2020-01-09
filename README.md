@@ -21,7 +21,6 @@ const App = () => (
     </Scenario.Provider>
 )
 ```
-[Demo Site](http://nova.yinyan.fr/)
 
 - from simple script (<a href="https://github.com/yinyanfr/nsml">nsml</a>)
 ```nsml
@@ -41,14 +40,9 @@ const App = () => (
 ```
 - to visual novels
 
-  <img src="http://gal.yinyan.fr/demo/hina/new42.png" />
-  <br />
-  <img src="http://gal.yinyan.fr/demo/hane/hane.jpg" />
+  ![nanzhi](http://nova.yinyan.fr/nanzhi.jpg)
 
-(Of course this project doesn't support IE anymore, the link below is the legacy version demo site.)
-
-<a href="http://gal.yinyan.fr/demo/hane/">Demo Site</a>
-
+[Demo Site](http://nova.yinyan.fr)
 ## Get Started
 ```bash
 $ npm start

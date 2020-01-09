@@ -1,6 +1,8 @@
 import React from 'react'
 import Typing from "react-typing-animation"
 import Controls from './Controls'
+import Fade from './Fade'
+import Typer from './Typer'
 
 const Line = ({ className, line, next, setNext, ...props }) => {
 
@@ -25,6 +27,13 @@ const Line = ({ className, line, next, setNext, ...props }) => {
                                 hideCursor={true}
                                 onFinishedTyping={() => { setNext("success") }}
                             >
+                                {/* <Fade>
+                                    {
+                                        line
+                                            ? line.line
+                                            : "finished"
+                                    }
+                                </Fade> */}
                                 {
                                     line
                                         ? line.line
@@ -39,6 +48,10 @@ const Line = ({ className, line, next, setNext, ...props }) => {
                         )
                 }
             </div>
+
+
+
+
             <div className="nova-icon">
                 <Controls />
             </div>

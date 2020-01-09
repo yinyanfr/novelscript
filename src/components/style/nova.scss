@@ -28,7 +28,7 @@ $speaker-width: 20%;
 
     border-radius: 2em;
     background: $line-area-background;
-    background: linear-gradient($line-area-background, $line-area-background-fade);
+    background: linear-gradient($line-area-background-fade, $line-area-background);
     // filter: blur(0.5px);
     // box-shadow: 0 0 5px 10px $line-area-background;
 }
@@ -41,13 +41,15 @@ $speaker-width: 20%;
 
     font-size: 150%;
 
-    padding: 5px;
+    // padding: 5px;
     // padding-left: 15px;
     text-indent: 1em;
     height: $speaker-height;
     width: $speaker-width;
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,213,241,1) 0%, rgba(0,212,255,0) 100%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,213,241,0.75) 0%, rgba(0,212,255,0) 100%);
+    
+    // border-radius: 0.5em;
 }
 
 .nova-speaker-placeholder {
@@ -58,8 +60,12 @@ $speaker-width: 20%;
 
     font-size: 150%;
 
-    padding: 5px;
+    // padding-top: 5px;
+    // padding-left: 5px;
+    // padding-right: 5px;
     // padding-left: 15px;
+
+    padding: 5px;
     text-indent: 1em;
     height: $speaker-height;
     width: $speaker-width;
@@ -69,9 +75,23 @@ $speaker-width: 20%;
 
 .nova-text {
     text-indent: 2em;
-    padding-left: 10%;
+    // padding-left: 10%;
 
-    font-size: $line-area-width / 50;
+    // font-size: $line-area-width / 50;
+
+    color: white;
+    text-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 0.75);
+    font-size: calc(100vw / 50);
+
+    font-family: "Hiragino Sans GB";
+}
+
+.nova-text-universal {
+    color: white;
+    text-shadow: 2px 2px 2px rgba($color: #000000, $alpha: 0.75);
+    font-size: calc(100vw / 50);
+
+    font-family: "Hiragino Sans GB";
 }
 
 .nova-icon {
@@ -87,7 +107,7 @@ $speaker-width: 20%;
 
 .nova-controls {
     display: flex;
-    width: 15vw;
+    width: 20vw;
     justify-content: space-between;
 }
 
@@ -119,4 +139,28 @@ $speaker-width: 20%;
 
 .nova-avatar-image {
     width: 15vw
+}
+
+.nova-choices {
+    position: absolute;
+    top: 30vh;
+
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+}
+
+.nova-choice {
+    width: 35vw;
+    height: 10vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 5vh;
+
+    background-color: $line-area-background;
+
+    font-size: 150%;
 }
